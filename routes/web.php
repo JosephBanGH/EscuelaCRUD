@@ -19,15 +19,15 @@ Route::get('/login/login', function () {
     return view('login');
 });
 Route::get('/login/index', function () {
-    return view('layout/index');
+    return view('producto/index');
 });
 Route::get('/login/registro', function () {
     return view('layout/registroNotas');
-});
+})->name('registronotas');
 
 Route::get('/login/listado', function () {
     return view('listadonotas');
-});
+})->name('listadonotas');
 
 Route::get('/login/create', function () {
     return view('producto/create');
@@ -47,3 +47,16 @@ Route::get('/login/edit', function () {
 Route::get('/login/confirmar', function () {
     return view('producto/confirmar');
 })->name('producto.confirmar');
+
+Route::get('/login/mantenedor', function () {
+    return view('jose/mantenedor');
+})->name('jose.mantenedor');
+#joseph
+
+Route::get('/login/matriculas', function () {
+    return view('layout/matriculas');
+})->name('matriculas');
+
+Route::get('/login/catedra', function () {
+    return view('layout/catedra');
+})->name('catedra');

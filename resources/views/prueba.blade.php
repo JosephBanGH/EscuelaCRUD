@@ -77,13 +77,16 @@ License: For each use you must have a valid license purchased only from above li
         <div class="collapse " id="email">
           <ul class="nav sub-menu">
             <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/email/inbox" class="nav-link ">Inbox</a>
+              <a href="{{route('matriculas')}}" class="nav-link ">Inbox</a>
             </li>
             <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/email/read" class="nav-link ">Read</a>
+              <a href="{{route('catedra')}}" class="nav-link ">Read</a>
             </li>
             <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/email/compose" class="nav-link ">Compose</a>
+              <a href="{{route('listadonotas')}}" class="nav-link ">Compose</a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('registronotas')}}" class="nav-link ">Compose</a>
             </li>
           </ul>
         </div>

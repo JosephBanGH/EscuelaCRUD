@@ -36,7 +36,7 @@ public function showLogin(){
             $password=$request->get('password');
         if (password_verify($password, $hashp))
         {
-            return redirect()->route('home');
+            return redirect()->route('prueba');
         }
         else
         {

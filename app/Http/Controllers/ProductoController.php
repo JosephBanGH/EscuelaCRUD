@@ -10,12 +10,12 @@ class ProductoController extends Controller
     const PAGINATION = 4; 
     public function index(Request $request){
 
-        $producto=Producto::where('telefono','=','111111111')->paginate($this::PAGINATION);
-        return view('mantenedor.producto.index',compact('producto'));
+        $producto=Producto::where('telefono','=','968088869')->paginate($this::PAGINATION);
+        return view('producto.index',compact('producto'));
     }
     public function create(){
 
-        return view('mantenedor.producto.create'); 
+        return view('producto.create'); 
     }
     public function store(Request $request)
     {
@@ -39,7 +39,7 @@ class ProductoController extends Controller
     public function edit($codigo_docente)
     {
         $producto=Producto::findOrFail($codigo_docente);
-        return view('mantenedor.producto.edit',compact('producto'));
+        return view('producto.edit',compact('producto'));
     }
     public function update(Request $request, $codigo_docente)
     {
@@ -63,7 +63,7 @@ class ProductoController extends Controller
     public function confirmar($id)
     {
         $producto=producto::findOrFail($id);
-        return view('mantenedor.producto.confirmar',compact('producto'));
+        return view('producto.confirmar',compact('producto'));
     }
     public function destroy($id)
     {
