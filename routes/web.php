@@ -14,3 +14,6 @@ Route::post('/salir', [UserController::class,'salir'])->name('logout');
 Route::get('/login/login', function () {
     return view('login');
 });
+Route::get('/login/index', function () {
+    return view('layout/index');
+});
