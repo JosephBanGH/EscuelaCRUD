@@ -17,3 +17,10 @@ Route::get('/login/login', function () {
 Route::get('/login/index', function () {
     return view('layout/index');
 });
+Route::get('/login/registro', function () {
+    return view('layout/registroNotas');
+});
+
+Route::get('/login/listado', function () {
+    return view('listadonotas');
+});
