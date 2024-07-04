@@ -15,8 +15,7 @@
 </div>
 
 <div class="caja1">
-  <form action="">
-<!-- <form method="post" action=""> -->
+<form method="post" action="{{ route('identificacion') }}">
 <div class="formtlo"> Inicio de Sesión</div>
 <img src="/login/img/usuariomujer.png">
 <img src="/login/img/usuariohombre.png">
