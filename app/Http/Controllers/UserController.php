@@ -1,4 +1,3 @@
-
 <?php
 
 namespace App\Http\Controllers;
@@ -17,7 +16,7 @@ public function showLogin(){
  public function verificalogin(Request $request) 
     {
         //return dd($request->all());
-        $data=request()->validate([
+        $data=$request()->validate([
             'name'=>'required',
             'password'=>'required'
         ],
