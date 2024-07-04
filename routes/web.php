@@ -12,11 +12,14 @@ use App\Http\Controllers\ProductoController;
 Route::get('/', [UserController::class,'showLogin']);
 Route::post('/identificacion', [UserController::class,'verificalogin'])->name('identificacion');
 Route::post('/salir', [UserController::class,'salir'])->name('logout');
+Route::get('/login/inicio', function () {
+    return view('prueba');
+});
 Route::get('/login/login', function () {
     return view('login');
 });
 Route::get('/login/index', function () {
-    return view('producto/index');
+    return view('layout/index');
 });
 Route::get('/login/registro', function () {
     return view('layout/registroNotas');
