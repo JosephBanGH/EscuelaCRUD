@@ -1,16 +1,6 @@
 @extends('prueba')
 @section('contenido')
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            top: 50%;
-            left: 50%;
-            position: absolute;
-            transform: translate(-50%, -50%);
-            background-image: linear-gradient(to right top, #6bd18e, #00bea2, #00a7af, #008fb0, #0075a3, #0a6b98, #10628c, #135981, #005d7b, #006073, #126369, #286460);
-            margin: 0;
-        }
         .caja1 {
             background-color: rgba(0, 0, 0, 0.5);
             width: 15em;
@@ -71,8 +61,7 @@
             text-decoration: none;
             cursor: pointer;
         }
-    </style>
-<div>    
+    </style>   
     <div class="caja1">
         <form method="post" action="login.php">
             <div class="formtlo">Registro de Notas</div>
@@ -126,5 +115,4 @@
             </div>
         </form>
     </div>
-</div>
 @endsection
