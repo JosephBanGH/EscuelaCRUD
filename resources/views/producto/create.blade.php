@@ -1,8 +1,8 @@
-@extends('layout.plantilla')
+@extends('prueba')
 @section('contenido')
     <div class="container">
         <h1>Registro Nuevo</h1>
-        <form method="POST" action="{{ route('producto.store')}}">
+        <form method="POST" action="">
         @csrf
         <div class="form-row">
     <div class="form-group col-md-6">
@@ -110,7 +110,7 @@
         </div>
     </div>
         <button type="submit" class="btn btn-primary"><i class="fas fasave"></i> Grabar</button>
-        <a href="{{ route('cancelar')}}" class="btn btndanger"><i class="fas fa-ban"></i> Cancelar</button></a>
+        <a href="" class="btn btndanger"><i class="fas fa-ban"></i> Cancelar</button></a>
         </form>
     </div>
 @endsection

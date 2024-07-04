@@ -1,4 +1,4 @@
-@extends('layout.plantilla')
+@extends('prueba')
 @section('titulo')
     <title>Sistemas de Ventas - Producto</title>
 @endsection

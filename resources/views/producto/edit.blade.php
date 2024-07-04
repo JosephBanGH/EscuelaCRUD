@@ -1,4 +1,4 @@
-@extends('layout.plantilla')
+@extends('prueba')
 @section('contenido')
     <div class="container">
         <h1>Editar Registro</h1>
