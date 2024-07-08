@@ -18,9 +18,6 @@ Route::get('/login/inicio', function () {
 Route::get('/login/login', function () {
     return view('login');
 });
-Route::get('/login/index', function () {
-    return view('producto/index');
-});
 Route::get('/login/registro', function () {
     return view('layout/registroNotas');
 })->name('registronotas');
@@ -33,7 +30,7 @@ Route::get('/login/create', function () {
     return view('producto/create');
 })->name('producto.create');
 
-Route::post('/producto', [ProductoController::class,'index'])->name('producto.index');
+Route::get('/login/index', [ProductoController::class,'index'])->name('producto.index');
 Route::resource('/producto', ProductoController::class);
 Route::get('cancelar', function () {return redirect()->route('producto.index')->with('datos','Acción Cancelada ..!');})->name('cancelar');
 Route::get('producto/{id}/confirmar',[ProductoController::class,'confirmar'])->name('producto.confirmar');
