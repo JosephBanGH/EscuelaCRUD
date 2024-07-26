@@ -48,10 +48,12 @@ Route::get('/login/confirmar', function () {
 Route::get('/login/mantenedor', function () {
     return view('jose/mantenedor');
 })->name('jose.mantenedor');
+
+
 #joseph
 
-Route::get('/login/matriculas', function () {
-    return view('layout/matriculas');
+Route::get('/matriculas', function () {
+    return view('mantenedores.matriculas.matriculas');
 })->name('matriculas');
 
 Route::get('/login/catedra', function () {

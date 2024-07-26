@@ -1,6 +1,6 @@
 @extends('prueba')
 @section('contenido')
-    <<div class="container">
+    <div class="container">
       <h1>Registrar Notas</h1>
       <form method="POST">
         @csrf
