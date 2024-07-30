@@ -18,6 +18,6 @@ class Alumno extends Model
 
     public function matricula()
     {
-        return $this->hasOne(Matricula::class,'codigo_estudiante','codigo_estudiante');
+        return $this->hasMany(Matricula::class,'codigo_estudiante','codigo_estudiante');
     }
 }

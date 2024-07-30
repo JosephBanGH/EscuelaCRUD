@@ -54,7 +54,7 @@ Route::get('/login/mantenedor', function () {
 
 Route::get('/matriculas', function () {
     return view('mantenedores.alumnos.matriculas');
-})->name('matriculas');
+})->name('alumno.create');
 
 Route::get('/catedra', function () {
     return view('mantenedores.catedras.catedra');
