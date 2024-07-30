@@ -14,7 +14,7 @@ Route::post('/identificacion', [UserController::class,'verificalogin'])->name('i
 Route::post('/salir', [UserController::class,'salir'])->name('logout');
 Route::get('/login/inicio', function () {
     return view('prueba');
-});
+})->name('prueba');#PRUEBA ES EL INDEX GENERAL
 Route::get('/login/login', function () {
     return view('login');
 });

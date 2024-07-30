@@ -9,14 +9,14 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-public function showLogin(){
- return view('login');
- }
+    public function showLogin(){
+        return view('login');
+    }
 
- public function verificalogin(Request $request) 
+    public function verificalogin(Request $request) 
     {
         //return dd($request->all());
-        $data=$request()->validate([
+        $data=request()->validate([
             'name'=>'required',
             'password'=>'required'
         ],
@@ -34,22 +34,22 @@ public function showLogin(){
         {
             $hashp=$query[0]->password;
             $password=$request->get('password');
-        if (password_verify($password, $hashp))
-        {
-            return redirect()->route('prueba');
-        }
-        else
-        {
-            return back()->withErrors(['password'=>'Contraseña no válida'])->withInput(request(['name', 'password']));
-        }
+            if (password_verify($password, $hashp))
+            {
+                return redirect()->route('prueba');
+            }
+            else
+            {
+                return back()->withErrors(['password'=>'Contraseña no válida'])->withInput(request(['name', 'password']));
+            }
         }
         else
         {
             return back()->withErrors(['name'=>'Usuario no válido'])->withInput(request(['name']));
         }
-        }
-        public function salir(){
-            Auth::logout();
-            return redirect('/');
-        }
     }
+    public function salir(){
+        Auth::logout();
+        return redirect('/');
+    }
+}
