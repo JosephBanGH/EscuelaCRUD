@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlumnoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductoController;
@@ -55,6 +56,9 @@ Route::get('/login/mantenedor', function () {
 Route::get('/matriculas', function () {
     return view('mantenedores.alumnos.matriculas');
 })->name('alumno.create');
+
+Route::get('/alumnos', [AlumnoController::class,'index'])->name('alumnos.index');
+
 
 Route::get('/catedra', function () {
     return view('mantenedores.catedras.catedra');

@@ -14,9 +14,6 @@ class AlumnoController extends Controller
         return view('mantenedores.alumnos.index',compact('alumno'));
     }
 
-    public function __construct(){
-        $this->middleware('auth');
-    }
-
+  
 }
 
