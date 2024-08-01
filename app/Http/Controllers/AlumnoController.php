@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Alumno;
 
 class AlumnoController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     const PAGINATION = 4;
     public function index(Request $request)
     {        
@@ -46,5 +48,36 @@ class AlumnoController extends Controller
 
         return redirect()->route('mantenedores.alumnos.index')->with('datos', 'Registro Actualizado...!');
     }
-}
 
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
+}
