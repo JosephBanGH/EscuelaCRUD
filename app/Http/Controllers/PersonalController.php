@@ -7,7 +7,7 @@ use App\Models\Personal;
 
 class PersonalController extends Controller
 {
-    const PAGINATION = 10; 
+    const PAGINATION = 5; 
     
     public function index(Request $request)
     {
@@ -23,6 +23,7 @@ class PersonalController extends Controller
         
         // Paginar los resultados
         $personal = $query->paginate($this::PAGINATION);
+        
         
         // Devolver la vista con los datos filtrados
         return view('personal.index', compact('personal'));

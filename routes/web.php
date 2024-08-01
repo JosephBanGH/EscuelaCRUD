@@ -31,17 +31,16 @@ Route::get('/login/listado', function () {
 })->name('listadonotas');
 
 // Rutas para Personal
-
-
-
 Route::get('/personal', [PersonalController::class, 'index'])->name('personal.index');
-Route::resource('/personal', PersonalController::class);
-
+Route::get('/personal/create', [PersonalController::class, 'create'])->name('personal.create');
+Route::post('/personal', [PersonalController::class, 'store'])->name('personal.store');
+Route::get('/personal/{id}/confirmar', [PersonalController::class, 'confirmar'])->name('personal.confirmar');
+Route::get('/personal/{personal}/edit', [PersonalController::class, 'edit'])->name('personal.edit');
+Route::put('/personal/{personal}', [PersonalController::class, 'update'])->name('personal.update');
+Route::delete('/personal/{personal}', [PersonalController::class, 'destroy'])->name('personal.destroy');
 Route::get('personal/cancelar', function () {
     return redirect()->route('personal.index')->with('datos', 'Acción Cancelada ..!');
 })->name('personal.cancelar');
-
-Route::get('personal/{id}/confirmar', [PersonalController::class, 'confirmar'])->name('personal.confirmar');
 
 
 // Rutas adicionales
