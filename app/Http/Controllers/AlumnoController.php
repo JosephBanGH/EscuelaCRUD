@@ -10,7 +10,7 @@ class AlumnoController extends Controller
     const PAGINATION = 4;
     public function index()
     {
-        $alumno=Alumno::where('id_nivel','=','1')->paginate($this::PAGINATION);
+        $alumno=Alumno::where('estado','=','1')->paginate($this::PAGINATION);
         return view('mantenedores.alumnos.index',compact('alumno'));
     }
 

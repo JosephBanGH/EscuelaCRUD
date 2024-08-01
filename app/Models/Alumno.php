@@ -13,7 +13,7 @@ class Alumno extends Model
     public $timestamps=false;
 
     protected $fillable = [
-        'apellido_paterno','apellido_materno','primer_nombre','otros_nombres','id_nivel'
+        'apellido_paterno','apellido_materno','primer_nombre','otros_nombres','estado'
     ];
 
     public function matricula()
