@@ -37,9 +37,9 @@ Route::get('/login/listado', function () {
 Route::get('/personal', [PersonalController::class, 'index'])->name('personal.index');
 Route::resource('/personal', PersonalController::class);
 
-Route::get('cancelar', function () {
+Route::get('personal/cancelar', function () {
     return redirect()->route('personal.index')->with('datos', 'Acción Cancelada ..!');
-})->name('cancelar');
+})->name('personal.cancelar');
 
 Route::get('personal/{id}/confirmar', [PersonalController::class, 'confirmar'])->name('personal.confirmar');
 
@@ -56,6 +56,8 @@ Route::get('/login/mantenedor', function () {
 Route::get('/matriculas', function () {
     return view('mantenedores.alumnos.matriculas');
 })->name('alumno.create');
+
+Route::resource('/alumno',AlumnoController::class);
 
 Route::get('/alumnos', [AlumnoController::class,'index'])->name('alumnos.index');
 

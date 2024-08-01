@@ -50,7 +50,7 @@
                     <td>{{$itemalumno->apellido_materno}}</td>
                     <td>{{$itemalumno->otros_nombres}}</td>
                     <td>
-                        <a href="{{ route('personal.edit', $itemalumno->codigo_estudiante) }}" class="btn btn-info btn-sm">
+                        <a href="{{ route('alumno.edit', $itemalumno->codigo_estudiante) }}" class="btn btn-info btn-sm">
                             <i class="fas fa-pencil-alt"></i> Editar
                         </a>
                         <a href="{{ route('personal.confirmar', $itemalumno->codigo_estudiante) }}" class="btn btn-danger btn-sm">
