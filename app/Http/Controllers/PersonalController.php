@@ -12,7 +12,7 @@ class PersonalController extends Controller
     public function index(Request $request)
     {
         // Inicializamos la consulta base
-        $query = Personal::query();
+        $query = Personal::where('estado', 1);  // Solo obtenemos los registros activos
         
         // Agregamos filtros basados en el parámetro de búsqueda
         if ($request->filled('buscarpor')) {
@@ -27,7 +27,6 @@ class PersonalController extends Controller
         // Devolver la vista con los datos filtrados
         return view('personal.index', compact('personal'));
     }
-    
     
     public function create()
     {
@@ -58,6 +57,7 @@ class PersonalController extends Controller
         $personal->seguro_social = $request->seguro_social;
         $personal->departamento = $request->departamento;
         $personal->fecha_registro = $request->fecha_registro;
+        $personal->estado = 1; // Estado activo por defecto
         $personal->save();
     
         return redirect()->route('personal.index')->with('datos', 'Registro Nuevo Guardado...!');
@@ -107,7 +107,8 @@ class PersonalController extends Controller
     public function destroy($id)
     {
         $personal = Personal::findOrFail($id);
-        $personal->delete();
+        $personal->estado = 0; // Cambia el estado a inactivo
+        $personal->save();
         return redirect()->route('personal.index')->with('datos', 'Registro Eliminado...!');
     }
 }
