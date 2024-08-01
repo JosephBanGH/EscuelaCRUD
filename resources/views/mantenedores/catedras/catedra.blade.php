@@ -46,17 +46,20 @@
                             <th>Código</th>
                             <th>Curso</th>
                             <th>Grado</th>
-                            <th>Sección</th>
+                            <th>PERIODO</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>CL</td>
-                            <td>COMPUTACIÓN / LABORATORIO</td>
-                            <td>Primero de Primaria</td>
-                            <td>C</td>
-                        </tr>
-                        <!-- Más filas aquí -->
+                        @if(count($catedra)>=0)
+                            @foreach($catedra as $itemcatedra)
+                                <tr>
+                                    <td>{{$itemcatedra->codigodocente}}</td>
+                                    <td>{{$itemcatedra->idcurso}}</td>
+                                    <td>{{$itemcatedra->idgrado}}</td>
+                                    <td>{{$itemcatedra->idperiodo}}</td>
+                                </tr>
+                            @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>

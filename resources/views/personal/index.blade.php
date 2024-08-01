@@ -23,6 +23,7 @@
                     </div>
                 </div>
             </form>
+
         </div>
         
         @if (session('datos'))

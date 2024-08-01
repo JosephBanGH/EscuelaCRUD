@@ -4,7 +4,7 @@
 @endsection
 @section('contenido')
     <div class="container">
-        <h3> LISTADO DE PRODUCTOS </h3>
+        <h3> LISTADO DE ALUMNOS </h3>
         <br>
         <a href="" class="btn btn-primary"><i class="fas faplus"></i> Nuevo Registro</a> 
         <nav class="navbar navbar-light float-right">
@@ -14,7 +14,7 @@
             </form>
         </nav>
 
-         @if (session('datos'))
+        @if (session('datos'))
         <div class="alert alert-warning alert-dismissible fade show mt3" role="alert">
             {{ session('datos') }}
             <button type="button" class="close" data-dismiss="alert" arialabel="Close">
