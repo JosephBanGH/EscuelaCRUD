@@ -51,12 +51,15 @@ Route::get('/login/mantenedor', function () {
     return view('jose/mantenedor');
 })->name('jose.mantenedor');
 
+//ALUMNOS
+
 Route::get('/matriculas', function () {
     return view('mantenedores.alumnos.matriculas');
 })->name('alumno.create');
 
 Route::get('/alumnos', [AlumnoController::class,'index'])->name('alumnos.index');
 
+//CATEDRAS
 
 Route::get('/catedra', function () {
     return view('mantenedores.catedras.catedra');
