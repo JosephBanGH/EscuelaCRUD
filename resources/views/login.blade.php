@@ -64,15 +64,15 @@
 </body>
 <script>
   function verpassword(){
-      var tipo = document.getElementById("password");
-      if(tipo.type == "password")
+    var tipo = document.getElementById("password");
+    if(tipo.type == "password")
 	  {
-          tipo.type = "text";
-      }
-	  else
+      tipo.type = "text";
+    }
+    else
 	  {
-          tipo.type = "password";
-      }
+      tipo.type = "password";
+    }
   }
 </script>
 </html>
