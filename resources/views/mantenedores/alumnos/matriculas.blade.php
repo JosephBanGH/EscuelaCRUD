@@ -15,7 +15,7 @@
 <body>
     <div class="container matricula-form-container">
         <h2 class="text-center">Matrícula de Alumnos</h2>
-        <form>
+        <form method="POST" action="{{ route('personal.store') }}">
             <div class="form-group">
                 <label for="codigoEducando">Código del Educando</label>
                 <input type="text" class="form-control" id="codigoEducando" placeholder="00000072830880">

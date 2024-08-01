@@ -12,7 +12,7 @@
         
         <form class="form-inline" method="GET">
             <div class="input-group">
-                <input name="buscarpor" class="form-control" type="search" placeholder="Buscar por nombres" aria-label="Search" value="{{ request('buscarpor') }}">
+                <input name="buscarpor" class="form-control" type="search" placeholder="Buscar por apellido paterno" aria-label="Search" value="{{ request('buscarpor') }}">
                 <div class="input-group-append">
                     <button class="btn btn-success" type="submit"><i class="fas fa-search"></i>Buscar</button>
                 </div>
