@@ -56,9 +56,10 @@ Route::get('/matriculas', function () {
 })->name('alumno.create');
 
 Route::resource('/alumno',AlumnoController::class);
-
 Route::get('/alumnos', [AlumnoController::class,'index'])->name('alumnos.index');
-
+Route::get('alumno/cancelar', function () {
+    return redirect()->route('alumno.index')->with('datos', 'Acción Cancelada ..!');
+})->name('alumno.cancelar');
 //CATEDRA
 
 Route::get('/catedra', function () {
