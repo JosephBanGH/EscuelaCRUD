@@ -57,14 +57,14 @@ Ronaan ves esto-->
       <li class="nav-item active">
         <a href="https://www.nobleui.com/laravel/template/demo1" class="nav-link">
           <i class="link-icon" data-feather="box"></i>
-          <span class="link-title">Dashboard</span>
+          <span class="link-title">Principal</span>
         </a>
       </li>
       <li class="nav-item nav-category">web apps</li>
       <li class="nav-item ">
         <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="false" aria-controls="email">
           <i class="link-icon" data-feather="mail"></i>
-          <span class="link-title">Email</span>
+          <span class="link-title">mantenedor</span>
           <i class="link-arrow" data-feather="chevron-down"></i>
         </a>
         <div class="collapse " id="email">
@@ -76,10 +76,10 @@ Ronaan ves esto-->
               <a href="{{route('catedra')}}" class="nav-link ">Catedras</a>
             </li>
             <li class="nav-item">
-              <a href="{{route('listadonotas')}}" class="nav-link ">Compose</a>
+              <a href="{{route('registronotas')}}" class="nav-link ">Registro de notas</a>
             </li>
             <li class="nav-item">
-              <a href="{{route('registronotas')}}" class="nav-link ">Compose</a>
+              <a href="{{route('personal.index')}}" class="nav-link ">Personal</a>
             </li>
           </ul>
         </div>
@@ -636,7 +636,7 @@ Ronaan ves esto-->
   <p class="text-muted">Handcrafted With <i class="mb-1 text-primary ms-1 icon-sm" data-feather="heart"></i></p>
 </footer>    </div>
   </div>
-
+  @yield('scripts')
     <!-- base js -->
     <script src="https://www.nobleui.com/laravel/template/demo1/js/app.js"></script>
     <script src="https://www.nobleui.com/laravel/template/demo1/assets/plugins/feather-icons/feather.min.js"></script>
