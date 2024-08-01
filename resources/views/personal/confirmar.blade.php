@@ -1,5 +1,9 @@
 @extends('prueba')
 
+@section('titulo')
+    <title>Confirmar Eliminación</title>
+@endsection
+
 @section('contenido')
     <div class="container mt-4">
         <div class="card">
