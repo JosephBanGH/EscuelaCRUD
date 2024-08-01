@@ -14,6 +14,6 @@ class AlumnoController extends Controller
         return view('mantenedores.alumnos.index',compact('alumno'));
     }
 
-  
+    
 }
 
