@@ -20,10 +20,10 @@
                     @method('delete')
                     @csrf
                     <button type="submit" class="btn btn-danger btn-lg">
-                        <i class="fas fa-check-square"></i> Sí, Eliminar
+                        <i class="fas fa-check-square"></i> Eliminar
                     </button>
-                    <a href="{{ route('cancelar') }}" class="btn btn-secondary btn-lg">
-                        <i class="fas fa-times-circle"></i> No, Cancelar
+                    <a href="{{ route('personal.cancelar') }}" class="btn btn-secondary btn-lg">
+                        <i class="fas fa-times-circle"></i> Cancelar
                     </a>
                 </form>
             </div>
