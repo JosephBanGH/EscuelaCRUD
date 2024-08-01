@@ -77,11 +77,7 @@ License: For each use you must have a valid license purchased only from above li
         <div class="collapse " id="email">
           <ul class="nav sub-menu">
             <li class="nav-item">
-<<<<<<< HEAD
-              <a href="{{route('matriculas')}}" class="nav-link ">matriculas</a>
-=======
               <a href="{{route('alumnos.index')}}" class="nav-link ">Alumnos</a>
->>>>>>> 1bba93c1ca3d68c613e9cbb960bfb9f34966393e
             </li>
             <li class="nav-item">
               <a href="{{route('catedra')}}" class="nav-link ">Catedras</a>
