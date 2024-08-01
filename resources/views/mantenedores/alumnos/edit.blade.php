@@ -3,7 +3,7 @@
 @section('contenido')
     <div class="container mt-4">
         <h1 class="mb-4">Editar Registro</h1>
-        <form method="POST" action="{{ route('personal.update', $alumno->codigo_alumno) }}">
+        <form method="POST" action="{{ route('alumno.update', $alumno->codigo_alumno) }}">
             @method('PUT')
             @csrf
 

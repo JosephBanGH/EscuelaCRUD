@@ -31,7 +31,7 @@ class AlumnoController extends Controller
         return view('mantenedores.alumnos.edit', compact('alumno'));
     }    
 
-    public function update(Request $request, $codigo_docente)
+    public function update(Request $request, $codigo_alumno)
     {
         $validatedData = $request->validate([
             'primer_nombre' => 'required|max:255',
@@ -40,7 +40,7 @@ class AlumnoController extends Controller
             'otros_nombres' => 'nullable|max:255',
         ]);
         
-        $alumno = Alumno::findOrFail($codigo_docente);
+        $alumno = Alumno::findOrFail($codigo_alumno);
         $alumno->primer_nombre = $request->primer_nombre;
         $alumno->apellido_paterno = $request->apellido_paterno;
         $alumno->apellido_materno = $request->apellido_materno;
