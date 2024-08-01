@@ -46,7 +46,6 @@ Route::get('personal/{id}/confirmar', [PersonalController::class, 'confirmar'])-
 
 // Rutas adicionales
 
-
 Route::get('/login/mantenedor', function () {
     return view('jose/mantenedor');
 })->name('jose.mantenedor');
