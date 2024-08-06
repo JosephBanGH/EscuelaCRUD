@@ -74,7 +74,6 @@
                 <input type="text" class="form-control" id="anioEscolar" placeholder="2015">
             </div>
             <button type="submit" class="btn btn-primary">Grabar</button>
-            <button type="reset" class="btn btn-secondary">Cancelar</button>
             <button type="button" class="btn btn-secondary">Imprimir</button>
             <button type="button" class="btn btn-secondary">Grabar Tesorería</button>
             <a href="{{ route('alumno.cancelar') }}" class="btn btn-danger"><i class="fas fa-ban"></i> Cancelar</a>
