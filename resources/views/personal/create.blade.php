@@ -14,9 +14,9 @@
                         <div class="invalid-feedback">
                             <strong>{{ $message }}</strong>
                         </div>
-                    @enderror
-                </div>
-            </div>
+                    @enderror 
+                </div> 
+            </div> 
             
             <div class="form-row mb-3">
                 <div class="form-group col-md-6">

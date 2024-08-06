@@ -158,7 +158,7 @@ License: For each use you must have a valid license purchased only from above li
     <ul class="navbar-nav">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/flags/us.svg" class="wd-20 me-1" title="us" alt="us"> <span class="ms-1 me-1 d-none d-md-inline-block">INGLÉS</span>
+          <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/flags/es.svg" class="wd-20 me-1" title="us" alt="us"> <span class="ms-1 me-1 d-none d-md-inline-block">ESPAÑOL</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="languageDropdown">
           <a href="javascript:;" class="dropdown-item py-2"> <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/flags/es.svg" class="wd-20 me-1" title="es" alt="es"> <span class="ms-1"> ESPAÑOL </span></a>
@@ -202,7 +202,7 @@ License: For each use you must have a valid license purchased only from above li
         </a>
         <div class="dropdown-menu p-0" aria-labelledby="messageDropdown">
           <div class="px-3 py-2 d-flex align-items-center justify-content-between border-bottom">
-            <p>9 New Messages</p>
+            <p>10 Nuevos Mensajes</p>
             <a href="javascript:;" class="text-muted">Clear all</a>
           </div>
           <div class="p-1">
@@ -384,7 +384,7 @@ License: For each use you must have a valid license purchased only from above li
 <div class="page-content">
 <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
   <div>
-    <h4 class="mb-3 mb-md-0">Welcome to Dashboard</h4>
+    <h4 class="mb-3 mb-md-0">BIENVENIDOS AL SISTEMA DE LA ESCUELA EDUCATIVA MARIANO MELGAR</h4>
   </div>
   <div class="d-flex align-items-center flex-wrap text-nowrap">
     <div class="input-group flatpickr wd-200 me-2 mb-2 mb-md-0" id="dashboardDate">
@@ -393,11 +393,11 @@ License: For each use you must have a valid license purchased only from above li
     </div>
     <button type="button" class="btn btn-outline-primary btn-icon-text me-2 mb-2 mb-md-0">
       <i class="btn-icon-prepend" data-feather="printer"></i>
-      Print
+      IMPRIMIR
     </button>
     <button type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0">
       <i class="btn-icon-prepend" data-feather="download-cloud"></i>
-      Download Report
+      DESCARGAR 
     </button>
   </div>
 </div>

@@ -107,12 +107,7 @@
             <div class="form-row mb-3">
                 <div class="form-group col-md-6">
                     <label for="departamento">Departamento</label>
-                    <select class="form-control @error('departamento') is-invalid @enderror" id="departamento" name="departamento">
-                        <option value="">Seleccione</option>
-                        <option value="inicial" {{ old('departamento', $personal->departamento) == 'inicial' ? 'selected' : '' }}>Inicial</option>
-                        <option value="primaria" {{ old('departamento', $personal->departamento) == 'primaria' ? 'selected' : '' }}>Primaria</option>
-                        <option value="secundaria" {{ old('departamento', $personal->departamento) == 'secundaria' ? 'selected' : '' }}>Secundaria</option>
-                    </select>
+                    <input type="text" autocomplete="off" class="form-control @error('departamento') is-invalid @enderror" maxlength="40" id="departamento" name="departamento" value="{{ old('departamento', $personal->departamento) }}">
                     @error('departamento')
                         <div class="invalid-feedback">
                             <strong>{{ $message }}</strong>
