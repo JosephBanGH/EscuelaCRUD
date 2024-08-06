@@ -65,7 +65,7 @@ Route::delete('/alumno/{alumno}', [AlumnoController::class, 'destroy'])->name('a
 
 Route::get('/alumno/cancelar', function () {
     return redirect()->route('alumno.index')->with('datos', 'Acción Cancelada ..!');
-})->name('alumnocancelar');
+})->name('alumno.cancelar');
 //CATEDRA
 
 Route::get('/catedra', function () {
