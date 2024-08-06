@@ -77,7 +77,8 @@ License: For each use you must have a valid license purchased only from above li
         <div class="collapse " id="email">
           <ul class="nav sub-menu">
             <li class="nav-item">
-              <a href="{{route('alumnos.index')}}" class="nav-link ">Alumnos</a>
+              <a href="{{route('alumno.index')}}" class="nav-link ">Alumnos</a>
+            <a href="{{ route('alumno.cancelar') }}" class="btn btn-danger"><i class="fas fa-ban"></i> Cancelar</a>
             </li>
             <li class="nav-item">
               <a href="{{route('catedra')}}" class="nav-link ">Catedras</a>
