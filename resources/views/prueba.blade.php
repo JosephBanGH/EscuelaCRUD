@@ -50,7 +50,7 @@ License: For each use you must have a valid license purchased only from above li
     <nav class="sidebar">
   <div class="sidebar-header">
     <a href="#" class="sidebar-brand">
-      Noble<span>UI</span>
+      SISTEMA<span>ESCUELA</span>
     </a>
     <div class="sidebar-toggler not-active">
       <span></span>
@@ -60,36 +60,36 @@ License: For each use you must have a valid license purchased only from above li
   </div>
   <div class="sidebar-body">
     <ul class="nav">
-      <li class="nav-item nav-category">Main</li>
+      <li class="nav-item nav-category">MAIN</li>
       <li class="nav-item active">
         <a href="https://www.nobleui.com/laravel/template/demo1" class="nav-link">
           <i class="link-icon" data-feather="box"></i>
-          <span class="link-title">Principal</span>
+          <span class="link-title">PRINCIPAL</span>
         </a>
       </li>
-      <li class="nav-item nav-category">web apps</li>
+      <li class="nav-item nav-category">SISTEMAS</li>
       <li class="nav-item ">
         <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="false" aria-controls="email">
           <i class="link-icon" data-feather="mail"></i>
-          <span class="link-title">mantenedor</span>
+          <span class="link-title">MANTENEDOR</span>
           <i class="link-arrow" data-feather="chevron-down"></i>
         </a>
         <div class="collapse " id="email">
           <ul class="nav sub-menu">
             <li class="nav-item">
-              <a href="{{route('alumno.index')}}" class="nav-link ">Alumnos</a>
+              <a href="{{route('alumno.index')}}" class="nav-link ">ALUMNOS</a>
             </li>
             <li class="nav-item">
-              <a href="{{route('catedra')}}" class="nav-link ">Catedras</a>
+              <a href="{{route('catedra')}}" class="nav-link ">CATÉDRAS</a>
             </li>
             <li class="nav-item">
-              <a href="{{route('listadonotas')}}" class="nav-link ">Lista de notas</a>
+              <a href="{{route('listadonotas')}}" class="nav-link ">LISTADO DE NOTAS</a>
             </li>
             <li class="nav-item">
-              <a href="{{route('registronotas')}}" class="nav-link ">Registro de notas</a>
+              <a href="{{route('registronotas')}}" class="nav-link ">REGISTRO DE NOTAS</a>
             </li>
             <li class="nav-item">
-              <a href="{{route('personal.index')}}" class="nav-link ">Personal</a>
+              <a href="{{route('personal.index')}}" class="nav-link ">PERSONAL</a>
             </li>
           </ul>
         </div>
@@ -97,250 +97,16 @@ License: For each use you must have a valid license purchased only from above li
       <li class="nav-item ">
         <a href="https://www.nobleui.com/laravel/template/demo1/apps/chat" class="nav-link">
           <i class="link-icon" data-feather="message-square"></i>
-          <span class="link-title">Chat</span>
+          <span class="link-title">CHAT</span>
         </a>
       </li>
       <li class="nav-item ">
         <a href="https://www.nobleui.com/laravel/template/demo1/apps/calendar" class="nav-link">
           <i class="link-icon" data-feather="calendar"></i>
-          <span class="link-title">Calendar</span>
+          <span class="link-title">CALENDARIO</span>
         </a>
       </li>
-      <li class="nav-item nav-category">Components</li>
-      <li class="nav-item ">
-        <a class="nav-link" data-bs-toggle="collapse" href="#uiComponents" role="button" aria-expanded="false" aria-controls="uiComponents">
-          <i class="link-icon" data-feather="feather"></i>
-          <span class="link-title">UI Kit</span>
-          <i class="link-arrow" data-feather="chevron-down"></i>
-        </a>
-        <div class="collapse " id="uiComponents">
-          <ul class="nav sub-menu">
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/ui-components/accordion" class="nav-link ">Accordion</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/ui-components/alerts" class="nav-link ">Alerts</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/ui-components/badges" class="nav-link ">Badges</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/ui-components/breadcrumbs" class="nav-link ">Breadcrumbs</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/ui-components/buttons" class="nav-link ">Buttons</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/ui-components/button-group" class="nav-link ">Button group</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/ui-components/cards" class="nav-link ">Cards</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/ui-components/carousel" class="nav-link ">Carousel</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/ui-components/collapse" class="nav-link ">Collapse</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/ui-components/dropdowns" class="nav-link ">Dropdowns</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/ui-components/list-group" class="nav-link ">List group</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/ui-components/media-object" class="nav-link ">Media object</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/ui-components/modal" class="nav-link ">Modal</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/ui-components/navs" class="nav-link ">Navs</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/ui-components/navbar" class="nav-link ">Navbar</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/ui-components/pagination" class="nav-link ">Pagination</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/ui-components/popovers" class="nav-link ">Popvers</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/ui-components/progress" class="nav-link ">Progress</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/ui-components/scrollbar" class="nav-link ">Scrollbar</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/ui-components/scrollspy" class="nav-link ">Scrollspy</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/ui-components/spinners" class="nav-link ">Spinners</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/ui-components/tabs" class="nav-link ">Tabs</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/ui-components/tooltips" class="nav-link ">Tooltips</a>
-            </li>
-          </ul>
-        </div>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link" data-bs-toggle="collapse" href="#forms" role="button" aria-expanded="false" aria-controls="forms">
-          <i class="link-icon" data-feather="inbox"></i>
-          <span class="link-title">Forms</span>
-          <i class="link-arrow" data-feather="chevron-down"></i>
-        </a>
-        <div class="collapse " id="forms">
-          <ul class="nav sub-menu">
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/forms/basic-elements" class="nav-link ">Basic Elements</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/forms/advanced-elements" class="nav-link ">Advanced Elements</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/forms/editors" class="nav-link ">Editors</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/forms/wizard" class="nav-link ">Wizard</a>
-            </li>
-          </ul>
-        </div>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link" data-bs-toggle="collapse" href="#charts" role="button" aria-expanded="false" aria-controls="charts">
-          <i class="link-icon" data-feather="pie-chart"></i>
-          <span class="link-title">Charts</span>
-          <i class="link-arrow" data-feather="chevron-down"></i>
-        </a>
-        <div class="collapse " id="charts">
-          <ul class="nav sub-menu">
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/charts/apex" class="nav-link ">Apex</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/charts/chartjs" class="nav-link ">ChartJs</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/charts/flot" class="nav-link ">Flot</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/charts/peity" class="nav-link ">Peity</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/charts/sparkline" class="nav-link ">Sparkline</a>
-            </li>
-          </ul>
-        </div>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link" data-bs-toggle="collapse" href="#tables" role="button" aria-expanded="false" aria-controls="tables">
-          <i class="link-icon" data-feather="layout"></i>
-          <span class="link-title">Tables</span>
-          <i class="link-arrow" data-feather="chevron-down"></i>
-        </a>
-        <div class="collapse " id="tables">
-          <ul class="nav sub-menu">
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/tables/basic-tables" class="nav-link ">Basic Tables</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/tables/data-table" class="nav-link ">Data Table</a>
-            </li>
-          </ul>
-        </div>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link" data-bs-toggle="collapse" href="#icons" role="button" aria-expanded="false" aria-controls="icons">
-          <i class="link-icon" data-feather="smile"></i>
-          <span class="link-title">Icons</span>
-          <i class="link-arrow" data-feather="chevron-down"></i>
-        </a>
-        <div class="collapse " id="icons">
-          <ul class="nav sub-menu">
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/icons/feather-icons" class="nav-link ">Feather Icons</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/icons/mdi-icons" class="nav-link ">Mdi Icons</a>
-            </li>
-          </ul>
-        </div>
-      </li>
-      <li class="nav-item nav-category">Pages</li>
-      <li class="nav-item ">
-        <a class="nav-link" data-bs-toggle="collapse" href="#general" role="button" aria-expanded="false" aria-controls="general">
-          <i class="link-icon" data-feather="book"></i>
-          <span class="link-title">Special Pages</span>
-          <i class="link-arrow" data-feather="chevron-down"></i>
-        </a>
-        <div class="collapse " id="general">
-          <ul class="nav sub-menu">
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/general/blank-page" class="nav-link ">Blank page</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/general/faq" class="nav-link ">Faq</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/general/invoice" class="nav-link ">Invoice</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/general/profile" class="nav-link ">Profile</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/general/pricing" class="nav-link ">Pricing</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/general/timeline" class="nav-link ">Timeline</a>
-            </li>
-          </ul>
-        </div>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link" data-bs-toggle="collapse" href="#auth" role="button" aria-expanded="false" aria-controls="auth">
-          <i class="link-icon" data-feather="unlock"></i>
-          <span class="link-title">Authentication</span>
-          <i class="link-arrow" data-feather="chevron-down"></i>
-        </a>
-        <div class="collapse " id="auth">
-          <ul class="nav sub-menu">
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/auth/login" class="nav-link ">Login</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/auth/register" class="nav-link ">Register</a>
-            </li>
-          </ul>
-        </div>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link" data-bs-toggle="collapse" href="#error" role="button" aria-expanded="false" aria-controls="error">
-          <i class="link-icon" data-feather="cloud-off"></i>
-          <span class="link-title">Error</span>
-          <i class="link-arrow" data-feather="chevron-down"></i>
-        </a>
-        <div class="collapse " id="error">
-          <ul class="nav sub-menu">
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/error/404" class="nav-link ">404</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.nobleui.com/laravel/template/demo1/error/500" class="nav-link ">500</a>
-            </li>
-          </ul>
-        </div>
-      </li>
-      <li class="nav-item nav-category">Docs</li>
-      <li class="nav-item">
-        <a href="https://www.nobleui.com/laravel/documentation/docs.html" target="_blank" class="nav-link">
-          <i class="link-icon" data-feather="hash"></i>
-          <span class="link-title">Documentation</span>
-        </a>
-      </li>
+    
     </ul>
   </div>
 </nav>
@@ -392,14 +158,14 @@ License: For each use you must have a valid license purchased only from above li
     <ul class="navbar-nav">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/flags/us.svg" class="wd-20 me-1" title="us" alt="us"> <span class="ms-1 me-1 d-none d-md-inline-block">English</span>
+          <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/flags/us.svg" class="wd-20 me-1" title="us" alt="us"> <span class="ms-1 me-1 d-none d-md-inline-block">INGLÉS</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="languageDropdown">
-          <a href="javascript:;" class="dropdown-item py-2"> <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/flags/us.svg" class="wd-20 me-1" title="us" alt="us"> <span class="ms-1"> English </span></a>
-          <a href="javascript:;" class="dropdown-item py-2"> <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/flags/fr.svg" class="wd-20 me-1" title="fr" alt="fr"> <span class="ms-1"> French </span></a>
-          <a href="javascript:;" class="dropdown-item py-2"> <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/flags/de.svg" class="wd-20 me-1" title="de" alt="de"> <span class="ms-1"> German </span></a>
-          <a href="javascript:;" class="dropdown-item py-2"> <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/flags/pt.svg" class="wd-20 me-1" title="pt" alt="pt"> <span class="ms-1"> Portuguese </span></a>
-          <a href="javascript:;" class="dropdown-item py-2"> <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/flags/es.svg" class="wd-20 me-1" title="es" alt="es"> <span class="ms-1"> Spanish </span></a>
+          <a href="javascript:;" class="dropdown-item py-2"> <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/flags/es.svg" class="wd-20 me-1" title="es" alt="es"> <span class="ms-1"> ESPAÑOL </span></a>
+          <a href="javascript:;" class="dropdown-item py-2"> <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/flags/us.svg" class="wd-20 me-1" title="us" alt="us"> <span class="ms-1"> INGLÉS </span></a>
+          <a href="javascript:;" class="dropdown-item py-2"> <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/flags/fr.svg" class="wd-20 me-1" title="fr" alt="fr"> <span class="ms-1"> FRANCÉS </span></a>
+          <a href="javascript:;" class="dropdown-item py-2"> <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/flags/de.svg" class="wd-20 me-1" title="de" alt="de"> <span class="ms-1"> ALEMÁN </span></a>
+          <a href="javascript:;" class="dropdown-item py-2"> <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/flags/pt.svg" class="wd-20 me-1" title="pt" alt="pt"> <span class="ms-1"> PORTUGUEZ </span></a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -663,5 +429,6 @@ License: For each use you must have a valid license purchased only from above li
     <!-- end common js -->
 
       <script src="https://www.nobleui.com/laravel/template/demo1/assets/js/dashboard.js"></script>
+
 </body>
 </html>

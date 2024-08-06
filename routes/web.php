@@ -71,3 +71,6 @@ Route::get('/alumno/cancelar', function () {
 Route::get('/catedra', function () {
     return view('mantenedores.catedras.catedra');
 })->name('catedra');
+
+
+//LISTADO DE NOTAS 

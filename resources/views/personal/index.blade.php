@@ -5,6 +5,18 @@
 @endsection
 
 @section('contenido')
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+
+
     <div class="container mt-4">
         <h3 class="mb-4">Listado de Personal</h3>
         
@@ -40,10 +52,10 @@
             </div>
         @else
             <div class="table-responsive">
-                <table class="table table-striped table-bordered">
+                <table id="personalTable" class="table table-striped table-bordered">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">Código Docente</th>
+                            <th scope="col">Código</th>
                             <th scope="col">DNI</th>
                             <th scope="col">Nombres</th>
                             <th scope="col">Apellidos</th>
@@ -88,4 +100,18 @@
             </div>
         @endif
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#personalTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        });
+    </script>
+
+
+
 @endsection
