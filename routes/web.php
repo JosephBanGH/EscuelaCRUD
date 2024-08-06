@@ -4,6 +4,7 @@ use App\Http\Controllers\AlumnoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PersonalController;
+use App\Models\Alumno;
 
 /* Route::get('/', function () {
     return view('login');
@@ -42,7 +43,6 @@ Route::get('personal/cancelar', function () {
     return redirect()->route('personal.index')->with('datos', 'Acción Cancelada ..!');
 })->name('personal.cancelar');
 
-
 // Rutas adicionales
 
 Route::get('/login/mantenedor', function () {
@@ -53,13 +53,18 @@ Route::get('/login/mantenedor', function () {
 
 Route::get('/matriculas', function () {
     return view('mantenedores.alumnos.matriculas');
-})->name('alumno.create');
+})->name('alumnocreate');
 
-Route::resource('/alumno',AlumnoController::class);
-Route::get('/alumno', [AlumnoController::class,'index'])->name('alumno.index');
+Route::get('/alumno',[AlumnoController::class,'index'])->name('alumno.index');
+Route::get('/alumno/create', [AlumnoController::class, 'create'])->name('alumno.create');
+Route::post('/alumno', [AlumnoController::class, 'store'])->name('alumno.store');
+Route::get('/alumno/{id}/confirmar', [AlumnoController::class, 'confirmar'])->name('alumno.confirmar');
+Route::get('/alumno/{alumno}/edit', [AlumnoController::class, 'edit'])->name('alumno.edit');
+Route::put('/alumno/{alumno}', [AlumnoController::class, 'update'])->name('alumno.update');
+Route::delete('/alumno/{alumno}', [AlumnoController::class, 'destroy'])->name('alumno.destroy');
 
 Route::get('/alumno/cancelar', function () {
-    return redirect()->route('alumno.index');
+    return redirect()->route('alumno.index')->with('datos', 'Acción Cancelada ..!');
 })->name('alumnocancelar');
 //CATEDRA
 
