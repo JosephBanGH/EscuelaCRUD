@@ -83,7 +83,7 @@ class AlumnoController extends Controller
         $alumno->estado = 1; // Estado activo por defecto
         $alumno->save();
     
-        return redirect()->route('mantenedores.alumno.index')->with('datos', 'Registro Nuevo Guardado...!');
+        return redirect()->route('alumno.index')->with('datos', 'Registro Nuevo Guardado...!');
     }
 
     /**
