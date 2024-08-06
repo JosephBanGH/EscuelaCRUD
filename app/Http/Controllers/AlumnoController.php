@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Alumno;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class AlumnoController extends Controller
 {
@@ -12,7 +13,8 @@ class AlumnoController extends Controller
      */
     const PAGINATION = 4;
     public function index(Request $request)
-    {        
+    {       
+        
         $query = Alumno::where('estado',1);
         
         // Agregamos filtros basados en el parámetro de búsqueda
@@ -22,7 +24,7 @@ class AlumnoController extends Controller
             $query->where('apellido_paterno', 'like', "%{$search}%");
         }
         $alumno=$query->paginate($this::PAGINATION);
-        
+
         return view('mantenedores.alumnos.index',compact('alumno'));
     }
 
@@ -59,7 +61,7 @@ class AlumnoController extends Controller
      */
     public function create()
     {
-        //
+        return view('mantenedores.alumnos.matriculas'); 
     }
 
     /**

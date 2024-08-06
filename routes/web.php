@@ -59,8 +59,8 @@ Route::resource('/alumno',AlumnoController::class);
 Route::get('/alumno', [AlumnoController::class,'index'])->name('alumno.index');
 
 Route::get('/alumno/cancelar', function () {
-    return redirect()->route('alumno.index')->with('datos', 'Acción Cancelada ..!');
-})->name('alumno.cancelar');
+    return redirect()->route('alumno.index');
+})->name('alumnocancelar');
 //CATEDRA
 
 Route::get('/catedra', function () {

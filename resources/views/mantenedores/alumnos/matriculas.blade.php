@@ -77,6 +77,8 @@
             <button type="reset" class="btn btn-secondary">Cancelar</button>
             <button type="button" class="btn btn-secondary">Imprimir</button>
             <button type="button" class="btn btn-secondary">Grabar Tesorería</button>
+            <a href="{{ route('alumnocancelar') }}" class="btn btn-danger"><i class="fas fa-ban"></i> Cancelar</a>
+
         </form>
     </div>
 @endsection
