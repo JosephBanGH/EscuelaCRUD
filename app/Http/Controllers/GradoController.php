@@ -21,12 +21,12 @@ class GradoController extends Controller
 
         $grados = $query->paginate($this::PAGINATION);
 
-        return view('grado.index', compact('grados'));
+        return view('grados.index', compact('grados'));
     }
 
     public function create()
     {
-        return view('grado.create');
+        return view('grados.create');
     }
 
     public function store(Request $request)

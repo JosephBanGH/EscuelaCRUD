@@ -8,7 +8,7 @@
     <h3 class="mb-4">Listado de Alumnos</h3>
 
     <div class="d-flex justify-content-between mb-4">
-        <a href="{{route('alumno.create')}}" class="btn btn-primary"><i class="fas faplus"></i> Nuevo Registro</a>
+        <a href="{{route('alumno.create')}}" class="btn btn-primary"><i class="fas fa-faplus"></i> Nuevo Registro</a>
         
         <form class="form-inline" method="GET">
             <div class="input-group">
