@@ -11,13 +11,13 @@ class GradoController extends Controller
     public function index()
     {
         $grados = Grado::with('seccion')->get();
-        return view('grado.index', compact('grados'));
+        return view('grados.index', compact('grados'));
     }
 
     public function create()
     {
         $secciones = Seccion::all();
-        return view('grado.create', compact('secciones'));
+        return view('grados.create', compact('secciones'));
     }
 
     public function store(Request $request)
@@ -65,12 +65,12 @@ class GradoController extends Controller
     public function confirmar($id_grado)
     {
         $grado = Grado::findOrFail($id_grado);
-        return view('grado.confirmar', compact('grado'));
+        return view('grados.confirmar', compact('grado'));
     }
 
     public function cancelar()
     {
-        return redirect()->route('grado.index');
+        return redirect()->route('grados.index');
     }
 }
 

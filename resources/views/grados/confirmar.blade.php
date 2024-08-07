@@ -17,7 +17,7 @@
                     <strong>Nombre del Grado:</strong> {{ $grado->nombre_grado }}
                 </p>
                 <form method="POST" action="{{ route('grado.destroy', $grado->id_grado) }}">
-                    @method('delete')
+                    @method('DELETE')
                     @csrf
                     <button type="submit" class="btn btn-danger btn-lg">
                         <i class="fas fa-check-square"></i> Eliminar

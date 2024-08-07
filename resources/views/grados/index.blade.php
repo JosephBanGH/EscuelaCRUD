@@ -12,10 +12,6 @@
             <a href="{{ route('grado.create') }}" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Nuevo Registro
             </a>
-            <form class="form-inline" method="GET" action="{{ route('grado.index') }}">
-                <input class="form-control mr-sm-2" type="search" placeholder="Buscar por nivel o grado" name="buscarpor" value="{{ request()->get('buscarpor') }}">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-            </form>
         </div>
         
         @if (session('datos'))
@@ -38,7 +34,7 @@
                         <tr>
                             <th scope="col">ID Grado</th>
                             <th scope="col">Nivel</th>
-                            <th scope="col">Grado</th>
+                            <th scope="col">Nombre del Grado</th>
                             <th scope="col">Sección</th>
                             <th scope="col">Opciones</th>
                         </tr>
@@ -47,14 +43,14 @@
                         @foreach($grados as $grado)
                             <tr>
                                 <td>{{ $grado->id_grado }}</td>
-                                <td>{{ $grado->nivel }}</td>
-                                <td>{{ $grado->grado }}</td>
-                                <td>{{ $grado->id_seccion }}</td>
+                                <td>{{ $grado->nivel_grado }}</td>
+                                <td>{{ $grado->nombre_grado }}</td>
+                                <td>{{ $grado->seccion->nombre_seccion }}</td>
                                 <td>
                                     <a href="{{ route('grado.edit', $grado->id_grado) }}" class="btn btn-info btn-sm">
                                         <i class="fas fa-edit"></i> Editar
                                     </a>
-                                    <a href="{{ route('grado.confirmar', $grado->id_grado) }}" class="btn btn-danger btn-sm">
+                                    <a href="{{ route('grado.confirm', $grado->id_grado) }}" class="btn btn-danger btn-sm">
                                         <i class="fas fa-trash"></i> Eliminar
                                     </a>
                                 </td>
@@ -62,7 +58,6 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ $grados->links() }}
             </div>
         @endif
     </div>
