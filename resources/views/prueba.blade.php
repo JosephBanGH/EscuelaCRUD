@@ -80,7 +80,13 @@ License: For each use you must have a valid license purchased only from above li
               <a href="{{route('alumno.index')}}" class="nav-link ">ALUMNOS</a>
             </li>
             <li class="nav-item">
-              <a href="{{route('grado.index')}}" class="nav-link ">Grados y Secciones</a>
+              <a href="{{route('grado.index')}}" class="nav-link ">GRADO</a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('curso.index')}}" class="nav-link ">CURSO</a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('personal.index')}}" class="nav-link ">PERSONAL</a>
             </li>
             <li class="nav-item">
               <a href="{{route('catedra')}}" class="nav-link ">CATÉDRAS</a>
@@ -90,9 +96,6 @@ License: For each use you must have a valid license purchased only from above li
             </li>
             <li class="nav-item">
               <a href="{{route('registronotas')}}" class="nav-link ">REGISTRO DE NOTAS</a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('personal.index')}}" class="nav-link ">PERSONAL</a>
             </li>
           </ul>
         </div>
@@ -423,8 +426,8 @@ License: For each use you must have a valid license purchased only from above li
     <!-- end base js -->
 
     <!-- plugin js -->
-      <script src="https://www.nobleui.com/laravel/template/demo1/assets/plugins/flatpickr/flatpickr.min.js"></script>
-  <script src="https://www.nobleui.com/laravel/template/demo1/assets/plugins/apexcharts/apexcharts.min.js"></script>
+    <script src="https://www.nobleui.com/laravel/template/demo1/assets/plugins/flatpickr/flatpickr.min.js"></script>
+    <script src="https://www.nobleui.com/laravel/template/demo1/assets/plugins/apexcharts/apexcharts.min.js"></script>
     <!-- end plugin js -->
 
     <!-- common js -->

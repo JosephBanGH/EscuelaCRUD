@@ -36,7 +36,7 @@ class CursoController extends Controller
 
         Cursos::create($validatedData);
 
-        return redirect()->route('cursos.index')->with('datos', 'Curso Guardado...!');
+        return redirect()->route('curso.index')->with('datos', 'Curso Guardado...!');
     }
 
     public function edit($id)
@@ -54,13 +54,17 @@ class CursoController extends Controller
         $curso = Cursos::findOrFail($id);
         $curso->update($validatedData);
 
-        return redirect()->route('cursos.index')->with('datos', 'Curso Actualizado...!');
+        return redirect()->route('curso.index')->with('datos', 'Curso Actualizado...!');
     }
-
+    public function confirmar($id)
+    {
+        $curso = Cursos::findOrFail($id);
+        return view('cursos.confirmar', compact('curso'));
+    }
     public function destroy($id)
     {
         $curso = Cursos::findOrFail($id);
         $curso->delete();
-        return redirect()->route('cursos.index')->with('datos', 'Curso Eliminado...!');
+        return redirect()->route('curso.index')->with('datos', 'Curso Eliminado...!');
     }
 }

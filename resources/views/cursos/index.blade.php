@@ -9,10 +9,10 @@
         <h3 class="mb-4">Listado de Cursos</h3>
         
         <div class="d-flex justify-content-between mb-4">
-            <a href="{{ route('cursos.create') }}" class="btn btn-primary">
+            <a href="{{ route('curso.create') }}" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Nuevo Registro
             </a>
-            <form class="form-inline" method="GET" action="{{ route('cursos.index') }}">
+            <form class="form-inline" method="GET" action="{{ route('curso.index') }}">
                 <input class="form-control mr-sm-2" type="search" placeholder="Buscar por nombre" name="buscarpor" value="{{ request()->get('buscarpor') }}">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
             </form>
@@ -47,10 +47,10 @@
                                 <td>{{ $curso->id_curso }}</td>
                                 <td>{{ $curso->nombre_curso }}</td>
                                 <td>
-                                    <a href="{{ route('cursos.edit', $curso->id_curso) }}" class="btn btn-info btn-sm">
+                                    <a href="{{ route('curso.edit', $curso->id_curso) }}" class="btn btn-info btn-sm">
                                         <i class="fas fa-edit"></i> Editar
                                     </a>
-                                    <a href="{{ route('cursos.confirmar', $curso->id_curso) }}" class="btn btn-danger btn-sm">
+                                    <a href="{{ route('curso.confirmar', $curso->id_curso) }}" class="btn btn-danger btn-sm">
                                         <i class="fas fa-trash"></i> Eliminar
                                     </a>
                                 </td>

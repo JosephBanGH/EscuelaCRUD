@@ -2,69 +2,75 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Grado;
+use App\Models\Seccion;
+use Illuminate\Http\Request;
 
 class GradoController extends Controller
 {
-    const PAGINATION = 4;
-
-    public function index(Request $request)
+    public function index()
     {
-        $query = Grado::query();
-
-        if ($request->filled('buscarpor')) {
-            $search = $request->input('buscarpor');
-            $query->where('nivel', 'like', "%{$search}%")->orWhere('grado', 'like', "%{$search}%");
-        }
-
-        $grados = $query->paginate($this::PAGINATION);
-
-        return view('grados.index', compact('grados'));
+        $grados = Grado::with('seccion')->get();
+        return view('grado.index', compact('grados'));
     }
 
     public function create()
     {
-        return view('grados.create');
+        $secciones = Seccion::all();
+        return view('grado.create', compact('secciones'));
     }
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'nivel' => 'required|max:255',
-            'grado' => 'required|max:255',
-            'id_seccion' => 'required|exists:seccion,id_seccion',
+        $request->validate([
+            'nivel_grado' => 'required',
+            'seccion_id' => 'required',
+            'nombre_grado' => 'required'
         ]);
 
-        Grado::create($validatedData);
+        Grado::create($request->all());
 
-        return redirect()->route('grados.index')->with('datos', 'Grado Guardado...!');
+        return redirect()->route('grado.index')->with('datos', 'Registro creado exitosamente!');
     }
 
-    public function edit($id)
+    public function edit($id_grado)
     {
-        $grado = Grado::findOrFail($id);
-        return view('grados.edit', compact('grado'));
+        $grado = Grado::findOrFail($id_grado);
+        $secciones = Seccion::all();
+        return view('grado.edit', compact('grado', 'secciones'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_grado)
     {
-        $validatedData = $request->validate([
-            'nivel' => 'required|max:255',
-            'grado' => 'required|max:255',
-            'id_seccion' => 'required|exists:seccion,id_seccion',
+        $request->validate([
+            'nivel_grado' => 'required',
+            'seccion_id' => 'required',
+            'nombre_grado' => 'required'
         ]);
 
-        $grado = Grado::findOrFail($id);
-        $grado->update($validatedData);
+        $grado = Grado::findOrFail($id_grado);
+        $grado->update($request->all());
 
-        return redirect()->route('grados.index')->with('datos', 'Grado Actualizado...!');
+        return redirect()->route('grado.index')->with('datos', 'Registro actualizado exitosamente!');
     }
 
-    public function destroy($id)
+    public function destroy($id_grado)
     {
-        $grado = Grado::findOrFail($id);
+        $grado = Grado::findOrFail($id_grado);
         $grado->delete();
-        return redirect()->route('grados.index')->with('datos', 'Grado Eliminado...!');
+
+        return redirect()->route('grado.index')->with('datos', 'Registro eliminado exitosamente!');
+    }
+
+    public function confirmar($id_grado)
+    {
+        $grado = Grado::findOrFail($id_grado);
+        return view('grado.confirmar', compact('grado'));
+    }
+
+    public function cancelar()
+    {
+        return redirect()->route('grado.index');
     }
 }
+
