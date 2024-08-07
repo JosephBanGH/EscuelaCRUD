@@ -11,6 +11,6 @@ class Cursos extends Model
     protected $primaryKey = 'id_curso';
     public $timestamps = false;
     protected $fillable = [
-        'nombre_curso'
+        'nombre_curso','estado'
     ];
 }

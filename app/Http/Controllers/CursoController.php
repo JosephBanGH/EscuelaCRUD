@@ -11,17 +11,18 @@ class CursoController extends Controller
 
     public function index(Request $request)
     {
-        $query = Cursos::query();
-
+        $query = Cursos::where('estado', 1); // Solo mostrar cursos activos
+    
         if ($request->filled('buscarpor')) {
             $search = $request->input('buscarpor');
             $query->where('nombre_curso', 'like', "%{$search}%");
         }
-
+    
         $cursos = $query->paginate($this::PAGINATION);
-
+    
         return view('cursos.index', compact('cursos'));
     }
+    
 
     public function create()
     {
@@ -34,7 +35,10 @@ class CursoController extends Controller
             'nombre_curso' => 'required|max:255',
         ]);
 
-        Cursos::create($validatedData);
+        Cursos::create([
+            'nombre_curso' => $request->nombre_curso,
+            'estado' => 1, // Establecer estado como activo por defecto
+        ]);
 
         return redirect()->route('curso.index')->with('datos', 'Curso Guardado...!');
     }
@@ -52,19 +56,27 @@ class CursoController extends Controller
         ]);
 
         $curso = Cursos::findOrFail($id);
-        $curso->update($validatedData);
+        $curso->update([
+            'nombre_curso' => $request->nombre_curso,
+            'estado' => $request->estado, // Asegúrate de que el estado se pase en el formulario
+        ]);
 
         return redirect()->route('curso.index')->with('datos', 'Curso Actualizado...!');
     }
+
     public function confirmar($id)
     {
         $curso = Cursos::findOrFail($id);
         return view('cursos.confirmar', compact('curso'));
     }
+
     public function destroy($id)
     {
         $curso = Cursos::findOrFail($id);
-        $curso->delete();
+        $curso->estado = 0; // Cambia el estado a inactivo en lugar de eliminarlo
+        $curso->save();
+
         return redirect()->route('curso.index')->with('datos', 'Curso Eliminado...!');
     }
 }
+

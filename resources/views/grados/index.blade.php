@@ -45,7 +45,7 @@
                                 <td>{{ $grado->id_grado }}</td>
                                 <td>{{ $grado->nivel }}</td>
                                 <td>{{ $grado->grado }}</td>
-                                <td>{{ $grado->seccion }}</td> <!-- Cambiado de seccion->nombre_seccion a seccion -->
+                                <td>{{ $grado->seccion }}</td>
                                 <td>
                                     <a href="{{ route('grado.edit', $grado->id_grado) }}" class="btn btn-info btn-sm">
                                         <i class="fas fa-edit"></i> Editar
@@ -58,6 +58,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ $grados->links() }}
             </div>
         @endif
     </div>

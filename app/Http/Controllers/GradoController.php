@@ -11,18 +11,17 @@ class GradoController extends Controller
 
     public function index(Request $request)
     {
-        $query = Grado::query();
+        $query = Grado::where('estado', 1); // Solo mostrar grados activos
         
-        // Agregamos filtros basados en el parámetro de búsqueda
+        // Agregar filtros de búsqueda
         if ($request->filled('buscarpor')) {
             $search = $request->input('buscarpor');
             $query->where('grado', 'like', "%{$search}%");
         }
         
-        // Paginar los resultados
+        // Paginación
         $grados = $query->paginate($this::PAGINATION);
         
-        // Devolver la vista con los datos filtrados
         return view('grados.index', compact('grados'));
     }
 
@@ -44,12 +43,12 @@ class GradoController extends Controller
         $grado->nivel = $request->nivel;
         $grado->seccion = $request->seccion;
         $grado->grado = $request->grado;
+        $grado->estado = 1; // Establecer estado como activo por defecto
         $grado->save();
     
         return redirect()->route('grado.index')->with('datos', 'Registro creado exitosamente!');
     }
     
-
     public function edit($id_grado)
     {
         $grado = Grado::findOrFail($id_grado);
@@ -68,6 +67,7 @@ class GradoController extends Controller
         $grado->nivel = $request->nivel;
         $grado->seccion = $request->seccion;
         $grado->grado = $request->grado;
+        $grado->estado = $request->estado; // Asegúrate de que el estado se pase en el formulario
         $grado->save();
     
         return redirect()->route('grado.index')->with('datos', 'Registro actualizado exitosamente!');
@@ -76,7 +76,8 @@ class GradoController extends Controller
     public function destroy($id_grado)
     {
         $grado = Grado::findOrFail($id_grado);
-        $grado->delete();
+        $grado->estado = 0; // Cambia el estado a inactivo en lugar de eliminarlo
+        $grado->save();
 
         return redirect()->route('grado.index')->with('datos', 'Registro eliminado exitosamente!');
     }

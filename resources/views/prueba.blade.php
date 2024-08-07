@@ -86,6 +86,9 @@ License: For each use you must have a valid license purchased only from above li
               <a href="{{route('curso.index')}}" class="nav-link ">CURSO</a>
             </li>
             <li class="nav-item">
+              <a href="{{route('registronotas')}}" class="nav-link ">CAPACIDAD</a>
+            </li>
+            <li class="nav-item">
               <a href="{{route('personal.index')}}" class="nav-link ">PERSONAL</a>
             </li>
             <li class="nav-item">
@@ -97,6 +100,7 @@ License: For each use you must have a valid license purchased only from above li
             <li class="nav-item">
               <a href="{{route('registronotas')}}" class="nav-link ">REGISTRO DE NOTAS</a>
             </li>
+            
           </ul>
         </div>
       </li>
