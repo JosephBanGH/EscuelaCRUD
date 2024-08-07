@@ -99,18 +99,18 @@ Route::get('/grado/cancelar', function () {
     return redirect()->route('grado.index')->with('datos', 'Acción Cancelada ..!');
 })->name('grado.cancelar');
 
-//SECCION
+// //SECCION
 
-Route::get('seccion', [SeccionController::class, 'index'])->name('seccion.index');
-Route::get('seccion/create', [SeccionController::class, 'create'])->name('seccion.create');
-Route::post('seccion/store', [SeccionController::class, 'store'])->name('seccion.store');
-Route::get('seccion/{id_seccion}/edit', [SeccionController::class, 'edit'])->name('seccion.edit');
-Route::put('seccion/{id_seccion}/update', [SeccionController::class, 'update'])->name('seccion.update');
-Route::delete('seccion/{id_seccion}', [SeccionController::class, 'destroy'])->name('seccion.destroy');
-Route::get('seccion/{id_seccion}/confirmar', [SeccionController::class, 'confirmar'])->name('seccion.confirmar');
-Route::get('/seccion/cancelar', function () {
-    return redirect()->route('seccion.index')->with('datos', 'Acción Cancelada ..!');
-})->name('seccion.cancelar');
+// Route::get('seccion', [SeccionController::class, 'index'])->name('seccion.index');
+// Route::get('seccion/create', [SeccionController::class, 'create'])->name('seccion.create');
+// Route::post('seccion/store', [SeccionController::class, 'store'])->name('seccion.store');
+// Route::get('seccion/{id_seccion}/edit', [SeccionController::class, 'edit'])->name('seccion.edit');
+// Route::put('seccion/{id_seccion}/update', [SeccionController::class, 'update'])->name('seccion.update');
+// Route::delete('seccion/{id_seccion}', [SeccionController::class, 'destroy'])->name('seccion.destroy');
+// Route::get('seccion/{id_seccion}/confirmar', [SeccionController::class, 'confirmar'])->name('seccion.confirmar');
+// Route::get('/seccion/cancelar', function () {
+//     return redirect()->route('seccion.index')->with('datos', 'Acción Cancelada ..!');
+// })->name('seccion.cancelar');
 
 //CATEDRA
 
@@ -124,5 +124,17 @@ Route::get('/catedra', function () {
 Route::get('/capaidad', function () {
     return view('mantenedores.capacidad.capacidad');
 })->name('capacidad');
+
+
+Route::get('capacidad', [CapacidadController::class, 'index'])->name('capacidad.index');
+Route::get('capacidad/create', [CapacidadController::class, 'create'])->name('capacidad.create');
+Route::post('capacidad/store', [CapacidadController::class, 'store'])->name('capacidad.store');
+Route::get('capacidad/{id_capacidad}/edit', [CapacidadController::class, 'edit'])->name('capacidad.edit');
+Route::put('capacidad/{id_capacidad}/update', [CapacidadController::class, 'update'])->name('capacidad.update');
+Route::delete('capacidad/{id_capacidad}', [CapacidadController::class, 'destroy'])->name('capacidad.destroy');
+Route::get('capacidad/{id_capacidad}/confirmar', [CapacidadController::class, 'confirmar'])->name('capacidad.confirmar');
+Route::get('/capacidad/cancelar', function () {
+    return redirect()->route('capacidad.index')->with('datos', 'Acción Cancelada ..!');
+})->name('capacidad.cancelar');
 
 //LISTADO DE NOTAS 

@@ -43,8 +43,8 @@
                         @foreach($grados as $grado)
                             <tr>
                                 <td>{{ $grado->id_grado }}</td>
-                                <td>{{ $grado->nivel_grado }}</td>
-                                <td>{{ $grado->nombre_grado }}</td>
+                                <td>{{ $grado->nivel }}</td>
+                                <td>{{ $grado->grado }}</td>
                                 <td>{{ $grado->seccion }}</td> <!-- Cambiado de seccion->nombre_seccion a seccion -->
                                 <td>
                                     <a href="{{ route('grado.edit', $grado->id_grado) }}" class="btn btn-info btn-sm">

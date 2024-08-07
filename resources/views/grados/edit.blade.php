@@ -9,14 +9,14 @@
 
             <div class="form-row mb-3">
                 <div class="form-group col-md-6">
-                    <label for="nivel_grado">Nivel</label>
-                    <select class="form-control @error('nivel_grado') is-invalid @enderror" id="nivel_grado" name="nivel_grado">
+                    <label for="nivel">Nivel</label>
+                    <select class="form-control @error('nivel') is-invalid @enderror" id="nivel" name="nivel">
                         <option value="">Seleccione</option>
-                        <option value="inicial" {{ old('nivel_grado', $grado->nivel_grado) == 'inicial' ? 'selected' : '' }}>Inicial</option>
-                        <option value="primaria" {{ old('nivel_grado', $grado->nivel_grado) == 'primaria' ? 'selected' : '' }}>Primaria</option>
-                        <option value="secundaria" {{ old('nivel_grado', $grado->nivel_grado) == 'secundaria' ? 'selected' : '' }}>Secundaria</option>
+                        <option value="Inicial" {{ old('nivel', $grado->nivel_grado) == 'inicial' ? 'selected' : '' }}>Inicial</option>
+                        <option value="Primaria" {{ old('nivel', $grado->nivel_grado) == 'primaria' ? 'selected' : '' }}>Primaria</option>
+                        <option value="Secundaria" {{ old('nivel', $grado->nivel_grado) == 'secundaria' ? 'selected' : '' }}>Secundaria</option>
                     </select>
-                    @error('nivel_grado')
+                    @error('nivel')
                         <div class="invalid-feedback">
                             <strong>{{ $message }}</strong>
                         </div>
@@ -26,9 +26,9 @@
             
             <div class="form-row mb-3">
                 <div class="form-group col-md-6">
-                    <label for="nombre_grado">Nombre del Grado</label>
-                    <input type="text" class="form-control @error('nombre_grado') is-invalid @enderror" id="nombre_grado" name="nombre_grado" value="{{ old('nombre_grado', $grado->nombre_grado) }}">
-                    @error('nombre_grado')
+                    <label for="grado">Nombre del Grado</label>
+                    <input type="text" class="form-control @error('grado') is-invalid @enderror" id="grado" name="grado" value="{{ old('grado', $grado->grado) }}">
+                    @error('grado')
                         <div class="invalid-feedback">
                             <strong>{{ $message }}</strong>
                         </div>
