@@ -2,13 +2,10 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-     <title>SISTEMA DE INSTITUCIÓM EDUCATIVA MARIANO MELGAR</title>
-     <link rel="stylesheet" href="/login/css/login.css">	
+    <title>SISTEMA DE INSTITUCIÓM EDUCATIVA MARIANO MELGAR</title>
+    <link rel="stylesheet" href="/login/css/login.css">	
 </head>
 <body>
-
-
-      
 <div class="logo">
   <img src="/login/img/institucion.png" alt="Sistema de Institucióm Educativa Mariano Melgar">
   <p>SISTEMA DE INSTITUCIÓN EDUCATIVA MARIANO MELGAR</p>
