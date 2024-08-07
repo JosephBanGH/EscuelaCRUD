@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\AlumnoController;
+use App\Http\Controllers\CursoController;
+use App\Http\Controllers\GradoController;
+use App\Http\Controllers\SeccionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PersonalController;
@@ -15,6 +18,7 @@ Route::post('/identificacion', [UserController::class, 'verificalogin'])->name('
 Route::post('/salir', [UserController::class, 'salir'])->name('logout');
 
 // Rutas de prueba y login
+
 Route::get('/login/inicio', function () {
     return view('prueba');
 })->name('prueba'); // PRUEBA ES EL INDEX GENERAL
@@ -66,6 +70,41 @@ Route::delete('/alumno/{alumno}', [AlumnoController::class, 'destroy'])->name('a
 Route::get('/alumno/cancelar', function () {
     return redirect()->route('alumno.index')->with('datos', 'Acción Cancelada ..!');
 })->name('alumno.cancelar');
+
+//CURSOS
+
+Route::get('curso', [CursoController::class, 'index'])->name('curso.index');
+Route::get('curso/create', [CursoController::class, 'create'])->name('curso.create');
+Route::post('curso/store', [CursoController::class, 'store'])->name('curso.store');
+Route::get('curso/{id_curso}/edit', [CursoController::class, 'edit'])->name('curso.edit');
+Route::put('curso/{id_curso}/update', [CursoController::class, 'update'])->name('curso.update');
+Route::delete('curso/{id_curso}', [CursoController::class, 'destroy'])->name('curso.destroy');
+Route::get('curso/cancelar', [CursoController::class, 'cancelar'])->name('curso.cancelar');
+Route::get('curso/{id_curso}/confirmar', [CursoController::class, 'confirmar'])->name('curso.confirmar');
+
+
+//GRADOS
+
+Route::get('grado', [GradoController::class, 'index'])->name('grado.index');
+Route::get('grado/create', [GradoController::class, 'create'])->name('grado.create');
+Route::post('grado/store', [GradoController::class, 'store'])->name('grado.store');
+Route::get('grado/{id_grado}/edit', [GradoController::class, 'edit'])->name('grado.edit');
+Route::put('grado/{id_grado}/update', [GradoController::class, 'update'])->name('grado.update');
+Route::delete('grado/{id_grado}', [GradoController::class, 'destroy'])->name('grado.destroy');
+Route::get('grado/cancelar', [GradoController::class, 'cancelar'])->name('grado.cancelar');
+Route::get('grado/{id_grado}/confirmar', [GradoController::class, 'confirmar'])->name('grado.confirmar');
+
+//SECCION
+
+Route::get('seccion', [SeccionController::class, 'index'])->name('seccion.index');
+Route::get('seccion/create', [SeccionController::class, 'create'])->name('seccion.create');
+Route::post('seccion/store', [SeccionController::class, 'store'])->name('seccion.store');
+Route::get('seccion/{id_seccion}/edit', [SeccionController::class, 'edit'])->name('seccion.edit');
+Route::put('seccion/{id_seccion}/update', [SeccionController::class, 'update'])->name('seccion.update');
+Route::delete('seccion/{id_seccion}', [SeccionController::class, 'destroy'])->name('seccion.destroy');
+Route::get('seccion/cancelar', [SeccionController::class, 'cancelar'])->name('seccion.cancelar');
+Route::get('seccion/{id_seccion}/confirmar', [SeccionController::class, 'confirmar'])->name('seccion.confirmar');
+
 //CATEDRA
 
 Route::get('/catedra', function () {
