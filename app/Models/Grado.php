@@ -11,6 +11,6 @@ class Grado extends Model
     protected $primaryKey = 'id_grado';
     public $timestamps = false;
     protected $fillable = [
-        'nivel', 'grado', 'id_seccion'
+        'nivel', 'grado', 'seccion'
     ];
 }
