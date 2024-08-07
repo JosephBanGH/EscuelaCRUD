@@ -105,6 +105,9 @@ class AlumnoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $alumno = Alumno::findOrFail($id);
+        $alumno->estado = 0; // Cambia el estado a inactivo
+        $alumno->save();
+        return redirect()->route('alumno.index')->with('datos', 'Registro Eliminado...!');
     }
 }

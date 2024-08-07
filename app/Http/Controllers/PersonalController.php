@@ -7,7 +7,7 @@ use App\Models\Personal;
 
 class PersonalController extends Controller
 {
-    const PAGINATION = 5; 
+    const PAGINATION = 4; 
     
     public function index(Request $request)
     {

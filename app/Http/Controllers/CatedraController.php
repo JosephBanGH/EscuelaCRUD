@@ -91,3 +91,4 @@ class DocenteController extends Controller
         return response()->json($Docente);
     }
 }
+
