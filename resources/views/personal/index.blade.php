@@ -4,19 +4,12 @@
     <title>Sistemas de Ventas - Personal</title>
 @endsection
 
-@section('contenido')
-
+@section('styles')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.flash.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+@endsection
 
-
+@section('contenido')
     <div class="container mt-4">
         <h3 class="mb-4">Listado de Personal</h3>
         
@@ -24,17 +17,6 @@
             <a href="{{ route('personal.create') }}" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Nuevo Registro
             </a>
-            
-            <form class="form-inline" method="GET" action="{{ route('personal.index') }}">
-                <div class="input-group">
-                    <input name="buscarpor" class="form-control" type="search" placeholder="Buscar por nombres" aria-label="Search" value="{{ request('buscarpor') }}">
-                    <div class="input-group-append">
-                        <button class="btn btn-success" type="submit">
-                            <i class="fas fa-search"></i> Buscar
-                        </button>
-                    </div>
-                </div>
-            </form>
         </div>
         
         @if (session('datos'))
@@ -94,12 +76,18 @@
                     </tbody>
                 </table>
             </div>
-
-            <div class="d-flex justify-content-center mt-4">
-                {{ $personal->links() }}
-            </div>
         @endif
     </div>
+@endsection
+
+@section('scripts')
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -111,7 +99,4 @@
             });
         });
     </script>
-
-
-
 @endsection

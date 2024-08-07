@@ -73,4 +73,10 @@ Route::get('/catedra', function () {
 })->name('catedra');
 
 
+//CAPACIDAD
+
+Route::get('/capaidad', function () {
+    return view('mantenedores.capacidad.capacidad');
+})->name('capacidad');
+
 //LISTADO DE NOTAS 

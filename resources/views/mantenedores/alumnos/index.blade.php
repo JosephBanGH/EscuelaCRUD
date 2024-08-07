@@ -28,8 +28,8 @@
         </button>
     </div>
     @endif
-
-    <table class="table">
+<div class="table-responsive">
+    <table id="personalTable" class="table table-striped table-bordered">
         <thead class="thead-dark">
         <tr>
             <th scope="col">Codigo</th>
@@ -53,17 +53,29 @@
                         <a href="{{ route('alumno.edit', $itemalumno->codigo_estudiante) }}" class="btn btn-info btn-sm">
                             <i class="fas fa-pencil-alt"></i> Editar
                         </a>
-                        <a href="{{ route('personal.confirmar', $itemalumno->codigo_estudiante) }}" class="btn btn-danger btn-sm">
+                        <a href="{{ route('alumno.confirmar', $itemalumno->codigo_estudiante) }}" class="btn btn-danger btn-sm">
                             <i class="fas fa-trash-alt"></i> Eliminar
                         </a>    
                     </td>
                 </tr>
                 @endforeach
-            @endif
         </tbody>
     </table>
-    {{$alumno->links()}}
 </div>
-
-</section>
+    <div class="d-flex justify-content-center mt-4">
+        {{ $alumno->links() }}
+    </div>
+@endif
+</div>
+{{-- 
+<script>
+    $(document).ready(function() {
+        $('#personalTable').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    });
+</section> --}}
 @endsection

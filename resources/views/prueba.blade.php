@@ -40,7 +40,7 @@ License: For each use you must have a valid license purchased only from above li
   <!-- common css -->
   <link href="https://www.nobleui.com/laravel/template/demo1/css/app.css" rel="stylesheet" />
   <!-- end common css -->
-
+  @yield('styles')
   </head>
 <body data-base-url="https://www.nobleui.com/laravel/template/demo1">
 

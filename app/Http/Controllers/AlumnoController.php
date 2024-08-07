@@ -94,6 +94,12 @@ class AlumnoController extends Controller
         //
     }
 
+    public function confirmar($id)
+    {
+        $alumno = Alumno::findOrFail($id);
+        return view('mantenedores.alumnos.confirmar', compact('alumno'));
+    }
+
     /**
      * Remove the specified resource from storage.
      */
