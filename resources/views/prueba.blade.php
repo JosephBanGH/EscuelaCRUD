@@ -80,6 +80,9 @@ License: For each use you must have a valid license purchased only from above li
               <a href="{{route('alumno.index')}}" class="nav-link ">ALUMNOS</a>
             </li>
             <li class="nav-item">
+              <a href="{{route('grado.index')}}" class="nav-link ">Grados y Secciones</a>
+            </li>
+            <li class="nav-item">
               <a href="{{route('catedra')}}" class="nav-link ">CATÉDRAS</a>
             </li>
             <li class="nav-item">

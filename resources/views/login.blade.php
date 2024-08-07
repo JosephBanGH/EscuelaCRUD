@@ -38,7 +38,6 @@
         </span>
         @enderror
       </div>
-      
     
       <div class="ub1">
         <input type="checkbox" onclick="verpassword()" >Mostrar contraseña
