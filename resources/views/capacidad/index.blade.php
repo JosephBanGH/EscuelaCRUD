@@ -1,15 +1,15 @@
 @extends('prueba')
 
 @section('titulo')
-    <title>Sistemas de Ventas - Grados</title>
+    <title>Sistemas de Ventas - Capacidades</title>
 @endsection
 
 @section('contenido')
     <div class="container mt-4">
-        <h3 class="mb-4">Listado de Grados</h3>
+        <h3 class="mb-4">Listado de Capacidades</h3>
         
         <div class="d-flex justify-content-between mb-4">
-            <a href="{{ route('grado.create') }}" class="btn btn-primary">
+            <a href="{{ route('capacidad.create') }}" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Nuevo Registro
             </a>
         </div>
@@ -23,34 +23,34 @@
             </div>
         @endif
 
-        @if ($grados->isEmpty())
+        @if ($capacidades->isEmpty())
             <div class="alert alert-info mt-3" role="alert">
                 No hay resultados para la búsqueda.
             </div>
         @else
             <div class="table-responsive">
-                <table id="gradoTable" class="table table-striped table-bordered">
+                <table id="capacidadTable" class="table table-striped table-bordered">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">ID Grado</th>
-                            <th scope="col">Nivel</th>
-                            <th scope="col">Grado</th>
-                            <th scope="col">Sección</th>
+                            <th scope="col">ID capacidad</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Abreviatura</th>
+                            <th scope="col">ID curso</th>
                             <th scope="col">Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($grados as $grado)
+                        @foreach($capacidades as $capacidad)
                             <tr>
-                                <td>{{ $grado->id_grado }}</td>
-                                <td>{{ $grado->nivel_grado }}</td>
-                                <td>{{ $grado->nombre_grado }}</td>
-                                <td>{{ $grado->seccion }}</td> <!-- Cambiado de seccion->nombre_seccion a seccion -->
+                                <td>{{ $capacidad->id_capacidad }}</td>
+                                <td>{{ $capacidad->descripcion_capacidad }}</td>
+                                <td>{{ $capacidad->abrebiatura_capacidad }}</td>
+                                <td>{{ $capacidad->id_curso }}</td> <!-- Cambiado de seccion->abrebiatura_seccion a seccion -->
                                 <td>
-                                    <a href="{{ route('grado.edit', $grado->id_grado) }}" class="btn btn-info btn-sm">
+                                    <a href="{{ route('capacidad.edit', $capacidad->id_capacidad) }}" class="btn btn-info btn-sm">
                                         <i class="fas fa-edit"></i> Editar
                                     </a>
-                                    <a href="{{ route('grado.confirmar', $grado->id_grado) }}" class="btn btn-danger btn-sm">
+                                    <a href="{{ route('capacidad.confirmar', $capacidad->id_capacidad) }}" class="btn btn-danger btn-sm">
                                         <i class="fas fa-trash"></i> Eliminar
                                     </a>
                                 </td>

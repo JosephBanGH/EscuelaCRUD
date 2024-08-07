@@ -21,9 +21,9 @@
                             <strong>{{ $message }}</strong>
                         </div>
                     @enderror
-                </div>
-            </div>
-
+                </div> 
+            </div> 
+            
             <div class="form-row mb-3">
                 <div class="form-group col-md-6">
                     <label for="nombre_grado">Nombre del Grado</label>
@@ -38,21 +38,23 @@
             
             <div class="form-row mb-3">
                 <div class="form-group col-md-6">
-                    <label for="seccion_id">Sección</label>
-                    <select class="form-control @error('seccion_id') is-invalid @enderror" id="seccion_id" name="seccion_id">
+                    <label for="seccion">Sección</label>
+                    <select class="form-control @error('seccion') is-invalid @enderror" id="seccion" name="seccion">
                         <option value="">Seleccione</option>
-                        @foreach($secciones as $seccion)
-                            <option value="{{ $seccion->id_seccion }}" {{ old('seccion_id', $grado->seccion_id) == $seccion->id_seccion ? 'selected' : '' }}>{{ $seccion->nombre_seccion }}</option>
-                        @endforeach
+                        <option value="A" {{ old('seccion', $grado->seccion) == 'A' ? 'selected' : '' }}>A</option>
+                        <option value="B" {{ old('seccion', $grado->seccion) == 'B' ? 'selected' : '' }}>B</option>
+                        <option value="C" {{ old('seccion', $grado->seccion) == 'C' ? 'selected' : '' }}>C</option>
+                        <option value="D" {{ old('seccion', $grado->seccion) == 'D' ? 'selected' : '' }}>D</option>
+                        <option value="E" {{ old('seccion', $grado->seccion) == 'E' ? 'selected' : '' }}>E</option>
                     </select>
-                    @error('seccion_id')
+                    @error('seccion')
                         <div class="invalid-feedback">
                             <strong>{{ $message }}</strong>
                         </div>
                     @enderror
                 </div>
             </div>
-
+            
             <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Actualizar</button>
             <a href="{{ route('grado.cancelar') }}" class="btn btn-danger"><i class="fas fa-ban"></i> Cancelar</a>
         </form>

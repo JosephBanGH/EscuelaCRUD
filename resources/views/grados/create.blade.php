@@ -20,8 +20,8 @@
                             <strong>{{ $message }}</strong>
                         </div>
                     @enderror
-                </div>
-            </div>
+                </div> 
+            </div> 
             
             <div class="form-row mb-3">
                 <div class="form-group col-md-6">
@@ -37,14 +37,16 @@
             
             <div class="form-row mb-3">
                 <div class="form-group col-md-6">
-                    <label for="seccion_id">Sección</label>
-                    <select class="form-control @error('seccion_id') is-invalid @enderror" id="seccion_id" name="seccion_id">
+                    <label for="seccion">Sección</label>
+                    <select class="form-control @error('seccion') is-invalid @enderror" id="seccion" name="seccion">
                         <option value="">Seleccione</option>
-                        @foreach($secciones as $seccion)
-                            <option value="{{ $seccion->id_seccion }}" {{ old('seccion_id') == $seccion->id_seccion ? 'selected' : '' }}>{{ $seccion->nombre_seccion }}</option>
-                        @endforeach
+                        <option value="A" {{ old('seccion') == 'A' ? 'selected' : '' }}>A</option>
+                        <option value="B" {{ old('seccion') == 'B' ? 'selected' : '' }}>B</option>
+                        <option value="C" {{ old('seccion') == 'C' ? 'selected' : '' }}>C</option>
+                        <option value="D" {{ old('seccion') == 'D' ? 'selected' : '' }}>D</option>
+                        <option value="E" {{ old('seccion') == 'E' ? 'selected' : '' }}>E</option>
                     </select>
-                    @error('seccion_id')
+                    @error('seccion')
                         <div class="invalid-feedback">
                             <strong>{{ $message }}</strong>
                         </div>

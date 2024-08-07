@@ -3,53 +3,72 @@
 namespace App\Http\Controllers;
 
 use App\Models\Grado;
-use App\Models\Seccion;
 use Illuminate\Http\Request;
 
 class GradoController extends Controller
 {
-    public function index()
+    const PAGINATION = 4;
+
+    public function index(Request $request)
     {
-        $grados = Grado::with('seccion')->get();
+        // Inicializamos la consulta base
+        $query = Grado::query();
+        
+        // Agregamos filtros basados en el parámetro de búsqueda
+        if ($request->filled('buscarpor')) {
+            $search = $request->input('buscarpor');
+            $query->where('grado', 'like', "%{$search}%");
+        }
+        
+        // Paginar los resultados
+        $grado = $query->paginate($this::PAGINATION);
+        
+        // Devolver la vista con los datos filtrados
         return view('grados.index', compact('grados'));
     }
 
     public function create()
     {
-        $secciones = Seccion::all();
-        return view('grados.create', compact('secciones'));
+        return view('grados.create');
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nivel_grado' => 'required',
-            'seccion_id' => 'required',
-            'nombre_grado' => 'required'
+        $validatedData = $request->validate([
+            'nivel' => 'required|in:Inicial,Primaria,Secundaria',
+            'seccion' => 'required|in:A,B,C,D,E',
+            'grado' => 'required|integer|max:11', // Cambiado de nombre_grado a grado
         ]);
-
-        Grado::create($request->all());
-
+    
+        // Crear una nueva instancia del modelo Grado
+        $grado = new Grado;
+        $grado->nivel = $request->nivel; // Cambiado de nivel_grado a nivel
+        $grado->seccion = $request->seccion;
+        $grado->grado = $request->grado; // Cambiado de nombre_grado a grado
+        $grado->save();
+    
         return redirect()->route('grado.index')->with('datos', 'Registro creado exitosamente!');
     }
 
     public function edit($id_grado)
     {
         $grado = Grado::findOrFail($id_grado);
-        $secciones = Seccion::all();
-        return view('grado.edit', compact('grado', 'secciones'));
+        return view('grados.edit', compact('grado'));
     }
 
     public function update(Request $request, $id_grado)
     {
-        $request->validate([
-            'nivel_grado' => 'required',
-            'seccion_id' => 'required',
-            'nombre_grado' => 'required'
+        $validatedData = $request->validate([
+            'nivel' => 'required|in:Inicial,Primaria,Secundaria',
+            'seccion' => 'required|in:A,B,C,D,E',
+            'grado' => 'required|max:255'
         ]);
 
         $grado = Grado::findOrFail($id_grado);
-        $grado->update($request->all());
+        $grado->nivel = $request->nivel;
+        $grado->seccion = $request->seccion;
+        $grado->grado = $request->grado;
+        $grado->save();
 
         return redirect()->route('grado.index')->with('datos', 'Registro actualizado exitosamente!');
     }
@@ -67,10 +86,4 @@ class GradoController extends Controller
         $grado = Grado::findOrFail($id_grado);
         return view('grados.confirmar', compact('grado'));
     }
-
-    public function cancelar()
-    {
-        return redirect()->route('grados.index');
-    }
 }
-
