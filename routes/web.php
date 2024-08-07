@@ -79,9 +79,11 @@ Route::post('curso/store', [CursoController::class, 'store'])->name('curso.store
 Route::get('curso/{id_curso}/edit', [CursoController::class, 'edit'])->name('curso.edit');
 Route::put('curso/{id_curso}/update', [CursoController::class, 'update'])->name('curso.update');
 Route::delete('curso/{id_curso}', [CursoController::class, 'destroy'])->name('curso.destroy');
-Route::get('curso/cancelar', [CursoController::class, 'cancelar'])->name('curso.cancelar');
 Route::get('curso/{id_curso}/confirmar', [CursoController::class, 'confirmar'])->name('curso.confirmar');
 
+Route::get('/curso/cancelar', function () {
+    return redirect()->route('curso.index')->with('datos', 'Acción Cancelada ..!');
+})->name('curso.cancelar');
 
 //GRADOS
 
@@ -91,8 +93,11 @@ Route::post('grado/store', [GradoController::class, 'store'])->name('grado.store
 Route::get('grado/{id_grado}/edit', [GradoController::class, 'edit'])->name('grado.edit');
 Route::put('grado/{id_grado}/update', [GradoController::class, 'update'])->name('grado.update');
 Route::delete('grado/{id_grado}', [GradoController::class, 'destroy'])->name('grado.destroy');
-Route::get('grado/cancelar', [GradoController::class, 'cancelar'])->name('grado.cancelar');
 Route::get('grado/{id_grado}/confirmar', [GradoController::class, 'confirmar'])->name('grado.confirmar');
+
+Route::get('/grado/cancelar', function () {
+    return redirect()->route('grado.index')->with('datos', 'Acción Cancelada ..!');
+})->name('grado.cancelar');
 
 //SECCION
 
@@ -102,8 +107,10 @@ Route::post('seccion/store', [SeccionController::class, 'store'])->name('seccion
 Route::get('seccion/{id_seccion}/edit', [SeccionController::class, 'edit'])->name('seccion.edit');
 Route::put('seccion/{id_seccion}/update', [SeccionController::class, 'update'])->name('seccion.update');
 Route::delete('seccion/{id_seccion}', [SeccionController::class, 'destroy'])->name('seccion.destroy');
-Route::get('seccion/cancelar', [SeccionController::class, 'cancelar'])->name('seccion.cancelar');
 Route::get('seccion/{id_seccion}/confirmar', [SeccionController::class, 'confirmar'])->name('seccion.confirmar');
+Route::get('/seccion/cancelar', function () {
+    return redirect()->route('seccion.index')->with('datos', 'Acción Cancelada ..!');
+})->name('seccion.cancelar');
 
 //CATEDRA
 

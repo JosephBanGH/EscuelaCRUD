@@ -15,8 +15,7 @@ class GradoController extends Controller
 
         if ($request->filled('buscarpor')) {
             $search = $request->input('buscarpor');
-            $query->where('nivel', 'like', "%{$search}%")
-                  ->orWhere('grado', 'like', "%{$search}%");
+            $query->where('nivel', 'like', "%{$search}%")->orWhere('grado', 'like', "%{$search}%");
         }
 
         $grados = $query->paginate($this::PAGINATION);
