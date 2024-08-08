@@ -122,5 +122,4 @@ Route::get('/capacidad/cancelar', function () {
 
 
 //CURSO POR GRADO
-Route::get('/grados/{id}/cursos', [CursoGradoController::class, 'index'])->name('curso_grado.index');
-Route::post('/grados/{id}/cursos', [CursoGradoController::class, 'update'])->name('curso_grado.update');
+Route::get('/curso-por-grado', [CursoGradoController::class, 'index'])->name('curso_grado.index');

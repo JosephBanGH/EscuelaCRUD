@@ -6,20 +6,20 @@
 
 @section('contenido')
     <div class="container mt-4">
-        <h3 class="mb-4"> Cursos por Grado</h3>
+        <h3 class="mb-4">Cursos por Grado</h3>
 
         <div class="tree">
             <ul>
-                @foreach($nivelesEducativos as $nivel)
+                @foreach($nivelesEducativos as $nivel => $grados)
                     <li>
-                        <span onclick="toggleTree(event)">{{ $nivel->nombre }}</span>
+                        <span onclick="toggleTree(event)">{{ $nivel }}</span>
                         <ul class="hidden">
-                            @foreach($nivel->grados as $grado)
+                            @foreach($grados as $grado)
                                 <li>
-                                    <span onclick="toggleTree(event)">{{ $grado->nombre }}</span>
+                                    <span onclick="toggleTree(event)">{{ $grado->grado }} - {{ $grado->seccion }}</span>
                                     <ul class="hidden">
                                         @foreach($grado->cursos as $curso)
-                                            <li>{{ $curso->nombre }}</li>
+                                            <li>{{ $curso->nombre_curso }}</li>
                                         @endforeach
                                     </ul>
                                 </li>
