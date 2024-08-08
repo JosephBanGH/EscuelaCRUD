@@ -16,8 +16,12 @@ class Matricula extends Model
         'codigo_estudiante','id_grado','fecha','estado'
     ];
 
-    public function matricula()
+    public function alumno()
     {
-        return $this->hasMany(Matricula::class,'codigo_estudiante','codigo_estudiante');
+        return $this->hasOne(Alumno::class,'codigo_estudiante','codigo_estudiante');
+    }
+    public function grado()
+    {
+        return $this->hasOne(Grado::class,'id_grado','id_grado');
     }
 }

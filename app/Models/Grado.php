@@ -13,4 +13,9 @@ class Grado extends Model
     protected $fillable = [
         'nivel', 'grado', 'seccion','estado'
     ];
+    
+    public function matricula()
+    {
+        return $this->hasMany(Matricula::class,'id_grado','id_grado');
+    }
 }

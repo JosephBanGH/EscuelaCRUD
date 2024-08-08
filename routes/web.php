@@ -24,10 +24,6 @@ Route::get('/login/inicio', function () {
     return view('prueba');
 })->name('prueba'); // PRUEBA ES EL INDEX GENERAL
 
-Route::get('/login/login', function () {
-    return view('login');
-});
-
 Route::get('/login/registro', function () {
     return view('layout/registroNotas');
 })->name('registronotas');
