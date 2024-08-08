@@ -22,7 +22,7 @@
                     <button type="submit" class="btn btn-danger btn-lg">
                         <i class="fas fa-check-square"></i> Eliminar
                     </button>
-                    <a href="{{ route('grado.cancelar') }}" class="btn btn-secondary btn-lg">
+                    <a href="{{ route('grado.index') }}" class="btn btn-secondary btn-lg">
                         <i class="fas fa-times-circle"></i> Cancelar
                     </a>
                 </form>

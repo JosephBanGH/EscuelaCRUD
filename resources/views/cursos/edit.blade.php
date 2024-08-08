@@ -19,6 +19,12 @@
                 </div>
             </div>
 
+            @if ($errors->has('duplicado'))
+                <div class="alert alert-danger mt-3">
+                    {{ $errors->first('duplicado') }}
+                </div>
+            @endif
+
             <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Actualizar</button>
             <a href="{{ route('curso.cancelar') }}" class="btn btn-danger"><i class="fas fa-ban"></i> Cancelar</a>
         </form>

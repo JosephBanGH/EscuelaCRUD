@@ -25,7 +25,7 @@
 
         @if ($grados->isEmpty())
             <div class="alert alert-info mt-3" role="alert">
-                No hay resultados para la búsqueda.
+                No hay grados activos.
             </div>
         @else
             <div class="table-responsive">

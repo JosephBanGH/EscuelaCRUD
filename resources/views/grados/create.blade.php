@@ -11,9 +11,9 @@
                     <label for="nivel">Nivel</label>
                     <select class="form-control @error('nivel') is-invalid @enderror" id="nivel" name="nivel">
                         <option value="">Seleccione</option>
-                        <option value="Inicial" {{ old('nivel') == 'inicial' ? 'selected' : '' }}>Inicial</option>
-                        <option value="Primaria" {{ old('nivel') == 'primaria' ? 'selected' : '' }}>Primaria</option>
-                        <option value="Secundaria" {{ old('nivel') == 'secundaria' ? 'selected' : '' }}>Secundaria</option>
+                        <option value="Inicial" {{ old('nivel') == 'Inicial' ? 'selected' : '' }}>Inicial</option>
+                        <option value="Primaria" {{ old('nivel') == 'Primaria' ? 'selected' : '' }}>Primaria</option>
+                        <option value="Secundaria" {{ old('nivel') == 'Secundaria' ? 'selected' : '' }}>Secundaria</option>
                     </select>
                     @error('nivel')
                         <div class="invalid-feedback">
@@ -53,9 +53,13 @@
                     @enderror
                 </div>
             </div>
-            
+            @if ($errors->has('duplicado'))
+                <div class="alert alert-danger mt-3">
+                    {{ $errors->first('duplicado') }}
+                </div>
+            @endif
             <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Grabar</button>
-            <a href="{{ route('grado.cancelar') }}" class="btn btn-danger"><i class="fas fa-ban"></i> Cancelar</a>
+            <a href="{{ route('grado.index') }}" class="btn btn-danger"><i class="fas fa-ban"></i> Cancelar</a>
         </form>
     </div>
 @endsection

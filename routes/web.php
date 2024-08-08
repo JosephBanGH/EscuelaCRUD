@@ -7,6 +7,7 @@ use App\Http\Controllers\SeccionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PersonalController;
+use App\Http\Controllers\CapacidadController;
 use App\Models\Alumno;
 
 /* Route::get('/', function () {
@@ -20,8 +21,8 @@ Route::post('/salir', [UserController::class, 'salir'])->name('logout');
 // Rutas de prueba y login
 
 Route::get('/login/inicio', function () {
-    return view('prueba');
-})->name('prueba'); // PRUEBA ES EL INDEX GENERAL
+    return view('prueba1');
+})->name('prueba1'); // PRUEBA ES EL INDEX GENERAL
 
 Route::get('/login/login', function () {
     return view('login');
@@ -121,7 +122,7 @@ Route::get('/catedra', function () {
 
 //CAPACIDAD
 
-Route::get('/capaidad', function () {
+Route::get('/capacidad', function () {
     return view('mantenedores.capacidad.capacidad');
 })->name('capacidad');
 
