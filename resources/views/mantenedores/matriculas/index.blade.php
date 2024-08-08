@@ -41,6 +41,11 @@
         </tr>
         </thead>
         <tbody>
+            @if ($personal->isEmpty())
+                <div class="alert alert-info mt-3" role="alert">
+                    No hay resultados para la búsqueda.
+                </div>
+            @else
             @if (count($matricula)>=0)
                 @foreach($matricula as $itemmatricula)
                 <tr>

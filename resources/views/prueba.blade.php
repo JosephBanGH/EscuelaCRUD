@@ -109,7 +109,7 @@ License: For each use you must have a valid license purchased only from above li
       <li class="nav-item ">
         <a href="{{route('matricula.index')}}" class="nav-link">
           <i class="link-icon" data-feather="message-square"></i>
-          <span class="link-title">CHAT</span>
+          <span class="link-title">MATRICULAS</span>
         </a>
       </li>
 
