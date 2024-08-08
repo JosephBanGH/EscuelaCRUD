@@ -13,8 +13,8 @@
         <select name="buscarpor" class="form-control">
             <option value="">Selecciona un grado</option>
             @foreach($grados as $grado)
-                <option value="{{ $grado->id }}" {{ request('buscarpor') == $grado->id ? 'selected' : '' }}>
-                    {{ $grado->nombre }}
+                <option value="{{ $grado->nivel }}" {{ request('buscarpor') == $grado->nivel ? 'selected' : '' }}>
+                    {{ $grado->nivel }}
                 </option>
             @endforeach
         </select>
@@ -41,6 +41,11 @@
         </tr>
         </thead>
         <tbody>
+            @if ($personal->isEmpty())
+                <div class="alert alert-info mt-3" role="alert">
+                    No hay resultados para la búsqueda.
+                </div>
+            @else
             @if (count($matricula)>=0)
                 @foreach($matricula as $itemmatricula)
                 <tr>

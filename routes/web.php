@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\CapacidadController;
 use App\Http\Controllers\CursoGradoController;
+use App\Http\Controllers\MatriculaController;
 use App\Models\Alumno;
 
 /* Route::get('/', function () {
@@ -89,7 +90,10 @@ Route::get('/grado/cancelar', function () {
 })->name('grado.cancelar');
 
 //MATRICULAS
-Route::resource('matricula','MatriculaController');
+
+Route::resource('matricula',MatriculaController::class);
+//Route::get('/matricula',[MatriculaController::class,'index'])->name('matricula.index');
+
 Route::get('/cancelarm', function () {
     return redirect()->route('matricula.index')->with('datos','Matricula cancelada');
 })->name('/cancelarm');
