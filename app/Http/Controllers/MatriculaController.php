@@ -21,20 +21,18 @@ class MatriculaController extends Controller
         $query = Alumno::query();
     
         if ($request->filled('buscarpor')) {
-            $gradoId = $request->input('buscarpor');
-            $query->whereHas('matriculas', function($q) use ($gradoId) {
-                $q->where('id_grado', $gradoId);
+            $gradoNivel = $request->input('buscarpor');
+            $query->whereHas('matriculas', function($q) use ($gradoNivel) {
+                $q->where('nivel', $gradoNivel);
             });
         }
     
         $alumnos = $query->where('estado', '1')
-                        ->orderBy('grado.numero', 'asc') // Ordenar por número de grado
+                        ->orderBy('grado.grado', 'asc') // Ordenar por número de grado
                         ->paginate($this::PAGINATION);
     
-        return view('mantenedores.alumnos.index', compact('alumnos', 'grados'));
+        return view('mantenedores.matriculas.index', compact('alumnos', 'grados'));
 
-        $matricula = Matricula::where('estado','=','1')->paginate($this::PAGINATION);
-        return view('mantenedores.matriculas.index', compact('matricula'));
     }
 
     /**

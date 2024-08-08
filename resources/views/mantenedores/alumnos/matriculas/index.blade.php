@@ -13,8 +13,8 @@
         <select name="buscarpor" class="form-control">
             <option value="">Selecciona un grado</option>
             @foreach($grados as $grado)
-                <option value="{{ $grado->id }}" {{ request('buscarpor') == $grado->id ? 'selected' : '' }}>
-                    {{ $grado->nombre }}
+                <option value="{{ $grado->nivel }}" {{ request('buscarpor') == $grado->nivel ? 'selected' : '' }}>
+                    {{ $grado->nivel }}
                 </option>
             @endforeach
         </select>
