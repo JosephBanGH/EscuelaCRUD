@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\CapacidadController;
+use App\Http\Controllers\CursoGradoController;
 use App\Models\Alumno;
 
 /* Route::get('/', function () {
@@ -118,3 +119,8 @@ Route::get('/capacidad/cancelar', function () {
 })->name('capacidad.cancelar');
 
 //LISTADO DE NOTAS 
+
+
+//CURSO POR GRADO
+Route::get('/grados/{id}/cursos', [CursoGradoController::class, 'index'])->name('curso_grado.index');
+Route::post('/grados/{id}/cursos', [CursoGradoController::class, 'update'])->name('curso_grado.update');
