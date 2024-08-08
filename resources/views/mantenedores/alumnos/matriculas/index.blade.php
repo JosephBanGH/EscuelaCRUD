@@ -10,14 +10,15 @@
     <div class="d-flex justify-content-between mb-4">
         <a href="{{route('matricula.create')}}" class="btn btn-alert"><i class="fas fa-faplus"></i> MATRICULAR</a>
         
-        <form class="form-inline" method="GET">
-            <div class="input-group">
-                <input name="buscarpor" class="form-control" type="search" placeholder="Buscar por apellido paterno" aria-label="Search" value="{{ request('buscarpor') }}">
-                <div class="input-group-append">
-                    <button class="btn btn-success" type="submit"><i class="fas fa-search"></i>Buscar</button>
-                </div>
-            </div>
-        </form>
+        <select name="buscarpor" class="form-control">
+            <option value="">Selecciona un grado</option>
+            @foreach($grados as $grado)
+                <option value="{{ $grado->id }}" {{ request('buscarpor') == $grado->id ? 'selected' : '' }}>
+                    {{ $grado->nombre }}
+                </option>
+            @endforeach
+        </select>
+
     </div>
                 
     @if(session('datos'))
