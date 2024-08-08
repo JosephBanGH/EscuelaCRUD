@@ -124,6 +124,7 @@ Route::get('/capacidad/cancelar', function () {
 
 
 //TABLA
+
 Route::get('/notas', function () {
     return view('notas.index');
 })->name('notas.index');
@@ -133,4 +134,3 @@ Route::get('/notas', function () {
 Route::get('/curso-grado', [CursoGradoController::class, 'index'])->name('curso_grado.index');
 
 Route::get('/curso-por-grado', [CursoGradoController::class, 'index'])->name('curso_grado.index');
-

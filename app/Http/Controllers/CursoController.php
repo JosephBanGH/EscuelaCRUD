@@ -41,8 +41,8 @@ class CursoController extends Controller
 
         if ($exists) {
             return redirect()->route('curso.create')
-                             ->withErrors(['duplicado' => 'Ya existe un curso activo con este nombre.'])
-                             ->withInput();
+                            ->withErrors(['duplicado' => 'Ya existe un curso activo con este nombre.'])
+                            ->withInput();
         }
 
         // Crear un nuevo curso
@@ -76,8 +76,8 @@ class CursoController extends Controller
 
         if ($exists) {
             return redirect()->route('curso.edit', $id)
-                             ->withErrors(['duplicado' => 'Ya existe un curso activo con este nombre.'])
-                             ->withInput();
+                            ->withErrors(['duplicado' => 'Ya existe un curso activo con este nombre.'])
+                            ->withInput();
         }
 
         // Actualizar el curso
