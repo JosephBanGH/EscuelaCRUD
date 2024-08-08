@@ -91,8 +91,8 @@ Route::get('/grado/cancelar', function () {
 
 //MATRICULAS
 
-//Route::resource('matricula','MatriculaController');
-Route::get('/matricula',[MatriculaController::class,'index'])->name('matricula.index');
+Route::resource('matricula',MatriculaController::class);
+//Route::get('/matricula',[MatriculaController::class,'index'])->name('matricula.index');
 
 Route::get('/cancelarm', function () {
     return redirect()->route('matricula.index')->with('datos','Matricula cancelada');
