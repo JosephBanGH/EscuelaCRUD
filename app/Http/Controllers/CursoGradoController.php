@@ -40,42 +40,54 @@ class CursoGradoController extends Controller
 
         return view('curso_grado.create', compact('cursos', 'grados'));
     }
+
     public function store(Request $request)
     {
         $validatedData = $request->validate([
             'id_curso' => 'required|exists:curso,id_curso',
             'id_grado' => 'required|exists:grado,id_grado',
-            'nivel' => 'required|string',
             'periodo_escolar' => 'required|string',
-            'nombre_curso' => 'required|string',
         ]);
     
-        try {
-            DB::transaction(function () use ($validatedData) {
-                // Verificar duplicado
-                $exists = CursoGrado::where('id_curso', $validatedData['id_curso'])
-                                    ->where('id_grado', $validatedData['id_grado'])
-                                    ->where('periodo_escolar', $validatedData['periodo_escolar'])
-                                    ->exists();
+        // Obtener el nombre del curso y el nivel
+        $curso = Cursos::findOrFail($validatedData['id_curso']);
+        $grado = Grado::findOrFail($validatedData['id_grado']);
+        
+        $nivel = $grado->nivel; // Asume que 'nivel' está en la tabla 'grado'
+        $nombreCurso = $curso->nombre_curso; // Asume que 'nombre_curso' está en la tabla 'curso'
     
-                if ($exists) {
-                    throw new \Exception('Ya existe un registro con esta combinación.');
-                }
+        // Crear el nuevo registro
+        CursoGrado::create(array_merge($validatedData, ['nivel' => $nivel, 'nombre_curso' => $nombreCurso]));
     
-                CursoGrado::create($validatedData);
-            });
-    
-            return redirect()->route('curso_grado.index')->with('success', 'Registro creado exitosamente.');
-    
-        } catch (\Exception $e) {
-            // Loguear el error
-            \Log::error('Error al crear el registro: ' . $e->getMessage());
-            return redirect()->route('curso_grado.create')->withErrors(['error' => 'Error al crear el registro.'])->withInput();
-        }
+        return redirect()->route('curso_grado.index')->with('success', 'Registro creado exitosamente.');
     }
     
     
 
+    
+
+    public function edit($id)
+    {
+        $cursoGrado = CursoGrado::findOrFail($id);
+        $cursos = Cursos::where('estado', 1)->get();
+        $grados = Grado::where('estado', 1)->get();
+
+        return view('curso_grado.edit', compact('cursoGrado', 'cursos', 'grados'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'id_curso' => 'required|exists:curso,id_curso',
+            'id_grado' => 'required|exists:grado,id_grado',
+            'periodo_escolar' => 'required|string',
+        ]);
+
+        $cursoGrado = CursoGrado::findOrFail($id);
+        $cursoGrado->update($validatedData);
+
+        return redirect()->route('curso_grado.index')->with('success', 'Registro actualizado exitosamente.');
+    }
 
     public function confirmar($id)
     {
@@ -88,10 +100,7 @@ class CursoGradoController extends Controller
     {
         $cursoGrado = CursoGrado::findOrFail($id);
 
-        // Si deseas eliminar el registro, descomenta la siguiente línea
-        // $cursoGrado->delete();
-
-        // O, si prefieres solo marcarlo como inactivo, descomenta la siguiente línea y asegúrate de tener un campo 'estado' en tu modelo
+        // Marcar como inactivo en lugar de eliminar
         $cursoGrado->update(['estado' => 0]);
 
         return redirect()->route('curso_grado.index')->with('datos', 'Registro eliminado con éxito.');
