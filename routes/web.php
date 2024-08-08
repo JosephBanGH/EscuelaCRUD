@@ -136,5 +136,9 @@ Route::get('/notas', function () {
 //CURSO POR GRADO
 
 Route::get('/curso-grado', [CursoGradoController::class, 'index'])->name('curso_grado.index');
-
-Route::get('/curso-por-grado', [CursoGradoController::class, 'index'])->name('curso_grado.index');
+Route::get('/curso-grado/create', [CursoGradoController::class, 'create'])->name('curso_grado.create');
+Route::post('/curso-grado', [CursoGradoController::class, 'store'])->name('curso_grado.store');
+Route::get('/curso-grado/{id}/edit', [CursoGradoController::class, 'edit'])->name('curso_grado.edit');
+Route::put('/curso-grado/{id}', [CursoGradoController::class, 'update'])->name('curso_grado.update');
+Route::get('/curso-grado/{id}/confirmar', [CursoGradoController::class, 'confirmar'])->name('curso_grado.confirmar');
+Route::delete('/curso-grado/{id}', [CursoGradoController::class, 'destroy'])->name('curso_grado.destroy');
