@@ -92,7 +92,7 @@ Route::resource('matricula','MatriculaController');
 Route::get('/cancelarm', function () {
     return redirect()->route('matricula.index')->with('datos','Matricula cancelada');
 })->name('/cancelarm');
-Route::get('/matricula/{matricula_id}/confirmar');
+Route::get('/matricula/{matricula_id}/confirmar','ProductoController@confirmar')->name('producto.confirmar');
 
 //CATEDRA
 
@@ -124,4 +124,4 @@ Route::get('/capacidad/cancelar', function () {
 //TABLA
 Route::get('/notas', function () {
     return view('notas.index');
-});
+})->name('notas.index');

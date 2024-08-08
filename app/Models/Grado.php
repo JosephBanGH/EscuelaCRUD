@@ -18,4 +18,8 @@ class Grado extends Model
     {
         return $this->hasMany(Matricula::class,'id_grado','id_grado');
     }
+    public function cursos()
+    {
+        return $this->belongsToMany(Cursos::class, 'curso_grado', 'grado_id', 'curso_id');
+    }
 }

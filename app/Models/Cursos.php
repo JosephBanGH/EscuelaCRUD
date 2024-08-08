@@ -13,4 +13,9 @@ class Cursos extends Model
     protected $fillable = [
         'nombre_curso','estado'
     ];
+
+    public function grados()
+    {
+        return $this->belongsToMany(Grado::class, 'curso_grado', 'id_curso', 'id_curso');
+    }
 }
