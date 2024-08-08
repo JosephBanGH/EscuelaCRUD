@@ -20,10 +20,6 @@ class Grado extends Model
     }
     public function cursos()
     {
-<<<<<<< HEAD
         return $this->belongsToMany(Cursos::class, 'curso_grado', 'grado_id', 'curso_id');
-=======
-        return $this->belongsToMany(Cursos::class, 'curso_grado', 'id_grado', 'id_curso');
->>>>>>> 3c9928cd98e28fe0a3b802709f01aa2e98c3c744
     }
 }
