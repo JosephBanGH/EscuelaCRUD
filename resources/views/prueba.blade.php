@@ -163,16 +163,6 @@ License: For each use you must have a valid license purchased only from above li
         </label>
       </div>
     </div>
-    <div class="theme-wrapper">
-      <h6 class="text-muted mb-2">Light Version:</h6>
-      <a class="theme-item active" href="https://www.nobleui.com/laravel/template/demo1/">
-        <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/screenshots/light.jpg" alt="light version">
-      </a>
-      <h6 class="text-muted mb-2">Dark Version:</h6>
-      <a class="theme-item" href="https://www.nobleui.com/laravel/template/demo2/">
-        <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/screenshots/dark.jpg" alt="light version">
-      </a>
-    </div>
   </div>
 </nav>    <div class="page-wrapper">
       <nav class="navbar">
@@ -208,7 +198,7 @@ License: For each use you must have a valid license purchased only from above li
         <div class="dropdown-menu p-0" aria-labelledby="appsDropdown">
           <div class="px-3 py-2 d-flex align-items-center justify-content-between border-bottom">
             <p class="mb-0 fw-bold">Web Apps</p>
-            <a href="javascript:;" class="text-muted">Edit</a>
+            <a href="javascript:;" class="text-muted">Editar</a>
           </div>
           <div class="row g-0 p-1">
             <div class="col-3 text-center">
@@ -225,7 +215,7 @@ License: For each use you must have a valid license purchased only from above li
             </div>
           </div>
           <div class="px-3 py-2 d-flex align-items-center justify-content-center border-top">
-            <a href="javascript:;">View all</a>
+            <a href="javascript:;">Vir Todo</a>
           </div>
         </div>
       </li>
