@@ -12,6 +12,10 @@ class CursoGrado extends Model
         'id_curso', 'id_grado', 'nivel', 'periodo_escolar', 'nombre_curso'
     ];
 
+    protected $primaryKey = ['id_curso', 'id_grado']; // Clave primaria compuesta
+    public $incrementing = false; // Desactiva el incremento automático
+    protected $keyType = 'string'; // Tipo de clave primaria
+
     public function curso()
     {
         return $this->belongsTo(Cursos::class, 'id_curso', 'id_curso');
@@ -22,3 +26,4 @@ class CursoGrado extends Model
         return $this->belongsTo(Grado::class, 'id_grado', 'id_grado');
     }
 }
+

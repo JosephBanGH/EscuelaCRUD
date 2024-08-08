@@ -13,7 +13,7 @@ class Cursos extends Model
     protected $primaryKey = 'id_curso';
     public $timestamps = false;
     protected $fillable = [
-        'nombre_curso', 'estado', 'periodo_escolar'
+        'nombre_curso', 'estado'
     ];
     public function cursoGrado()
     {
