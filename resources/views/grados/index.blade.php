@@ -12,6 +12,16 @@
             <a href="{{ route('grado.create') }}" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Nuevo Registro
             </a>
+            <form class="form-inline" method="GET" action="{{ route('grado.index') }}">
+                <div class="input-group">
+                    <input class="form-control" type="search" placeholder="Buscar por nivel o grado" name="buscarpor" value="{{ request()->get('buscarpor') }}">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-success" type="submit">
+                            <i class="fas fa-search"></i> Buscar
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
         
         @if (session('datos'))
@@ -28,7 +38,7 @@
                 No hay grados activos.
             </div>
         @else
-            <div class="table-responsive">
+            <div class="table-responsive mt-4">
                 <table id="gradoTable" class="table table-striped table-bordered">
                     <thead class="thead-dark">
                         <tr>

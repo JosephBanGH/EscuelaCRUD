@@ -12,11 +12,14 @@ class GradoController extends Controller
     public function index(Request $request)
     {
         $query = Grado::where('estado', 1); // Solo mostrar grados activos
-        
+
         // Agregar filtros de búsqueda
         if ($request->filled('buscarpor')) {
             $search = $request->input('buscarpor');
-            $query->where('grado', 'like', "%{$search}%");
+            $query->where(function($query) use ($search) {
+                $query->where('grado', 'like', "%{$search}%")
+                    ->orWhere('nivel', 'like', "%{$search}%");
+            });
         }
         
         // Paginación

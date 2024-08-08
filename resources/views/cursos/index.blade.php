@@ -13,10 +13,14 @@
                 <i class="fas fa-plus"></i> Nuevo Curso
             </a>
             <form class="form-inline" method="GET" action="{{ route('curso.index') }}">
-                <input class="form-control mr-sm-2" type="search" placeholder="Buscar por nombre" name="buscarpor" value="{{ request()->get('buscarpor') }}">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                    <i class="fas fa-search"></i> Buscar
-                </button>
+                <div class="input-group">
+                    <input class="form-control" type="search" placeholder="Buscar por nombre" name="buscarpor" value="{{ request()->get('buscarpor') }}">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-success" type="submit">
+                            <i class="fas fa-search"></i> Buscar
+                        </button>
+                    </div>
+                </div>
             </form>
         </div>
         
