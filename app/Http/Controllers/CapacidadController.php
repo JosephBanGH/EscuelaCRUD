@@ -18,9 +18,9 @@ class CapacidadController extends Controller
             $query->where('descripcion', 'like', "%{$search}%");
         }
     
-        $capacidad = $query->paginate($this::PAGINATION);
+        $capacidades = $query->paginate($this::PAGINATION);
     
-        return view('capacidad.index', compact('capacidad'));
+        return view('capacidad.index', compact('capacidades'));
     }
     
     public function create()

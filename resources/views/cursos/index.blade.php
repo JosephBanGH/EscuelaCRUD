@@ -10,11 +10,13 @@
         
         <div class="d-flex justify-content-between mb-4">
             <a href="{{ route('curso.create') }}" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Nuevo Registro
+                <i class="fas fa-plus"></i> Nuevo Curso
             </a>
             <form class="form-inline" method="GET" action="{{ route('curso.index') }}">
                 <input class="form-control mr-sm-2" type="search" placeholder="Buscar por nombre" name="buscarpor" value="{{ request()->get('buscarpor') }}">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                    <i class="fas fa-search"></i> Buscar
+                </button>
             </form>
         </div>
         
@@ -32,13 +34,13 @@
                 No hay resultados para la búsqueda.
             </div>
         @else
-            <div class="table-responsive">
+            <div class="table-responsive mt-4">
                 <table id="cursoTable" class="table table-striped table-bordered">
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">ID Curso</th>
                             <th scope="col">Nombre del Curso</th>
-                            <th scope="col">Opciones</th>
+                            <th scope="col" class="text-center">Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,7 +48,7 @@
                             <tr>
                                 <td>{{ $curso->id_curso }}</td>
                                 <td>{{ $curso->nombre_curso }}</td>
-                                <td>
+                                <td class="text-center">
                                     <a href="{{ route('curso.edit', $curso->id_curso) }}" class="btn btn-info btn-sm">
                                         <i class="fas fa-edit"></i> Editar
                                     </a>
@@ -58,7 +60,9 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ $cursos->links() }}
+                <div class="d-flex justify-content-center mt-3">
+                    {{ $cursos->links() }}
+                </div>
             </div>
         @endif
     </div>
