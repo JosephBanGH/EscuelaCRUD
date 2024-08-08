@@ -15,8 +15,24 @@ class MatriculaController extends Controller
      */
     CONST PAGINATION = 4;
 
-    public function index()
+    public function index(Request $request)
     {
+        $grados = Grado::all(); // Obtener todos los grados para el combobox
+        $query = Alumno::query();
+    
+        if ($request->filled('buscarpor')) {
+            $gradoId = $request->input('buscarpor');
+            $query->whereHas('matriculas', function($q) use ($gradoId) {
+                $q->where('id_grado', $gradoId);
+            });
+        }
+    
+        $alumnos = $query->where('estado', '1')
+                        ->orderBy('grado.numero', 'asc') // Ordenar por número de grado
+                        ->paginate($this::PAGINATION);
+    
+        return view('mantenedores.alumnos.index', compact('alumnos', 'grados'));
+
         $matricula = Matricula::where('estado','=','1')->paginate($this::PAGINATION);
         return view('mantenedores.matriculas.index', compact('matricula'));
     }
