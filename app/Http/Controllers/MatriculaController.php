@@ -3,15 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Alumno;
+use App\Models\Grado;
+use App\Models\Matricula;
+use DB;
 
 class MatriculaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    CONST PAGINATION = 4;
+
     public function index()
     {
-        //
+        $matricula = Matricula::where('estado','=','1')->paginate($this::PAGINATION);
+        return view('mantenedores.matriculas.index', compact('matricula'));
     }
 
     /**

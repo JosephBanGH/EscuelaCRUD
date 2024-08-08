@@ -110,6 +110,27 @@ License: For each use you must have a valid license purchased only from above li
           <span class="link-title">CHAT</span>
         </a>
       </li>
+
+
+
+      <li class="nav-item ">
+        <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="false" aria-controls="email">
+          <i class="link-icon" data-feather="mail"></i>
+          <span class="link-title">NOTAS</span>
+          <i class="link-arrow" data-feather="chevron-down"></i>
+        </a>
+        <div class="collapse " id="email">
+          <ul class="nav sub-menu">
+            <li class="nav-item">
+              <a href="{{route('notas.index')}}" class="nav-link ">VER</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+
+
+
       <li class="nav-item ">
         <a href="https://www.nobleui.com/laravel/template/demo1/apps/calendar" class="nav-link">
           <i class="link-icon" data-feather="calendar"></i>

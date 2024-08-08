@@ -88,11 +88,11 @@
                 <option value="A">A</option>
                 <option value="B">B</option>
             </select>
-            <div class="ub1">&#128273;Curso:</div>
+            <div class="ub1">Curso:</div>
             <input type="text" name="txtcurso" placeholder="Ingresar curso...">
-            <div class="ub1">&#128273; Profesor:</div>
+            <div class="ub1"> Profesor:</div>
             <input type="text" name="txtprofesor" placeholder="Ingresar profesor...">
-            <div class="ub1">&#128273; Año escolar:</div>
+            <div class="ub1"> Año escolar:</div>
             <input type="text" name="txtañoescolar" placeholder="Ingresar año escolar...">
             <div class="ub1">Resumen del Bimestre:</div>
             <select name="rol">
