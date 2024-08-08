@@ -100,7 +100,9 @@ License: For each use you must have a valid license purchased only from above li
             <li class="nav-item">
               <a href="{{route('registronotas')}}" class="nav-link ">REGISTRO DE NOTAS</a>
             </li>
-            
+            <li class="nav-item">
+              <a href="{{route('curso_grado.index')}}" class="nav-link ">CURSO POR GRADO</a>
+            </li>
           </ul>
         </div>
       </li>
