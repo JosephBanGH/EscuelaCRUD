@@ -71,7 +71,7 @@ class CursoController extends Controller
         // Verificar si ya existe un curso activo con el mismo nombre
         $exists = Cursos::where('nombre_curso', $request->nombre_curso)
                         ->where('estado', 1)
-                        ->where('id', '!=', $id)
+                        ->where('id_curso', '!=', $id)
                         ->exists();
 
         if ($exists) {
