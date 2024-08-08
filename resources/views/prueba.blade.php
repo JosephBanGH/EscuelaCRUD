@@ -180,55 +180,8 @@ License: For each use you must have a valid license purchased only from above li
     <i data-feather="menu"></i>
   </a>
   <div class="navbar-content">
-    <form class="search-form">
-      <div class="input-group">
-        <div class="input-group-text">
-          <i data-feather="search"></i>
-        </div>
-        <input type="text" class="form-control" id="navbarForm" placeholder="Search here...">
-      </div>
-    </form>
+    
     <ul class="navbar-nav">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/flags/es.svg" class="wd-20 me-1" title="us" alt="us"> <span class="ms-1 me-1 d-none d-md-inline-block">ESPAÑOL</span>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="languageDropdown">
-          <a href="javascript:;" class="dropdown-item py-2"> <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/flags/es.svg" class="wd-20 me-1" title="es" alt="es"> <span class="ms-1"> ESPAÑOL </span></a>
-          <a href="javascript:;" class="dropdown-item py-2"> <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/flags/us.svg" class="wd-20 me-1" title="us" alt="us"> <span class="ms-1"> INGLÉS </span></a>
-          <a href="javascript:;" class="dropdown-item py-2"> <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/flags/fr.svg" class="wd-20 me-1" title="fr" alt="fr"> <span class="ms-1"> FRANCÉS </span></a>
-          <a href="javascript:;" class="dropdown-item py-2"> <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/flags/de.svg" class="wd-20 me-1" title="de" alt="de"> <span class="ms-1"> ALEMÁN </span></a>
-          <a href="javascript:;" class="dropdown-item py-2"> <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/flags/pt.svg" class="wd-20 me-1" title="pt" alt="pt"> <span class="ms-1"> PORTUGUEZ </span></a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="appsDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i data-feather="grid"></i>
-        </a>
-        <div class="dropdown-menu p-0" aria-labelledby="appsDropdown">
-          <div class="px-3 py-2 d-flex align-items-center justify-content-between border-bottom">
-            <p class="mb-0 fw-bold">Web Apps</p>
-            <a href="javascript:;" class="text-muted">Edit</a>
-          </div>
-          <div class="row g-0 p-1">
-            <div class="col-3 text-center">
-              <a href="https://www.nobleui.com/laravel/template/demo1/apps/chat" class="dropdown-item d-flex flex-column align-items-center justify-content-center wd-70 ht-70"><i data-feather="message-square" class="icon-lg mb-1"></i><p class="tx-12">Chat</p></a>
-            </div>
-            <div class="col-3 text-center">
-              <a href="https://www.nobleui.com/laravel/template/demo1/apps/calendar" class="dropdown-item d-flex flex-column align-items-center justify-content-center wd-70 ht-70"><i data-feather="calendar" class="icon-lg mb-1"></i><p class="tx-12">Calendar</p></a>
-            </div>
-            <div class="col-3 text-center">
-              <a href="https://www.nobleui.com/laravel/template/demo1/email/inbox" class="dropdown-item d-flex flex-column align-items-center justify-content-center wd-70 ht-70"><i data-feather="mail" class="icon-lg mb-1"></i><p class="tx-12">Email</p></a>
-            </div>
-            <div class="col-3 text-center">
-              <a href="https://www.nobleui.com/laravel/template/demo1/general/profile" class="dropdown-item d-flex flex-column align-items-center justify-content-center wd-70 ht-70"><i data-feather="instagram" class="icon-lg mb-1"></i><p class="tx-12">Profile</p></a>
-            </div>
-          </div>
-          <div class="px-3 py-2 d-flex align-items-center justify-content-center border-top">
-            <a href="javascript:;">View all</a>
-          </div>
-        </div>
-      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i data-feather="mail"></i>
@@ -236,7 +189,7 @@ License: For each use you must have a valid license purchased only from above li
         <div class="dropdown-menu p-0" aria-labelledby="messageDropdown">
           <div class="px-3 py-2 d-flex align-items-center justify-content-between border-bottom">
             <p>10 Nuevos Mensajes</p>
-            <a href="javascript:;" class="text-muted">Clear all</a>
+            <a href="javascript:;" class="text-muted">Limpiar</a>
           </div>
           <div class="p-1">
             <a href="javascript:;" class="dropdown-item d-flex align-items-center py-2">
@@ -301,7 +254,7 @@ License: For each use you must have a valid license purchased only from above li
             </a>
           </div>
           <div class="px-3 py-2 d-flex align-items-center justify-content-center border-top">
-            <a href="javascript:;">View all</a>
+            <a href="javascript:;">Ver Todo</a>
           </div>
         </div>
       </li>
@@ -314,8 +267,8 @@ License: For each use you must have a valid license purchased only from above li
         </a>
         <div class="dropdown-menu p-0" aria-labelledby="notificationDropdown">
           <div class="px-3 py-2 d-flex align-items-center justify-content-between border-bottom">
-            <p>6 New Notifications</p>
-            <a href="javascript:;" class="text-muted">Clear all</a>
+            <p>Nuevas Notificaciones</p>
+            <a href="javascript:;" class="text-muted">Clear Limpiar</a>
           </div>
           <div class="p-1">
             <a href="javascript:;" class="dropdown-item d-flex align-items-center py-2">
@@ -341,7 +294,7 @@ License: For each use you must have a valid license purchased only from above li
                 <img class="wd-30 ht-30 rounded-circle" src="https://www.nobleui.com/laravel/template/demo1/assets/images/faces/face6.jpg" alt="userr">
               </div>
               <div class="flex-grow-1 me-2">
-                <p>New customer registered</p>
+                <p>Nuevo Registro</p>
                 <p class="tx-12 text-muted">2 sec ago</p>
               </div>	
             </a>
@@ -350,7 +303,7 @@ License: For each use you must have a valid license purchased only from above li
                 <i class="icon-sm text-white" data-feather="layers"></i>
               </div>
               <div class="flex-grow-1 me-2">
-                <p>Apps are ready for update</p>
+                <p>Apps Update</p>
                 <p class="tx-12 text-muted">5 hrs ago</p>
               </div>	
             </a>
@@ -359,13 +312,13 @@ License: For each use you must have a valid license purchased only from above li
                 <i class="icon-sm text-white" data-feather="download"></i>
               </div>
               <div class="flex-grow-1 me-2">
-                <p>Download completed</p>
+                <p>Descarga Completa</p>
                 <p class="tx-12 text-muted">6 hrs ago</p>
               </div>	
             </a>
           </div>
           <div class="px-3 py-2 d-flex align-items-center justify-content-center border-top">
-            <a href="javascript:;">View all</a>
+            <a href="javascript:;">Ver Todo</a>
           </div>
         </div>
       </li>
@@ -387,25 +340,25 @@ License: For each use you must have a valid license purchased only from above li
             <li class="dropdown-item py-2">
               <a href="https://www.nobleui.com/laravel/template/demo1/general/profile" class="text-body ms-0">
                 <i class="me-2 icon-md" data-feather="user"></i>
-                <span>Profile</span>
+                <span>Perfil</span>
               </a>
             </li>
             <li class="dropdown-item py-2">
               <a href="javascript:;" class="text-body ms-0">
                 <i class="me-2 icon-md" data-feather="edit"></i>
-                <span>Edit Profile</span>
+                <span>Editar Perfil</span>
               </a>
             </li>
             <li class="dropdown-item py-2">
               <a href="javascript:;" class="text-body ms-0">
                 <i class="me-2 icon-md" data-feather="repeat"></i>
-                <span>Switch User</span>
+                <span>Cambiar Usuario</span>
               </a>
             </li>
             <li class="dropdown-item py-2">
               <a href="javascript:;" class="text-body ms-0">
                 <i class="me-2 icon-md" data-feather="log-out"></i>
-                <span>Log Out</span>
+                <span>Salir</span>
               </a>
             </li>
           </ul>
