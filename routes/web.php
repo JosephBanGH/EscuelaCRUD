@@ -21,8 +21,8 @@ Route::post('/salir', [UserController::class, 'salir'])->name('logout');
 // Rutas de prueba y login
 
 Route::get('/login/inicio', function () {
-    return view('prueba1');
-})->name('prueba1'); // PRUEBA ES EL INDEX GENERAL
+    return view('prueba');
+})->name('prueba'); // PRUEBA ES EL INDEX GENERAL
 
 Route::get('/login/login', function () {
     return view('login');

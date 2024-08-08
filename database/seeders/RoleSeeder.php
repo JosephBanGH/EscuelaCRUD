@@ -27,46 +27,46 @@ class RoleSeeder extends Seeder
         $role4 = Role::create(['name'=>'Profesor']);
         $role5 = Role::create(['name'=>'Secretaria']);
 
-        Permission::create(['name' => 'Administrador.prueba']);
-        Permission::create(['name' => 'Administrador.alumnos.index']);
-        Permission::create(['name' => 'Administrador.alumno.create']);
-        Permission::create(['name' => 'Administrador.alumno.store']);
-        Permission::create(['name' => 'Administrador.alumno.confirmar']);
-        Permission::create(['name' => 'Administrador.alumno.edit']);
-        Permission::create(['name' => 'Administrador.alumno.update']);
-        Permission::create(['name' => 'Administrador.alumno.destroy']);
-        Permission::create(['name' => 'Administrador.alumno.cancelar']);
+        Permission::create(['name' => 'Administrador.prueba'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.alumnos.index'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.alumno.create'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.alumno.store'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.alumno.confirmar'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.alumno.edit'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.alumno.update'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.alumno.destroy'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.alumno.cancelar'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
 
-        Permission::create(['name' => 'Administrador.curso.index']);
-        Permission::create(['name' => 'Administrador.curso.create']);
-        Permission::create(['name' => 'Administrador.curso.store']);
-        Permission::create(['name' => 'Administrador.curso.edit']);
-        Permission::create(['name' => 'Administrador.curso.update']);
-        Permission::create(['name' => 'Administrador.curso.destroy']);
-        Permission::create(['name' => 'Administrador.curso.confirmar']);
-        Permission::create(['name' => 'Administrador.curso.cancelar']);
+        Permission::create(['name' => 'Administrador.curso.index'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.curso.create'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.curso.store'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.curso.edit'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.curso.update'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.curso.destroy'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.curso.confirmar'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.curso.cancelar'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
 
-        Permission::create(['name' => 'Administrador.grado.index']);
-        Permission::create(['name' => 'Administrador.grado.create']);
-        Permission::create(['name' => 'Administrador.grado.store']);
-        Permission::create(['name' => 'Administrador.grado.edit']);
-        Permission::create(['name' => 'Administrador.grado.update']);
-        Permission::create(['name' => 'Administrador.grado.destroy']);
-        Permission::create(['name' => 'Administrador.grado.confirmar']);
-        Permission::create(['name' => 'Administrador.grado.cancelar']);
+        Permission::create(['name' => 'Administrador.grado.index'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.grado.create'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.grado.store'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.grado.edit'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.grado.update'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.grado.destroy'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.grado.confirmar'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.grado.cancelar'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
 
-        Permission::create(['name' => 'Administrador.personal.index']);
-        Permission::create(['name' => 'Administrador.personal.create']);
-        Permission::create(['name' => 'Administrador.personal.store']);
-        Permission::create(['name' => 'Administrador.personal.confirmar']);
-        Permission::create(['name' => 'Administrador.personal.edit']);
-        Permission::create(['name' => 'Administrador.personal.update']);
-        Permission::create(['name' => 'Administrador.personal.destroy']);
-        Permission::create(['name' => 'Administrador.personal.cancelar']);
+        Permission::create(['name' => 'Administrador.personal.index'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.personal.create'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.personal.store'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.personal.confirmar'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.personal.edit'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.personal.update'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.personal.destroy'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.personal.cancelar'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
 
-        Permission::create(['name' => 'Administrador.registronotas']);
-        Permission::create(['name' => 'Administrador.catedra']);
-        Permission::create(['name' => 'Administrador.listadonotas']);
+        Permission::create(['name' => 'Administrador.registronotas'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.catedra'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.listadonotas'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
         
 
         Permission::create(['name' => 'Asistente.personal.index']);
