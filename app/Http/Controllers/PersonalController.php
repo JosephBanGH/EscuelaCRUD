@@ -7,7 +7,7 @@ use App\Models\Personal;
 
 class PersonalController extends Controller
 {
-    const PAGINATION = 4; 
+    const PAGINATION = 10; // Cambia este valor a la cantidad deseada
     
     public function index(Request $request)
     {
@@ -17,13 +17,11 @@ class PersonalController extends Controller
         // Agregamos filtros basados en el parámetro de búsqueda
         if ($request->filled('buscarpor')) {
             $search = $request->input('buscarpor');
-            
             $query->where('nombres', 'like', "%{$search}%");
         }
         
         // Paginar los resultados
         $personal = $query->paginate($this::PAGINATION);
-        
         
         // Devolver la vista con los datos filtrados
         return view('personal.index', compact('personal'));

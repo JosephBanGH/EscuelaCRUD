@@ -411,7 +411,7 @@ License: For each use you must have a valid license purchased only from above li
     </button>
   </div>
 </div>
-
+      
     <div class="row">
       @yield('contenido')
     </div> <!-- row -->
