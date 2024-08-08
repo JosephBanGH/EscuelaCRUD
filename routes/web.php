@@ -47,10 +47,6 @@ Route::get('personal/cancelar', function () {
 
 //ALUMNOS
 
-Route::get('/matriculas', function () {
-    return view('mantenedores.alumnos.matriculas');
-})->name('alumnocreate');
-
 Route::get('/alumno',[AlumnoController::class,'index'])->name('alumno.index');
 Route::get('/alumno/create', [AlumnoController::class, 'create'])->name('alumno.create');
 Route::post('/alumno', [AlumnoController::class, 'store'])->name('alumno.store');
@@ -91,6 +87,12 @@ Route::get('/grado/cancelar', function () {
     return redirect()->route('grado.index')->with('datos', 'Acción Cancelada ..!');
 })->name('grado.cancelar');
 
+//MATRICULAS
+Route::resource('matricula','MatriculaController');
+Route::get('/cancelarm', function () {
+    return redirect()->route('matricula.index')->with('datos','Matricula cancelada');
+})->name('/cancelarm');
+Route::get('/matricula/{matricula_id}/confirmar');
 
 //CATEDRA
 
@@ -118,3 +120,8 @@ Route::get('/capacidad/cancelar', function () {
 })->name('capacidad.cancelar');
 
 //LISTADO DE NOTAS 
+
+//TABLA
+Route::get('/notas', function () {
+    return view('notas.index');
+});
