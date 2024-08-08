@@ -17,22 +17,32 @@ class MatriculaController extends Controller
 
     public function index(Request $request)
     {
-
-        $grados = Grado::all(); // Obtener todos los grados para el combobox
-        $query = Grado::query();
+        
+        $query = Matricula::where('estado',1);
     
         if ($request->filled('buscarpor')) {
-            $gradoNivel = $request->input('buscarpor');
-            $query->whereHas('matriculas', function($q) use ($gradoNivel) {
-                $q->where('nivel', $gradoNivel);
-            });
+            $search = $request->input('buscarpor');
+            
+            $query->where('grado', 'like', "%{$search}%");
         }
+        $matricula=$query->paginate($this::PAGINATION);
     
-        $alumnos = $query->where('estado', '1')
-                        ->orderBy('grado.grado', 'asc') // Ordenar por número de grado
-                        ->paginate($this::PAGINATION);
+        // $alumno = Alumno::where('estado', '1')
+        //     ->whereHas('matriculas', function($q) use ($id_grado) {
+        //     if ($id_grado) {
+        //         $q->where('id_grado', $id_grado);
+        //     }
+        // })
+        // ->with(['matriculas.grado' => function($q) {
+        //     $q->orderBy('grado', 'asc');
+        // }])
+        // ->paginate($this::PAGINATION);
+
+        // $matricula = $query
+        //                 ->orderBy('grado.grado', 'asc') // Ordenar por número de grado
+        //                 ->paginate($this::PAGINATION);
     
-        return view('mantenedores.matriculas.index', compact('alumnos', 'grados'));
+        return view('mantenedores.matriculas.index', compact('matricula'));
 
     }
 
@@ -41,7 +51,9 @@ class MatriculaController extends Controller
      */
     public function create()
     {
-        //
+        $alumno = Alumno::where('estado','=','1')->get();
+        $grado = Grado::where('estado','=','1')->get();
+        return view('mantenedores.matriculas.create',compact('alumno','grado'));
     }
 
     /**
@@ -49,7 +61,19 @@ class MatriculaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=request()->validate([
+            'fecha'=>'required'
+        ],
+        [
+            'fecha.required' => 'Ingrese una fecha correcta'
+        ]);
+        $matricula = new Matricula();
+        $matricula->fecha = $request->fecha;
+        $matricula->codigo_estudiante = $request->codigo_estudiante;
+        $matricula->id_grado = $request->id_grado;
+        $matricula->estado = '1';
+        $matricula->save();
+        return redirect()->route('matricula.index')->with('datos','Matricula Guardada..!');
     }
 
     /**

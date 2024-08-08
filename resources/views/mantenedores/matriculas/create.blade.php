@@ -15,68 +15,41 @@
 <body>
     <div class="container matricula-form-container">
         <h2 class="text-center">Matrícula de Alumnos</h2>
-        <form method="POST" action="{{ route('personal.store') }}">
-            <div class="form-group">
-                <label for="codigoEducando">Código del Educando</label>
-                <input type="text" class="form-control" id="codigoEducando" placeholder="00000072830880">
-            </div>
-            <div class="form-group">
-                <label for="nroMatricula">Nro Matrícula</label>
-                <input type="text" class="form-control" id="nroMatricula" placeholder="0537">
-            </div>
+        <form method="POST" action="{{ route('matricula.store') }}">
+        @csrf    
             <div class="form-group">
                 <label for="fecha">Fecha</label>
-                <input type="date" class="form-control" id="fecha" value="2016-02-12">
+                <input type="date" class="form-control" id="fecha" @error('fecha') is-invalid @enderror" maxlength="9" id="fecha" name="fecha" value="{{ old('fecha') }}">
+                @error('fecha')
+                    <div class="invalid-feedback">
+                        <strong>{{ $message }}</strong>
+                    </div>
+                @enderror 
             </div>
-            <div class="form-group">
-                <label for="apellidoPaterno">Apellido Paterno</label>
-                <input type="text" class="form-control" id="apellidoPaterno" placeholder="PALOMINO">
-            </div>
-            <div class="form-group">
-                <label for="apellidoMaterno">Apellido Materno</label>
-                <input type="text" class="form-control" id="apellidoMaterno" placeholder="HUR">
-            </div>
-            <div class="form-group">
-                <label for="primerNombre">Primer Nombre</label>
-                <input type="text" class="form-control" id="primerNombre" placeholder="Valeska">
-            </div>
-            <div class="form-group">
-                <label for="otrosNombres">Otros Nombres</label>
-                <input type="text" class="form-control" id="otrosNombres" placeholder="Priya">
-            </div>
-            <div class="form-group">
-                <label for="nivel">Nivel</label>
-                <select class="form-control" id="nivel">
-                    <option>Primaria</option>
-                    <!-- Otras opciones aquí -->
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="anio">Año</label>
-                <select class="form-control" id="anio">
-                    <option>Primero de Primaria</option>
-                    <!-- Otras opciones aquí -->
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="seccion">Sección</label>
-                <select class="form-control" id="seccion">
-                    <option>A</option>
-                    <!-- Otras opciones aquí -->
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="escala">Escala</label>
-                <input type="text" class="form-control" id="escala" placeholder="A">
-            </div>
-            <div class="form-group">
-                <label for="anioEscolar">Año Escolar</label>
-                <input type="text" class="form-control" id="anioEscolar" placeholder="2015">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="">Codigo Estudiante</label>
+                    <select class="form-control" name="codigo_estudiante" id="codigo_estudiante">
+                        @foreach($alumno as $itemalumno)
+                        <option value="{{$itemalumno['codigo_estudiante']}}">{{$itemalumno['codigo_estudiante']}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>   
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="">Grado</label>
+                    <select class="form-control" name="id_grado" id="id_grado">
+                        @foreach($grado as $itemgrado)
+                        <option value="{{$itemgrado['id_grado']}}">{{$itemgrado['nivel']}},{{$itemgrado['grado']}},{{$itemgrado['seccion']}}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
             <button type="submit" class="btn btn-primary">Grabar</button>
             <button type="button" class="btn btn-secondary">Imprimir</button>
             <button type="button" class="btn btn-secondary">Grabar Tesorería</button>
-            <a href="{{ route('alumno.cancelar') }}" class="btn btn-danger"><i class="fas fa-ban"></i> Cancelar</a>
+            <a href="{{ route('grado.cancelar') }}" class="btn btn-danger"><i class="fas fa-ban"></i> Cancelar</a>
 
         </form>
     </div>

@@ -1,5 +1,6 @@
 @extends('prueba')
 
+
 @section('contenido')
 <section class="content">
 
@@ -8,15 +9,13 @@
     <h3 class="mb-4">Listado de Matriculas</h3>
 
     <div class="d-flex justify-content-between mb-4">
-        <a href="{{route('matricula.create')}}" class="btn btn-alert"><i class="fas fa-faplus"></i> MATRICULAR</a>
+        <a href="{{route('matricula.create')}}" class="btn btn-danger"><i class="fas fa-faplus"></i> MATRICULAR</a>
         
         <select name="buscarpor" class="form-control">
             <option value="">Selecciona un grado</option>
-            @foreach($grados as $grado)
-                <option value="{{ $grado->nivel }}" {{ request('buscarpor') == $grado->nivel ? 'selected' : '' }}>
-                    {{ $grado->nivel }}
-                </option>
-            @endforeach
+            <option value="Inicial" {{ request('buscarpor') }}>Inicial</option>
+            <option value="Primaria" {{ request('buscarpor') }}>Primaria</option>
+            <option value="Secundaria" {{ request('buscarpor') }}>Secundaria</option>
         </select>
 
     </div>
@@ -37,29 +36,27 @@
             <th scope="col">Apellido Paterno</th>
             <th scope="col">Apellido Materno</th>
             <th scope="col">Grado a matricular</th>
+            <th scope="col">Fecha</th>
             <th scope="col">Opciones</th>
         </tr>
         </thead>
         <tbody>
-            @if ($personal->isEmpty())
+            @if ($matricula->isEmpty())
                 <div class="alert alert-info mt-3" role="alert">
                     No hay resultados para la búsqueda.
                 </div>
             @else
-            @if (count($matricula)>=0)
                 @foreach($matricula as $itemmatricula)
                 <tr>
                     <td>{{$itemmatricula->numero_matricula}}</td>
                     <td>{{$itemmatricula->alumno->apellido_paterno}}</td>
                     <td>{{$itemmatricula->alumno->apellido_materno}}</td>
                     <td>{{$itemmatricula->grado->grado}} {{$itemmatricula->grado->seccion}}, {{$itemmatricula->grado->nivel}}</td>
+                    <td>{{$itemmatricula->fecha}}</td>
                     <td>
                         <a href="{{ route('matricula.edit', $itemmatricula->numero_matricula) }}" class="btn btn-info btn-sm">
                             <i class="fas fa-pencil-alt"></i> Editar
-                        </a>
-                        <a href="{{ route('matricula.confirmar', $itemmatricula->numero_matricula) }}" class="btn btn-danger btn-sm">
-                            <i class="fas fa-trash-alt"></i> Eliminar
-                        </a>    
+                        </a> 
                     </td>
 
                 </tr>
