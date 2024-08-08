@@ -17,6 +17,7 @@ class MatriculaController extends Controller
 
     public function index(Request $request)
     {
+        
         $grados = Grado::all(); // Obtener todos los grados para el combobox
         $query = Alumno::query();
     
