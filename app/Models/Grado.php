@@ -20,6 +20,12 @@ class Grado extends Model
     }
     public function cursos()
     {
+<<<<<<< HEAD
+        return $this->belongsToMany(Cursos::class, 'curso_grado', 'id_grado', 'id_curso')
+                    ->withPivot('nivel', 'periodo_escolar', 'nombre_curso')
+                    ->wherePivot('nivel', $this->nivel); // Filtra por nivel para asegurar que los cursos correspondan al nivel del grado
+=======
         return $this->belongsToMany(Cursos::class, 'curso_grado', 'grado_id', 'curso_id');
+>>>>>>> 9b77ab27bc23b6242dc0ae0d62d8bcee73d3c9ab
     }
 }

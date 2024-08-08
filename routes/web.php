@@ -123,10 +123,22 @@ Route::get('/capacidad/cancelar', function () {
 //LISTADO DE NOTAS 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 53f4adb8bb6475cac4cf44ce28d92e86071c6843
 //TABLA
 Route::get('/notas', function () {
     return view('notas.index');
 })->name('notas.index');
 
+<<<<<<< HEAD
 Route::get('/curso-por-grado', [CursoGradoController::class, 'index'])->name('curso_grado.index');
+=======
+//CURSO POR GRADO
+
+Route::get('/curso-grado', [CursoGradoController::class, 'index'])->name('curso_grado.index');
+
+Route::get('/curso-por-grado', [CursoGradoController::class, 'index'])->name('curso_grado.index');
+
+>>>>>>> 53f4adb8bb6475cac4cf44ce28d92e86071c6843

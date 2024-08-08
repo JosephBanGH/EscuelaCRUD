@@ -19,7 +19,7 @@
                                     <span onclick="toggleTree(event)">{{ $grado->grado }} - {{ $grado->seccion }}</span>
                                     <ul class="hidden">
                                         @foreach($grado->cursos as $curso)
-                                            <li>{{ $curso->nombre_curso }}</li>
+                                            <li>{{ $curso->pivot->nombre_curso }}</li>
                                         @endforeach
                                     </ul>
                                 </li>

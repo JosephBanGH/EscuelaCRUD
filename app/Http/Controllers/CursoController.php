@@ -94,13 +94,13 @@ class CursoController extends Controller
         $curso = Cursos::findOrFail($id);
         return view('cursos.confirmar', compact('curso'));
     }
-
+    
     public function destroy($id)
     {
         $curso = Cursos::findOrFail($id);
         $curso->estado = 0; // Cambia el estado a inactivo en lugar de eliminarlo
         $curso->save();
-
+    
         return redirect()->route('curso.index')->with('datos', 'Curso Eliminado...!');
     }
 }

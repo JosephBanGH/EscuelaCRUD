@@ -78,7 +78,7 @@ class GradoController extends Controller
             'seccion' => 'required|in:A,B,C,D,E',
             'grado' => 'required|max:255'
         ]);
-    
+
         $grado = Grado::findOrFail($id_grado);
 
         // Verificar si ya existe un grado activo con la misma combinación
@@ -91,19 +91,21 @@ class GradoController extends Controller
 
         if ($exists) {
             return redirect()->route('grado.edit', $id_grado)
-                             ->withErrors(['duplicado' => 'Ya existe un grado activo con esta combinación.'])
-                             ->withInput();
+                            ->withErrors(['duplicado' => 'Ya existe un grado activo con esta combinación.'])
+                            ->withInput();
         }
 
         // Actualizar la instancia del modelo Grado
-        $grado->nivel = $request->nivel;
-        $grado->seccion = $request->seccion;
-        $grado->grado = $request->grado;
-        $grado->estado = $request->estado; // Asegúrate de que el estado se pase en el formulario
-        $grado->save();
-    
+        $grado->update([
+            'nivel' => $request->nivel,
+            'seccion' => $request->seccion,
+            'grado' => $request->grado,
+            'estado' => 1, // Asegurarse de que el estado se mantenga en 1 (activo)
+        ]);
+
         return redirect()->route('grado.index')->with('datos', 'Registro actualizado exitosamente!');
     }
+
     
     public function destroy($id_grado)
     {
