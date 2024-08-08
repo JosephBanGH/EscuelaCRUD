@@ -16,6 +16,20 @@
                         </div>
                     @enderror
                 </div>
+                <div class="form-group col-md-6">
+                    <label for="nivel">Nivel</label>
+                    <select class="form-control @error('nivel') is-invalid @enderror" id="nivel" name="nivel">
+                        <option value="">Seleccione el Nivel</option>
+                        <option value="Inicial" {{ old('nivel') == 'Inicial' ? 'selected' : '' }}>Inicial</option>
+                        <option value="Primaria" {{ old('nivel') == 'Primaria' ? 'selected' : '' }}>Primaria</option>
+                        <option value="Secundaria" {{ old('nivel') == 'Secundaria' ? 'selected' : '' }}>Secundaria</option>
+                    </select>
+                    @error('nivel')
+                        <div class="invalid-feedback">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @enderror
+                </div>
             </div>
 
             @if ($errors->has('duplicado'))

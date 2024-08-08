@@ -16,8 +16,8 @@
                     <strong>ID Curso:</strong> {{ $curso->id_curso }}<br>
                     <strong>Nombre del Curso:</strong> {{ $curso->nombre_curso }}
                 </p>
-                <form method="POST" action="{{ route('curso.cambiarEstado', $curso->id_curso) }}">
-                    @method('PUT')
+                <form method="POST" action="{{ route('curso.destroy', $curso->id_curso) }}">
+                    @method('DELETE')
                     @csrf
                     <button type="submit" class="btn btn-warning btn-lg">
                         <i class="fas fa-check-square"></i> Eliminar

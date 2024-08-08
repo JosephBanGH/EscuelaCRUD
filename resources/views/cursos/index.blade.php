@@ -44,6 +44,7 @@
                         <tr>
                             <th scope="col">ID Curso</th>
                             <th scope="col">Nombre del Curso</th>
+                            <th scope="col">Nivel</th>
                             <th scope="col" class="text-center">Opciones</th>
                         </tr>
                     </thead>
@@ -52,6 +53,7 @@
                             <tr>
                                 <td>{{ $curso->id_curso }}</td>
                                 <td>{{ $curso->nombre_curso }}</td>
+                                <td>{{ $curso->nivel }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('curso.edit', $curso->id_curso) }}" class="btn btn-info btn-sm">
                                         <i class="fas fa-edit"></i> Editar

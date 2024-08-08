@@ -32,22 +32,25 @@ class CursoController extends Controller
     {
         $validatedData = $request->validate([
             'nombre_curso' => 'required|max:255',
+            'nivel' => 'required|in:Inicial,Primaria,Secundaria',
         ]);
 
-        // Verificar si ya existe un curso activo con el mismo nombre
+        // Verificar si ya existe un curso activo con el mismo nombre y nivel
         $exists = Cursos::where('nombre_curso', $request->nombre_curso)
+                        ->where('nivel', $request->nivel)
                         ->where('estado', 1)
                         ->exists();
 
         if ($exists) {
             return redirect()->route('curso.create')
-                             ->withErrors(['duplicado' => 'Ya existe un curso activo con este nombre.'])
+                             ->withErrors(['duplicado' => 'Ya existe un curso activo con este nombre y nivel.'])
                              ->withInput();
         }
 
         // Crear un nuevo curso
         Cursos::create([
             'nombre_curso' => $request->nombre_curso,
+            'nivel' => $request->nivel,
             'estado' => 1, // Establecer estado como activo por defecto
         ]);
 
@@ -64,25 +67,28 @@ class CursoController extends Controller
     {
         $validatedData = $request->validate([
             'nombre_curso' => 'required|max:255',
+            'nivel' => 'required|in:Inicial,Primaria,Secundaria',
         ]);
 
         $curso = Cursos::findOrFail($id);
 
-        // Verificar si ya existe un curso activo con el mismo nombre
+        // Verificar si ya existe un curso activo con el mismo nombre y nivel
         $exists = Cursos::where('nombre_curso', $request->nombre_curso)
+                        ->where('nivel', $request->nivel)
                         ->where('estado', 1)
                         ->where('id_curso', '!=', $id)
                         ->exists();
 
         if ($exists) {
             return redirect()->route('curso.edit', $id)
-                             ->withErrors(['duplicado' => 'Ya existe un curso activo con este nombre.'])
+                             ->withErrors(['duplicado' => 'Ya existe un curso activo con este nombre y nivel.'])
                              ->withInput();
         }
 
         // Actualizar el curso
         $curso->update([
             'nombre_curso' => $request->nombre_curso,
+            'nivel' => $request->nivel,
             'estado' => 1, // Asegurarse de que el estado se mantenga en 1 (activo)
         ]);
 
@@ -94,13 +100,15 @@ class CursoController extends Controller
         $curso = Cursos::findOrFail($id);
         return view('cursos.confirmar', compact('curso'));
     }
-
+    
+    
     public function destroy($id)
     {
         $curso = Cursos::findOrFail($id);
         $curso->estado = 0; // Cambia el estado a inactivo en lugar de eliminarlo
         $curso->save();
-
+    
         return redirect()->route('curso.index')->with('datos', 'Curso Eliminado...!');
     }
+    
 }
