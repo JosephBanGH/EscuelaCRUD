@@ -1,45 +1,31 @@
 @extends('prueba')
 
 @section('contenido')
-    <div class="container mt-4">
-        <h1 class="mb-4">Nuevo Curso</h1>
-        <form method="POST" action="{{ route('curso.store') }}">
-            @csrf
+<div class="container mt-4">
+    <h1 class="mb-4">Nuevo Curso</h1>
+    <form method="POST" action="{{ route('curso.store') }}">
+        @csrf
 
-            <div class="form-row mb-3">
-                <div class="form-group col-md-6">
-                    <label for="nombre_curso">Nombre del Curso</label>
-                    <input type="text" class="form-control @error('nombre_curso') is-invalid @enderror" id="nombre_curso" name="nombre_curso" value="{{ old('nombre_curso') }}">
-                    @error('nombre_curso')
-                        <div class="invalid-feedback">
-                            <strong>{{ $message }}</strong>
-                        </div>
-                    @enderror
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="nivel">Nivel</label>
-                    <select class="form-control @error('nivel') is-invalid @enderror" id="nivel" name="nivel">
-                        <option value="">Seleccione el Nivel</option>
-                        <option value="Inicial" {{ old('nivel') == 'Inicial' ? 'selected' : '' }}>Inicial</option>
-                        <option value="Primaria" {{ old('nivel') == 'Primaria' ? 'selected' : '' }}>Primaria</option>
-                        <option value="Secundaria" {{ old('nivel') == 'Secundaria' ? 'selected' : '' }}>Secundaria</option>
-                    </select>
-                    @error('nivel')
-                        <div class="invalid-feedback">
-                            <strong>{{ $message }}</strong>
-                        </div>
-                    @enderror
-                </div>
+        <div class="form-row mb-3">
+            <div class="form-group col-md-6">
+                <label for="nombre_curso">Nombre del Curso</label>
+                <input type="text" class="form-control @error('nombre_curso') is-invalid @enderror" id="nombre_curso" name="nombre_curso" value="{{ old('nombre_curso') }}">
+                @error('nombre_curso')
+                    <div class="invalid-feedback">
+                        <strong>{{ $message }}</strong>
+                    </div>
+                @enderror
             </div>
+        </div>
 
-            @if ($errors->has('duplicado'))
-                <div class="alert alert-danger mt-3">
-                    {{ $errors->first('duplicado') }}
-                </div>
-            @endif
+        @if ($errors->has('duplicado'))
+            <div class="alert alert-danger mt-3">
+                {{ $errors->first('duplicado') }}
+            </div>
+        @endif
 
-            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Grabar</button>
-            <a href="{{ route('curso.cancelar') }}" class="btn btn-danger"><i class="fas fa-ban"></i> Cancelar</a>
-        </form>
-    </div>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Grabar</button>
+        <a href="{{ route('curso.cancelar') }}" class="btn btn-danger"><i class="fas fa-ban"></i> Cancelar</a>
+    </form>
+</div>
 @endsection

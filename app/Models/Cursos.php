@@ -13,16 +13,15 @@ class Cursos extends Model
     protected $primaryKey = 'id_curso';
     public $timestamps = false;
     protected $fillable = [
-        'nombre_curso', 'estado', 'periodo_escolar','nivel'
+        'nombre_curso', 'estado', 'periodo_escolar'
     ];
 
     public function grados()
     {
-<<<<<<< HEAD
         return $this->belongsToMany(Grado::class, 'curso_grado', 'id_curso', 'id_grado')
                     ->withPivot('nivel', 'periodo_escolar', 'nombre_curso');
-=======
+
         return $this->belongsToMany(Grado::class, 'curso_grado', 'id_curso', 'id_curso');
->>>>>>> 9b77ab27bc23b6242dc0ae0d62d8bcee73d3c9ab
+
     }
 }
