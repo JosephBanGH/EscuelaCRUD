@@ -170,16 +170,10 @@ License: For each use you must have a valid license purchased only from above li
     <i data-feather="menu"></i>
   </a>
   <div class="navbar-content">
-    <form class="search-form">
-      <div class="input-group">
-        <div class="input-group-text">
-          <i data-feather="search"></i>
-        </div>
-        <input type="text" class="form-control" id="navbarForm" placeholder="Search here...">
-      </div>
-    </form>
+    
     <ul class="navbar-nav">
       <li class="nav-item dropdown">
+<<<<<<< HEAD
         <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/flags/es.svg" class="wd-20 me-1" title="us" alt="us"> <span class="ms-1 me-1 d-none d-md-inline-block">ESPAÑOL</span>
         </a>
@@ -226,7 +220,7 @@ License: For each use you must have a valid license purchased only from above li
         <div class="dropdown-menu p-0" aria-labelledby="messageDropdown">
           <div class="px-3 py-2 d-flex align-items-center justify-content-between border-bottom">
             <p>10 Nuevos Mensajes</p>
-            <a href="javascript:;" class="text-muted">Clear all</a>
+            <a href="javascript:;" class="text-muted">Limpiar</a>
           </div>
           <div class="p-1">
             <a href="javascript:;" class="dropdown-item d-flex align-items-center py-2">
@@ -291,7 +285,7 @@ License: For each use you must have a valid license purchased only from above li
             </a>
           </div>
           <div class="px-3 py-2 d-flex align-items-center justify-content-center border-top">
-            <a href="javascript:;">View all</a>
+            <a href="javascript:;">Ver Todo</a>
           </div>
         </div>
       </li>
@@ -304,8 +298,8 @@ License: For each use you must have a valid license purchased only from above li
         </a>
         <div class="dropdown-menu p-0" aria-labelledby="notificationDropdown">
           <div class="px-3 py-2 d-flex align-items-center justify-content-between border-bottom">
-            <p>6 New Notifications</p>
-            <a href="javascript:;" class="text-muted">Clear all</a>
+            <p>Nuevas Notificaciones</p>
+            <a href="javascript:;" class="text-muted">Clear Limpiar</a>
           </div>
           <div class="p-1">
             <a href="javascript:;" class="dropdown-item d-flex align-items-center py-2">
@@ -331,7 +325,7 @@ License: For each use you must have a valid license purchased only from above li
                 <img class="wd-30 ht-30 rounded-circle" src="https://www.nobleui.com/laravel/template/demo1/assets/images/faces/face6.jpg" alt="userr">
               </div>
               <div class="flex-grow-1 me-2">
-                <p>New customer registered</p>
+                <p>Nuevo Registro</p>
                 <p class="tx-12 text-muted">2 sec ago</p>
               </div>	
             </a>
@@ -340,7 +334,7 @@ License: For each use you must have a valid license purchased only from above li
                 <i class="icon-sm text-white" data-feather="layers"></i>
               </div>
               <div class="flex-grow-1 me-2">
-                <p>Apps are ready for update</p>
+                <p>Apps Update</p>
                 <p class="tx-12 text-muted">5 hrs ago</p>
               </div>	
             </a>
@@ -349,13 +343,13 @@ License: For each use you must have a valid license purchased only from above li
                 <i class="icon-sm text-white" data-feather="download"></i>
               </div>
               <div class="flex-grow-1 me-2">
-                <p>Download completed</p>
+                <p>Descarga Completa</p>
                 <p class="tx-12 text-muted">6 hrs ago</p>
               </div>	
             </a>
           </div>
           <div class="px-3 py-2 d-flex align-items-center justify-content-center border-top">
-            <a href="javascript:;">View all</a>
+            <a href="javascript:;">Ver Todo</a>
           </div>
         </div>
       </li>
@@ -377,25 +371,25 @@ License: For each use you must have a valid license purchased only from above li
             <li class="dropdown-item py-2">
               <a href="https://www.nobleui.com/laravel/template/demo1/general/profile" class="text-body ms-0">
                 <i class="me-2 icon-md" data-feather="user"></i>
-                <span>Profile</span>
+                <span>Perfil</span>
               </a>
             </li>
             <li class="dropdown-item py-2">
               <a href="javascript:;" class="text-body ms-0">
                 <i class="me-2 icon-md" data-feather="edit"></i>
-                <span>Edit Profile</span>
+                <span>Editar Perfil</span>
               </a>
             </li>
             <li class="dropdown-item py-2">
               <a href="javascript:;" class="text-body ms-0">
                 <i class="me-2 icon-md" data-feather="repeat"></i>
-                <span>Switch User</span>
+                <span>Cambiar Usuario</span>
               </a>
             </li>
             <li class="dropdown-item py-2">
               <a href="javascript:;" class="text-body ms-0">
                 <i class="me-2 icon-md" data-feather="log-out"></i>
-                <span>Log Out</span>
+                <span>Salir</span>
               </a>
             </li>
           </ul>

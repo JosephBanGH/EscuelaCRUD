@@ -21,14 +21,8 @@ class RoleSeeder extends Seeder
         $role4 = Role::create(['name'=>'Profesor']);
         $role5 = Role::create(['name'=>'Secretaria']);
 
-        $role1 = Role::create(['name'=>'Administrador']);
-        $role2 = Role::create(['name'=>'Asistente']);
-        $role3 = Role::create(['name'=>'Estudiante']);
-        $role4 = Role::create(['name'=>'Profesor']);
-        $role5 = Role::create(['name'=>'Secretaria']);
-
         Permission::create(['name' => 'Administrador.prueba'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
-        Permission::create(['name' => 'Administrador.alumnos.index'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
+        Permission::create(['name' => 'Administrador.alumno.index'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
         Permission::create(['name' => 'Administrador.alumno.create'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
         Permission::create(['name' => 'Administrador.alumno.store'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
         Permission::create(['name' => 'Administrador.alumno.confirmar'])->syncRoles([$role1,$role2,$role3,$role4,$role5]);
@@ -79,7 +73,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'Profesor.catedra']);
 
         Permission::create(['name' => 'Secretaria.personal.index']);
-        Permission::create(['name' => 'Secretaria.alumnos.index']);
+        Permission::create(['name' => 'Secretaria.alumno.index']);
         Permission::create(['name' => 'Secretaria.alumno.create']);
         Permission::create(['name' => 'Secretaria.listadonotas']);
     }

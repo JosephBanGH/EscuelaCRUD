@@ -66,11 +66,11 @@
         <form method="post" action="login.php">
             <div class="formtlo">Registro de Notas</div>
             <div class="ub1">Nivel</div>
-            <select name="rol">
+            <select name="nivel_id">
                 <option value="0" style="display:none;">Seleccionar</option>
-                <option value="Initial">Inicial</option>
-                <option value="Primary">Primaria</option>
-                <option value="Secundary">Secundaria</option>
+                <@foreach($niveles as $nivel)
+                    <option value="{{ $nivel->id }}">{{ $nivel->nombre }}</option>
+                @endforeach
             </select>
             <div class="ub1">Grado</div>
             <select name="rol">
