@@ -17,9 +17,9 @@ class MatriculaController extends Controller
 
     public function index(Request $request)
     {
-        
+
         $grados = Grado::all(); // Obtener todos los grados para el combobox
-        $query = Alumno::query();
+        $query = Grado::query();
     
         if ($request->filled('buscarpor')) {
             $gradoNivel = $request->input('buscarpor');

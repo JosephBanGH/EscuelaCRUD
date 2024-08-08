@@ -107,7 +107,7 @@ License: For each use you must have a valid license purchased only from above li
         </div>
       </li>
       <li class="nav-item ">
-        <a href="https://www.nobleui.com/laravel/template/demo1/apps/chat" class="nav-link">
+        <a href="{{route('matricula.index')}}" class="nav-link">
           <i class="link-icon" data-feather="message-square"></i>
           <span class="link-title">CHAT</span>
         </a>
