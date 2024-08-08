@@ -13,11 +13,12 @@ class CursoGrado extends Model
     ];
     public function curso()
     {
-        return $this->belongsTo(Cursos::class, 'id_curso');
+        return $this->belongsTo(Cursos::class, 'id_curso', 'id_curso');
     }
 
+    // Define la relación con el modelo Grado
     public function grado()
     {
-        return $this->belongsTo(Grado::class, 'id_grado');
+        return $this->belongsTo(Grado::class, 'id_grado', 'id_grado');
     }
 }
