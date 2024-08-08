@@ -13,7 +13,7 @@ use App\Http\Controllers\MatriculaController;
 use App\Models\Alumno;
 
 /* Route::get('/', function () {
-    return view('login');
+    return view('login'); 
 }); */
 
 Route::get('/', [UserController::class, 'showLogin']);
