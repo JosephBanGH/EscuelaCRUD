@@ -3,18 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Grado;
-
+use App\Models\CursoGrado; 
 
 class CursoGradoController extends Controller
 {
     public function index()
     {
-        // Obtener todos los grados y sus cursos asociados
-        $nivelesEducativos = Grado::with(['cursos' => function ($query) {
-            $query->where('estado', 1);
-        }])->where('estado', 1)->get()->groupBy('nivel');
+        // Obtener todos los registros de curso_grado
+        $cursoGrado = CursoGrado::with(['curso', 'grado']) // Asegúrate de definir estas relaciones en tu modelo CursoGrado
+            ->get();
 
-        return view('curso_grado.index', compact('nivelesEducativos'));
+        return view('curso_grado.index', compact('cursoGrado'));
     }
 }
