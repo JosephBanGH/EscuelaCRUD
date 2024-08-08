@@ -42,15 +42,15 @@
                     <tbody>
                         @foreach($capacidades as $capacidad)
                             <tr>
-                                <td>{{ $capacidad->id_capacidad }}</td>
-                                <td>{{ $capacidad->descripcion_capacidad }}</td>
-                                <td>{{ $capacidad->abrebiatura_capacidad }}</td>
+                                <td>{{ $capacidad->id_orden }}</td>
+                                <td>{{ $capacidad->descripcion}}</td>
+                                <td>{{ $capacidad->abreviatura }}</td>
                                 <td>{{ $capacidad->id_curso }}</td> <!-- Cambiado de seccion->abrebiatura_seccion a seccion -->
                                 <td>
-                                    <a href="{{ route('capacidad.edit', $capacidad->id_capacidad) }}" class="btn btn-info btn-sm">
+                                    <a href="{{ route('capacidad.edit', $capacidad->id_orden) }}" class="btn btn-info btn-sm">
                                         <i class="fas fa-edit"></i> Editar
                                     </a>
-                                    <a href="{{ route('capacidad.confirmar', $capacidad->id_capacidad) }}" class="btn btn-danger btn-sm">
+                                    <a href="{{ route('capacidad.confirmar', $capacidad->id_orden) }}" class="btn btn-danger btn-sm">
                                         <i class="fas fa-trash"></i> Eliminar
                                     </a>
                                 </td>

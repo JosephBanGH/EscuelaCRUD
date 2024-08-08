@@ -48,11 +48,6 @@ Route::get('personal/cancelar', function () {
     return redirect()->route('personal.index')->with('datos', 'Acción Cancelada ..!');
 })->name('personal.cancelar');
 
-// Rutas adicionales
-
-Route::get('/login/mantenedor', function () {
-    return view('jose/mantenedor');
-})->name('jose.mantenedor');
 
 //ALUMNOS
 
@@ -100,18 +95,6 @@ Route::get('/grado/cancelar', function () {
     return redirect()->route('grado.index')->with('datos', 'Acción Cancelada ..!');
 })->name('grado.cancelar');
 
-// //SECCION
-
-// Route::get('seccion', [SeccionController::class, 'index'])->name('seccion.index');
-// Route::get('seccion/create', [SeccionController::class, 'create'])->name('seccion.create');
-// Route::post('seccion/store', [SeccionController::class, 'store'])->name('seccion.store');
-// Route::get('seccion/{id_seccion}/edit', [SeccionController::class, 'edit'])->name('seccion.edit');
-// Route::put('seccion/{id_seccion}/update', [SeccionController::class, 'update'])->name('seccion.update');
-// Route::delete('seccion/{id_seccion}', [SeccionController::class, 'destroy'])->name('seccion.destroy');
-// Route::get('seccion/{id_seccion}/confirmar', [SeccionController::class, 'confirmar'])->name('seccion.confirmar');
-// Route::get('/seccion/cancelar', function () {
-//     return redirect()->route('seccion.index')->with('datos', 'Acción Cancelada ..!');
-// })->name('seccion.cancelar');
 
 //CATEDRA
 
