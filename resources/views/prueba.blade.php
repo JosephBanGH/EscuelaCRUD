@@ -113,8 +113,6 @@ License: For each use you must have a valid license purchased only from above li
         </a>
       </li>
 
-
-
       <li class="nav-item ">
         <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="false" aria-controls="email">
           <i class="link-icon" data-feather="mail"></i>
@@ -129,9 +127,6 @@ License: For each use you must have a valid license purchased only from above li
           </ul>
         </div>
       </li>
-
-
-
 
       <li class="nav-item ">
         <a href="https://www.nobleui.com/laravel/template/demo1/apps/calendar" class="nav-link">
@@ -148,30 +143,20 @@ License: For each use you must have a valid license purchased only from above li
     <a href="#" class="settings-sidebar-toggler">
       <i data-feather="settings"></i>
     </a>
-    <h6 class="text-muted mb-2">Sidebar:</h6>
+    <h6 class="text-muted mb-2">Temas:</h6>
     <div class="mb-3 pb-3 border-bottom">
       <div class="form-check form-check-inline">
         <label class="form-check-label">
           <input type="radio" class="form-check-input" name="sidebarThemeSettings" id="sidebarLight" value="sidebar-light" checked>
-          Light
+          Claro
         </label>
       </div>
       <div class="form-check form-check-inline">
         <label class="form-check-label">
           <input type="radio" class="form-check-input" name="sidebarThemeSettings" id="sidebarDark" value="sidebar-dark">
-          Dark
+          Oscuro
         </label>
       </div>
-    </div>
-    <div class="theme-wrapper">
-      <h6 class="text-muted mb-2">Light Version:</h6>
-      <a class="theme-item active" href="https://www.nobleui.com/laravel/template/demo1/">
-        <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/screenshots/light.jpg" alt="light version">
-      </a>
-      <h6 class="text-muted mb-2">Dark Version:</h6>
-      <a class="theme-item" href="https://www.nobleui.com/laravel/template/demo2/">
-        <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/screenshots/dark.jpg" alt="light version">
-      </a>
     </div>
   </div>
 </nav>    <div class="page-wrapper">
@@ -394,8 +379,8 @@ License: For each use you must have a valid license purchased only from above li
 
       </div>
       <footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between px-4 py-3 border-top small">
-  <p class="text-muted mb-1 mb-md-0">Copyright © 2023 <a href="https://www.nobleui.com" target="_blank">NobleUI</a>.</p>
-  <p class="text-muted">Handcrafted With <i class="mb-1 text-primary ms-1 icon-sm" data-feather="heart"></i></p>
+  <p class="text-muted mb-1 mb-md-0">I.E MARIANO MELGAR © 2024 TRUJILLO-PERÚ<a href="https://www.nobleui.com" target="_blank">NobleUI</a>.</p>
+  <p class="text-muted"><i class="mb-1 text-primary ms-1 icon-sm" data-feather="heart"></i></p>
 </footer>    </div>
   </div>
   @yield('scripts')

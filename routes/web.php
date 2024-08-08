@@ -10,6 +10,9 @@ use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\CapacidadController;
 use App\Http\Controllers\CursoGradoController;
 use App\Http\Controllers\MatriculaController;
+use App\Http\Controllers\ListadoNotasController;
+
+
 use App\Models\Alumno;
 
 /* Route::get('/', function () {
@@ -125,7 +128,8 @@ Route::get('/capacidad/cancelar', function () {
 })->name('capacidad.cancelar');
 
 //LISTADO DE NOTAS 
-
+Route::get('listadonotas/create', [ListadoNotasController::class, 'create'])->name('listadonotas.create');
+Route::post('listadonotas/store', [ListadoNotasController::class, 'store'])->name('listadonotas.store');
 
 //TABLA
 

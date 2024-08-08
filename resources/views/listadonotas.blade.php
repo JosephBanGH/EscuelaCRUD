@@ -63,33 +63,38 @@
         }
     </style>   
     <div class="caja1">
-        <form method="post" action="login.php">
+        <form method="post" action="{{ route('listadonotas.store') }}">
             <div class="formtlo">Registro de Notas</div>
             <div class="ub1">Nivel</div>
-            <select name="nivel_id">
+            <select name="rol">
                 <option value="0" style="display:none;">Seleccionar</option>
-                <@foreach($niveles as $nivel)
-                    <option value="{{ $nivel->id }}">{{ $nivel->nombre }}</option>
-                @endforeach
+                <option value="Initial">Inicial</option>
+                <option value="Primary">Primaria</option>
+                <option value="Secundary">Secundaria</option>
             </select>
             <div class="ub1">Grado</div>
-            <select name="rol">
+            <select name="id_grado">
                 <option value="0" style="display:none;">Seleccionar</option>
-                <option value="First">Primero</option>
-                <option value="Second">Segundo</option>
-                <option value="Third">Tercero</option>
-                <option value="Fourth">Cuarto</option>
-                <option value="Fifth">Quinto</option>
-                <option value="Sixth">Sexto</option>
+                @foreach($grados as $grado)
+                    <option value="{{ $grado->id_grado }}">{{ $grado->id_grado }}">{{ $grado->grado }} - {{ $grado->seccion }}
+                    </option>
+                @endforeach
             </select>
             <div class="ub1">Sección</div>
-            <select name="rol">
+            <select name="id_grado">
                 <option value="0" style="display:none;">Seleccionar</option>
-                <option value="A">A</option>
-                <option value="B">B</option>
+                @foreach($grados as $grado)
+                    <option value="{{ $grado->id_grado }}">
+                        {{$grado->seccion }}
+                    </option>
+                @endforeach
             </select>
-            <div class="ub1">Curso:</div>
-            <input type="text" name="txtcurso" placeholder="Ingresar curso...">
+            <div class="ub1">Curso</div>
+            <select name="curso_id">
+                <option value="" style="display:none;">Seleccionar Curso</option>
+                    @foreach($cursos as $curso)
+                <option value="{{ $curso->id_curso }}">{{ $curso->nombre_curso }}</option>
+                    @endforeach
             <div class="ub1"> Profesor:</div>
             <input type="text" name="txtprofesor" placeholder="Ingresar profesor...">
             <div class="ub1"> Año escolar:</div>
