@@ -444,6 +444,5 @@ License: For each use you must have a valid license purchased only from above li
     <!-- end common js -->
 
       <script src="https://www.nobleui.com/laravel/template/demo1/assets/js/dashboard.js"></script>
-
 </body>
 </html>
