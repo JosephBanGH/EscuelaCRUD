@@ -30,6 +30,9 @@ class CapacidadController extends Controller
         $validatedData = $request->validate([
             'descripcion' => 'required|max:255',
             'abreviatura' => 'required|max:4',
+            'id_curso' => 'required'
+        ],[
+            'id_curso' => 'ingrese curso'
         ]);
 
         $exists = Capacidad::where('descripcion', $request->nombre_curso)

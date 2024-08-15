@@ -1,43 +1,43 @@
-@extends('prueba')
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    th, td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+    }
+    
+    th {
+        background-color: #f2f2f2;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
 
-@section('titulo')
-    <title>Sistemas de Ventas - Catedra</title>
-@endsection
+    .header {
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-@section('contenido')
+    .footer {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 12px;
+        color: #777;
+    }
+</style>
 <div class="container">
     <h3> LISTADO DE CATEDRAS </h3>
     <br>
-    {{-- <a href="{{ route('catedra.create') }}" class="btn btn-primary">
+    <a href="{{ route('catedra.create') }}" class="btn btn-primary">
         <i class="fas fa-plus"></i> Nuevo Registro
     </a> 
-    <nav class="navbar navbar-light float-right">
-        <form class="form-inline my-2 my-lg-0" method="GET">
-            <input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Busqueda profesor" aria-label="Search" value="">
-            <button class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button>
-        </form>
-    </nav> --}}
-    <div class="d-flex justify-content-between mb-4">
-        <a href="{{ route('catedra.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Nuevo Registro</a>
-        <a href="{{ route('catedra.pdf') }}" class="btn btn-success">Generar PDF</a>
-        <form class="form-inline" method="GET">
-            <div class="input-group">
-                <input name="buscarpor" class="form-control" type="search" placeholder="Buscar por apellido paterno" aria-label="Search" value="{{ request('buscarpor') }}">
-                <div class="input-group-append">
-                    <button class="btn btn-success" type="submit"><i class="fas fa-search"></i> Buscar</button>
-                </div>
-            </div>
-        </form>
-    </div>
-    
-    @if (session('datos'))
-        <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
-            {{ session('datos') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
+
 
     <table class="table">
         <thead class="thead-dark">
@@ -76,6 +76,4 @@
             @endforeach
         </tbody>
     </table>
-    {{ $catedra->links() }}
 </div>
-@endsection

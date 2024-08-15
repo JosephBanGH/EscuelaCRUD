@@ -77,7 +77,6 @@
             </div>
             <button type="submit" class="btn btn-primary">Insertar</button>
             <button type="button" class="btn btn-danger">Eliminar</button>
-            <button type="button" class="btn btn-danger">Eliminar</button>
             <a href="{{route('catedra.index')}}" class="btn btn-secondary left">Volver</a>
         </form>
     </div>

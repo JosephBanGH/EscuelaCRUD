@@ -8,6 +8,7 @@ use App\Models\Grado;
 use App\Models\Personal;
 use App\Models\Catedra;
 use App\Models\CursoGrado;
+use PDF;
 
 class CatedraController extends Controller
 {
@@ -90,6 +91,13 @@ class CatedraController extends Controller
             return response()->json(['error' => 'Personal no encontrado'], 404);
         }
         return response()->json($Personal);
+    }
+
+    public function generarPDF(){
+//        $buscarpor=$request->get('buscarpor');
+        $catedra=Catedra::where('estado','=','1')->get();
+        $pdf = PDF::loadView('mantenedores.catedras.pdf',compact('catedra'));
+        return $pdf->download('reporte_catedras.pdf');
     }
 }
 

@@ -32,8 +32,8 @@
             
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="idcurso">Curso</label>
-                    <select class="form-control" name="idcurso" id="idcurso">
+                    <label for="id_curso">Curso</label>
+                    <select class="form-control" name="id_curso" id="id_curso">
                         @foreach($curso as $itemcurso)
                             <option value="{{ $itemcurso['id_curso'] }}">{{ $itemcurso['nombre_curso'] }}</option>
                         @endforeach

@@ -1,5 +1,8 @@
 <?php
 
+use Dompdf\Dompdf;
+use Illuminate\Support\Facades\Facade;
+
 return [
 
     /*
@@ -105,6 +108,9 @@ return [
         ),
     ],
 
+    // 'providers' => ServiceProvider::defaultProviders()->merge([
+    //     \Barryvdh\DomPDF\ServiceProvider::class
+    // ])->toArray(),
     /*
     |--------------------------------------------------------------------------
     | Maintenance Mode Driver
@@ -123,4 +129,7 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'aliases' => Facade::defaultAliases()->merge([
+        'PDF' => \Barryvdh\DomPDF\Facade::class,
+    ])->toArray(),
 ];

@@ -120,6 +120,7 @@ Route::get('/catedra/cancelar', function () {
     return redirect()->route('catedra.index')->with('datos', 'Acción Cancelada ..!');
 })->name('catedra.cancelar');
 
+Route::get('/catedra/pdf',[CatedraController::class,'generarPDF'])->name('catedra.pdf');
 //CAPACIDAD
 
 Route::get('/capacidad', function () {

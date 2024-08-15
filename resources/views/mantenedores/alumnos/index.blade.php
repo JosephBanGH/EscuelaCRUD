@@ -9,7 +9,6 @@
 
     <div class="d-flex justify-content-between mb-4">
         <a href="{{route('alumno.create')}}" class="btn btn-primary"><i class="fas fa-faplus"></i> Nuevo Registro</a>
-        
         <form class="form-inline" method="GET">
             <div class="input-group">
                 <input name="buscarpor" class="form-control" type="search" placeholder="Buscar por apellido paterno" aria-label="Search" value="{{ request('buscarpor') }}">
