@@ -9,12 +9,12 @@ class Catedra extends Model
 {
     use HasFactory;
     protected $table = 'catedras';
-    protected $primaryKey = ['id_curso', 'id_grado'];
+    protected $primaryKey = null;
     public $timestamps=false;
     protected $autoincrement=false;
 
     protected $fillable = [
-        'codigo_docente','periodo','estado'
+        'codigo_docente','id_curso', 'id_grado','periodo','estado'
     ];
 
     public function personal(){

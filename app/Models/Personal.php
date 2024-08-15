@@ -13,4 +13,8 @@ class Personal extends Model
     protected $fillable = [
         'DNI', 'nombres', 'apellidos', 'direccion', 'estado_civil', 'telefono', 'seguro_social', 'departamento', 'fecha_registro', 'estado'
     ];
+
+    public function catedra() {
+        return $this->hasMany(Catedra::class,'codigo_docente','codigo_docente');
+    }
 }

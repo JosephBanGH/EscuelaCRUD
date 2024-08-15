@@ -43,7 +43,7 @@ class CatedraController extends Controller
             'periodo' => $data['periodo'],
         ]);
     
-        return redirect()->back()->with('datos', 'Cátedra agregada exitosamente.');
+        return redirect()->route('catedra.index')->with('datos', 'Cátedra agregada exitosamente.');
     }
     
     public function edit($id)
