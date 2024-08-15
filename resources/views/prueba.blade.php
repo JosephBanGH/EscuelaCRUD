@@ -79,15 +79,18 @@ License: For each use you must have a valid license purchased only from above li
             <li class="nav-item">
               <a href="{{route('alumno.index')}}" class="nav-link ">ALUMNOS</a>
             </li>
+            @can('Administrador')
             <li class="nav-item">
               <a href="{{route('grado.index')}}" class="nav-link ">GRADO</a>
             </li>
-            <li class="nav-item">
-              <a href="{{route('curso.index')}}" class="nav-link ">CURSO</a>
-            </li>
+            @endcan
+              <li class="nav-item">
+                <a href="{{route('curso.index')}}" class="nav-link ">CURSO</a>
+              </li>
             <li class="nav-item">
               <a href="{{route('capacidad.index')}}" class="nav-link ">CAPACIDAD</a>
             </li>
+            
             <li class="nav-item">
               <a href="{{route('personal.index')}}" class="nav-link ">PERSONAL</a>
             </li>
@@ -112,7 +115,7 @@ License: For each use you must have a valid license purchased only from above li
           <span class="link-title">MATRICULAS</span>
         </a>
       </li>
-
+      
       <li class="nav-item ">
         <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="false" aria-controls="email">
           <i class="link-icon" data-feather="mail"></i>
@@ -440,6 +443,5 @@ License: For each use you must have a valid license purchased only from above li
     <!-- end common js -->
 
       <script src="https://www.nobleui.com/laravel/template/demo1/assets/js/dashboard.js"></script>
-
 </body>
 </html>

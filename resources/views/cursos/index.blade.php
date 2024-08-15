@@ -53,9 +53,11 @@
                             <td>{{ $curso->id_curso }}</td>
                             <td>{{ $curso->nombre_curso }}</td>
                             <td class="text-center">
+                                @can('Administrador')
                                 <a href="{{ route('curso.edit', $curso->id_curso) }}" class="btn btn-info btn-sm">
                                     <i class="fas fa-edit"></i> Editar
                                 </a>
+                                @endcan
                                 <a href="{{ route('curso.confirmar', $curso->id_curso) }}" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash"></i> Eliminar
                                 </a>
