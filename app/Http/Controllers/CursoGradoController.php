@@ -119,7 +119,7 @@ class CursoGradoController extends Controller
             ->where('id_grado', $id_grado)
             ->firstOrFail();
         
-        $cursoGrado->estado = 1;
+        $cursoGrado->estado = 0;
         $cursoGrado->save();
     
         return redirect()->route('curso_grado.index')->with('success', 'Registro desactivado exitosamente.');

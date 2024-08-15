@@ -95,7 +95,7 @@ License: For each use you must have a valid license purchased only from above li
               <a href="{{route('personal.index')}}" class="nav-link ">PERSONAL</a>
             </li>
             <li class="nav-item">
-              <a href="{{route('catedra')}}" class="nav-link ">CATÉDRAS</a>
+              <a href="{{route('catedra.index')}}" class="nav-link ">CATÉDRAS</a>
             </li>
             <li class="nav-item">
               <a href="{{route('listadonotas')}}" class="nav-link ">LISTADO DE NOTAS</a>

@@ -26,5 +26,10 @@ class CursoGrado extends Model
     {
         return $this->belongsTo(Grado::class, 'id_grado', 'id_grado');
     }
+
+    public function catedra(){
+        return $this->hasMany(CursoGrado::class, 'id_curso', 'id_curso')
+            ->where('id_grado', $this->id_grado);
+    }
 }
 

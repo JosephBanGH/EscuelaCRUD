@@ -10,6 +10,7 @@ use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\CapacidadController;
 use App\Http\Controllers\CursoGradoController;
 use App\Http\Controllers\MatriculaController;
+use App\Http\Controllers\CatedraController;
 use App\Http\Controllers\ListadoNotasController;
 
 
@@ -105,9 +106,19 @@ Route::get('/matricula/{matricula_id}/confirmar','ProductoController@confirmar')
 //CATEDRA
 
 Route::get('/catedra', function () {
-    return view('mantenedores.catedras.catedra');
+    return view('mantenedores.catedras.index');
 })->name('catedra');
 
+Route::get('catedra', [CatedraController::class, 'index'])->name('catedra.index');
+Route::get('catedra/create', [CatedraController::class, 'create'])->name('catedra.create');
+Route::post('catedra/store', [CatedraController::class, 'store'])->name('catedra.store');
+Route::get('catedra/{id_catedra}/edit', [CatedraController::class, 'edit'])->name('catedra.edit');
+Route::put('catedra/{id_catedra}/update', [CatedraController::class, 'update'])->name('catedra.update');
+Route::delete('catedra/{id_catedra}', [CatedraController::class, 'destroy'])->name('catedra.destroy');
+Route::get('catedra/{id_catedra}/confirmar', [CatedraController::class, 'confirmar'])->name('catedra.confirmar');
+Route::get('/catedra/cancelar', function () {
+    return redirect()->route('catedra.index')->with('datos', 'Acción Cancelada ..!');
+})->name('catedra.cancelar');
 
 //CAPACIDAD
 
