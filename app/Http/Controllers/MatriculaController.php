@@ -7,6 +7,7 @@ use App\Models\Alumno;
 use App\Models\Grado;
 use App\Models\Matricula;
 use DB;
+use PDF;
 
 class MatriculaController extends Controller
 {
@@ -106,5 +107,12 @@ class MatriculaController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function generarPDF(){
+//        $buscarpor=$request->get('buscarpor');
+        $matricula=Matricula::where('estado','=','1')->get();
+        $pdf = PDF::loadView('mantenedores.matriculas.pdf',compact('matricula'));
+        return $pdf->download('reporte_matriculas.pdf');
     }
 }

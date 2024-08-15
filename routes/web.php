@@ -103,6 +103,8 @@ Route::get('/cancelarm', function () {
 })->name('/cancelarm');
 Route::get('/matricula/{matricula_id}/confirmar','ProductoController@confirmar')->name('producto.confirmar');
 
+Route::get('/matricula/pdf',[MatriculaController::class,'generarPDF'])->name('matricula.pdf');
+
 //CATEDRA
 
 Route::get('/catedra', function () {

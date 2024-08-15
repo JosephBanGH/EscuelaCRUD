@@ -1,33 +1,47 @@
-@extends('prueba')
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    th, td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+    }
+    
+    th {
+        background-color: #f2f2f2;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
 
+    .header {
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-@section('contenido')
+    .footer {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 12px;
+        color: #777;
+    }
+</style>
 <section class="content">
 
 <!-- Default box -->
 <div class="container mt-4">
     <h3 class="mb-4">Listado de Matriculas</h3>
 
+    <div class="d-flex justify-content-between mb-4">
+        <a href="{{route('matricula.create')}}" class="btn btn-danger"><i class="fas fa-faplus"></i> MATRICULAR</a>
+        
 
-        <select name="buscarpor" class="form-control">
-            <option value="">Selecciona un grado</option>
-            <option value="Inicial" {{ request('buscarpor') }}>Inicial</option>
-            <option value="Primaria" {{ request('buscarpor') }}>Primaria</option>
-            <option value="Secundaria" {{ request('buscarpor') }}>Secundaria</option>
-        </select>
-        <div class="d-flex justify-content-between mb-4">
-            <a href="{{ route('matricula.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Nuevo Registro</a>
-            <a href="{{ route('matricula.pdf') }}" class="btn btn-success">Generar PDF</a>
-        </div>
-                
-    @if(session('datos'))
-    <div class="alert alert-warning alert-dismissible fade show mt-3" role='alert'>
-        {{session('datos')}}
-        <button type="button" class="close" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
     </div>
-    @endif
     
     <table id="table" class="table table-striped table-bordered">
         <thead class="thead-dark">
