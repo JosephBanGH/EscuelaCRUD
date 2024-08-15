@@ -30,18 +30,16 @@
                 </div>
             </div>
             
-            <div class="form-row mb-3">
+            <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="id_curso">ID del curso</label>
-                    <input type="text" class="form-control @error('id_curso') is-invalid @enderror" id="id_curso" name="id_curso" value="{{ old('id_curso') }}">
-                    @error('id_curso')
-                        <div class="invalid-feedback">
-                            <strong>{{ $message }}</strong>
-                        </div>
-                    @enderror
+                    <label for="idcurso">Curso</label>
+                    <select class="form-control" name="idcurso" id="idcurso">
+                        @foreach($curso as $itemcurso)
+                            <option value="{{ $itemcurso['id_curso'] }}">{{ $itemcurso['nombre_curso'] }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
-
             @if ($errors->has('duplicado'))
                 <div class="alert alert-danger mt-3">
                     {{ $errors->first('duplicado') }}

@@ -45,7 +45,7 @@
                                 <td>{{ $capacidad->id_orden }}</td>
                                 <td>{{ $capacidad->descripcion}}</td>
                                 <td>{{ $capacidad->abreviatura }}</td>
-                                <td>{{ $capacidad->id_curso }}</td> <!-- Cambiado de seccion->abrebiatura_seccion a seccion -->
+                                <td>{{ $capacidad->curso->nombre_curso }}</td> <!-- Cambiado de seccion->abrebiatura_seccion a seccion -->
                                 <td>
                                     <a href="{{ route('capacidad.edit', $capacidad->id_orden) }}" class="btn btn-info btn-sm">
                                         <i class="fas fa-edit"></i> Editar
@@ -58,6 +58,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{$capacidades->links()}}
             </div>
         @endif
     </div>

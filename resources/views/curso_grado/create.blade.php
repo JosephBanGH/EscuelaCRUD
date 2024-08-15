@@ -7,6 +7,15 @@
 @section('contenido')
     <div class="container mt-4">
         <h3 class="mb-4">Crear Nuevo Curso Grado</h3>
+        
+        @if (session('error'))
+            <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+                {{ session('error') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
 
         <form method="POST" action="{{ route('curso_grado.store') }}">
             @csrf

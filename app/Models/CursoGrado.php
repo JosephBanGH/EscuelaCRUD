@@ -12,9 +12,10 @@ class CursoGrado extends Model
         'id_curso', 'id_grado', 'nivel', 'periodo_escolar', 'nombre_curso'
     ];
 
-    protected $primaryKey = ['id_curso', 'id_grado']; // Clave primaria compuesta
+    //protected $primaryKey = ['id_curso', 'id_grado']; // Clave primaria compuesta
     public $incrementing = false; // Desactiva el incremento automático
     protected $keyType = 'string'; // Tipo de clave primaria
+    protected $primaryKey = null;
 
     public function curso()
     {

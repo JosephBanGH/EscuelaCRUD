@@ -11,7 +11,7 @@ class CursoGradoController extends Controller
 {
     public function index(Request $request)
     {
-        $query = CursoGrado::with('curso', 'grado');
+        $query = CursoGrado::with('curso', 'grado')->where('estado','=','1');
 
         // Filtrar por nombre de curso
         if ($request->filled('buscarpor')) {
@@ -40,7 +40,6 @@ class CursoGradoController extends Controller
 
         return view('curso_grado.create', compact('cursos', 'grados'));
     }
-
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -49,21 +48,39 @@ class CursoGradoController extends Controller
             'periodo_escolar' => 'required|string',
         ]);
     
-        // Obtener el nombre del curso y el nivel
-        $curso = Cursos::findOrFail($validatedData['id_curso']);
-        $grado = Grado::findOrFail($validatedData['id_grado']);
-        
-        $nivel = $grado->nivel; // Asume que 'nivel' está en la tabla 'grado'
-        $nombreCurso = $curso->nombre_curso; // Asume que 'nombre_curso' está en la tabla 'curso'
+        // Verificar si existe un registro con estado inactivo
+        $cursoGrado = CursoGrado::where('id_curso', $validatedData['id_curso'])
+                                ->where('id_grado', $validatedData['id_grado'])
+                                ->first();
     
-        // Crear el nuevo registro
-        CursoGrado::create(array_merge($validatedData, ['nivel' => $nivel, 'nombre_curso' => $nombreCurso]));
+        if ($cursoGrado) {
+            if ($cursoGrado->estado == 1) {
+                return redirect()->route('curso_grado.create')->with('error', 'Combinación de curso y grado ya existente y activa.');
+            } else {
+                // Si el registro existe pero está inactivo, lo reactivamos
+                $cursoGrado->estado = 1;
+                $cursoGrado->periodo_escolar = $request->periodo_escolar;
+                $cursoGrado->save();
     
-        return redirect()->route('curso_grado.index')->with('success', 'Registro creado exitosamente.');
+                return redirect()->route('curso_grado.index')->with('success', 'Registro reactivado exitosamente.');
+            }
+        } else {
+            // Si no existe, lo creamos
+            $curso = Cursos::findOrFail($validatedData['id_curso']);
+            $grado = Grado::findOrFail($validatedData['id_grado']);
+    
+            $nivel = $grado->nivel;
+            $nombreCurso = $curso->nombre_curso;
+    
+            CursoGrado::create(array_merge($validatedData, [
+                'nivel' => $nivel,
+                'nombre_curso' => $nombreCurso,
+                'estado' => 1,
+            ]));
+    
+            return redirect()->route('curso_grado.index')->with('datos', 'Registro creado exitosamente.');
+        }
     }
-    
-    
-
     
 
     public function edit($id)
@@ -96,13 +113,15 @@ class CursoGradoController extends Controller
         return view('curso_grado.confirmar', compact('cursoGrado'));
     }
 
-    public function destroy($id)
+    public function destroy($id_curso,$id_grado)
     {
-        $cursoGrado = CursoGrado::findOrFail($id);
-
-        // Marcar como inactivo en lugar de eliminar
-        $cursoGrado->update(['estado' => 0]);
-
-        return redirect()->route('curso_grado.index')->with('datos', 'Registro eliminado con éxito.');
+        $cursoGrado = CursoGrado::where('id_curso', $id_curso)
+            ->where('id_grado', $id_grado)
+            ->firstOrFail();
+        
+        $cursoGrado->estado = 1;
+        $cursoGrado->save();
+    
+        return redirect()->route('curso_grado.index')->with('success', 'Registro desactivado exitosamente.');
     }
 }

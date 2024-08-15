@@ -19,4 +19,8 @@ class Cursos extends Model
     {
         return $this->hasMany(CursoGrado::class, 'id_curso', 'id_curso');
     }
+    public function capacidad()
+    {
+        return $this->hasMany(Capacidad::class,'id_curso','id_curso');
+    }
 }

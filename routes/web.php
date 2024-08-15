@@ -25,7 +25,7 @@ Route::post('/salir', [UserController::class, 'salir'])->name('logout');
 
 // Rutas de prueba y login
 
-Route::get('/login/inicio', function () {
+Route::get('/inicio', function () {
     return view('prueba');
 })->name('prueba'); // PRUEBA ES EL INDEX GENERAL
 
@@ -128,8 +128,8 @@ Route::get('/capacidad/cancelar', function () {
 })->name('capacidad.cancelar');
 
 //LISTADO DE NOTAS 
-Route::get('listadonotas/create', [ListadoNotasController::class, 'create'])->name('listadonotas.create');
-Route::post('listadonotas/store', [ListadoNotasController::class, 'store'])->name('listadonotas.store');
+// Route::get('listadonotas/create', [ListadoNotasController::class, 'create'])->name('listadonotas.create');
+// Route::post('listadonotas/store', [ListadoNotasController::class, 'store'])->name('listadonotas.store');
 
 //TABLA
 
@@ -145,4 +145,4 @@ Route::post('curso-grado/store', [CursoGradoController::class, 'store'])->name('
 Route::get('curso-grado/{id}/edit', [CursoGradoController::class, 'edit'])->name('curso_grado.edit');
 Route::put('curso-grado/{id}', [CursoGradoController::class, 'update'])->name('curso_grado.update');
 Route::get('curso-grado/{id}/confirmar', [CursoGradoController::class, 'confirmar'])->name('curso_grado.confirmar');
-Route::delete('curso-grado/{id}', [CursoGradoController::class, 'destroy'])->name('curso_grado.destroy');
+Route::delete('curso-grado/{id_curso}/{id_grado}', [CursoGradoController::class, 'destroy'])->name('curso_grado.destroy');
