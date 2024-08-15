@@ -168,7 +168,6 @@ License: For each use you must have a valid license purchased only from above li
     
     <ul class="navbar-nav">
       <li class="nav-item dropdown">
-<<<<<<< HEAD
         <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <img src="https://www.nobleui.com/laravel/template/demo1/assets/images/flags/es.svg" class="wd-20 me-1" title="us" alt="us"> <span class="ms-1 me-1 d-none d-md-inline-block">ESPAÑOL</span>
         </a>
