@@ -7,7 +7,7 @@ use App\Models\Alumno;
 use App\Models\Grado;
 use App\Models\Matricula;
 use DB;
-use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class MatriculaController extends Controller
 {
@@ -113,6 +113,6 @@ class MatriculaController extends Controller
 //        $buscarpor=$request->get('buscarpor');
         $matricula=Matricula::where('estado','=','1')->get();
         $pdf = PDF::loadView('mantenedores.matriculas.pdf',compact('matricula'));
-        return $pdf->download('reporte_matriculas.pdf');
+        return $pdf->stream('reporte_matricula.pdf');
     }
 }

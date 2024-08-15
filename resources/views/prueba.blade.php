@@ -125,7 +125,7 @@ License: For each use you must have a valid license purchased only from above li
         <div class="collapse " id="email">
           <ul class="nav sub-menu">
             <li class="nav-item">
-              <a href="{{route('notas.index')}}" class="nav-link ">VER</a>
+              <a href="{{route('registronotas.index')}}" class="nav-link ">VER</a>
             </li>
           </ul>
         </div>

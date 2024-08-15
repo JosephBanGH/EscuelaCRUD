@@ -160,3 +160,8 @@ Route::get('curso-grado/{id}/edit', [CursoGradoController::class, 'edit'])->name
 Route::put('curso-grado/{id}', [CursoGradoController::class, 'update'])->name('curso_grado.update');
 Route::get('curso-grado/{id}/confirmar', [CursoGradoController::class, 'confirmar'])->name('curso_grado.confirmar');
 Route::delete('curso-grado/{id_curso}/{id_grado}', [CursoGradoController::class, 'destroy'])->name('curso_grado.destroy');
+
+//REGISTRO NOTAS
+use App\Http\Controllers\RegistroNotasController;
+
+Route::resource('registronotas', RegistroNotasController::class);

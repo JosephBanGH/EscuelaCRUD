@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Catedra extends Model
 {
@@ -24,5 +25,13 @@ class Catedra extends Model
     public function curso_grado(){
         return $this->hasMany(CursoGrado::class, 'id_curso', 'id_curso')
             ->where('id_grado', $this->id_grado);
+    }
+
+    public function curso(){
+        return $this->hasMany(Cursos::class,'id_curso','id_curso');
+    }
+
+    public function grado(){
+        return $this->HasMany(Grado::class,'id_grado','id_grado');
     }
 }

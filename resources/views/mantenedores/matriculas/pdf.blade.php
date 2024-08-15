@@ -31,7 +31,6 @@
         color: #777;
     }
 </style>
-<section class="content">
 
 <!-- Default box -->
 <div class="container mt-4">
@@ -39,8 +38,6 @@
 
     <div class="d-flex justify-content-between mb-4">
         <a href="{{route('matricula.create')}}" class="btn btn-danger"><i class="fas fa-faplus"></i> MATRICULAR</a>
-        
-
     </div>
     
     <table id="table" class="table table-striped table-bordered">
@@ -78,9 +75,3 @@
             @endif
         </tbody>
     </table>
-</div>
-    <div class="d-flex justify-content-center mt-4">
-        {{ $matricula->links() }}
-    </div>
-</div>
-@endsection

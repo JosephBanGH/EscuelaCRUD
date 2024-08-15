@@ -79,9 +79,11 @@ class CatedraController extends Controller
     }
     public function destroy($id)
     {
-        $Personal=Personal::findOrFail($id);
-        $Personal->estado='0';
-        $Personal->save();
+        CursoGrado::where('id_curso', $id_curso)
+        ->where('id_grado', $id_grado)
+        ->delete();
+
+return redirect()->route('curso_grado.index')->with('success', 'Registro eliminado exitosamente.');
         return redirect()->route('Personal.index')->with('datos','Registro Eliminado...!');
     }
     public function encontrarPersonal($id)
