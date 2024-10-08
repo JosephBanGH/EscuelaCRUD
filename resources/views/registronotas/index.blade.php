@@ -27,12 +27,12 @@
             <tbody>
                 @foreach($registroNotas as $registroNota)
                     <tr>
-                        <td>{{ $registroNota->id_registro }}</td>
-                        <td>{{ $registroNota->catedra->curso->nombre_curso }}</td> <!-- Asegúrate de que 'catedra' sea un campo válido en la relación -->
-                        <td>{{ $registroNota->fecha->format('Y-m-d') }}</td>
+                        <td>{{ $registroNota->id_registronotas }}</td>
+                        <td>{{ $registroNota->curso->nombre_curso}},{{ $registroNota->personal->apellidos }}</td> <!-- Asegúrate de que 'catedra' sea un campo válido en la relación -->
+                        <td>{{ $registroNota->fecha }}</td>
                         <td>
-                            <a href="{{ route('registronotas.edit', $registroNota->id_registro) }}" class="btn btn-warning btn-sm">Editar</a>
-                            <form action="{{ route('registronotas.destroy', $registroNota->id_registro) }}" method="POST" style="display:inline;">
+                            <a href="{{Route('registronotas.edit', $registroNota->id_registronotas) }}" class="btn btn-warning btn-sm">Editar</a>
+                            <form action="oute('registronotas.destroy', $registroNota->id_registro) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que quieres eliminar este registro?');">

@@ -8,16 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Alumno extends Model
 {
     use HasFactory;
-    protected $table = 'alumnos';
-    protected $primaryKey = 'codigo_estudiante';
+    protected $table = 'ESTUDIANTE';
+    protected $primaryKey = 'codigoEstudiante';
     public $timestamps=false;
 
     protected $fillable = [
-        'apellido_paterno','apellido_materno','primer_nombre','otros_nombres','estado'
+        'dni',
+        'apellido_paterno',
+        'apellido_materno',
+        'primer_nombre',
+        'otros_nombre',
+        'estado',
+        'idEscala'
     ];
 
     public function matricula()
     {
-        return $this->hasMany(Matricula::class,'codigo_estudiante','codigo_estudiante');
+        return $this->hasMany(Matricula::class,'codigoEstudiante','codigoEstudiante');
     }
+
+    
 }

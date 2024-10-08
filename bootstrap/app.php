@@ -12,6 +12,10 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         //
+        $middleware->alias([
+            'role.department' => \App\Http\Middleware\CheckRoleDepartment::class,
+        ]);
+        
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Alumno;
 use App\Models\Grado;
+use App\Models\Periodo;
+use App\Models\Nivel;
 use App\Models\Matricula;
 use DB;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -19,7 +21,9 @@ class MatriculaController extends Controller
     public function index(Request $request)
     {
         
-        $query = Matricula::where('estado',1);
+        $query = Matricula::whereHas('periodo',function ($query){
+            $query->where('estado',1);
+        })->with(['alumno','seccion.grado.nivel']);//cargar las relaciones necesarias
     
         if ($request->filled('buscarpor')) {
             $search = $request->input('buscarpor');
@@ -27,22 +31,7 @@ class MatriculaController extends Controller
             $query->where('grado', 'like', "%{$search}%");
         }
         $matricula=$query->paginate($this::PAGINATION);
-    
-        // $alumno = Alumno::where('estado', '1')
-        //     ->whereHas('matriculas', function($q) use ($id_grado) {
-        //     if ($id_grado) {
-        //         $q->where('id_grado', $id_grado);
-        //     }
-        // })
-        // ->with(['matriculas.grado' => function($q) {
-        //     $q->orderBy('grado', 'asc');
-        // }])
-        // ->paginate($this::PAGINATION);
-
-        // $matricula = $query
-        //                 ->orderBy('grado.grado', 'asc') // Ordenar por número de grado
-        //                 ->paginate($this::PAGINATION);
-    
+        
         return view('mantenedores.matriculas.index', compact('matricula'));
 
     }
@@ -52,9 +41,12 @@ class MatriculaController extends Controller
      */
     public function create()
     {
+        $nivel = Nivel::all();
+        $añoEscolar =Periodo::where('estado','=','1')->first(); 
         $alumno = Alumno::where('estado','=','1')->get();
-        $grado = Grado::where('estado','=','1')->get();
-        return view('mantenedores.matriculas.create',compact('alumno','grado'));
+        //$grado = Grado::all();
+        //dd($añoEscolar);
+        return view('mantenedores.matriculas.create',compact('alumno','nivel','añoEscolar'));
     }
 
     /**

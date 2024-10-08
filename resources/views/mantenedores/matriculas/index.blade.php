@@ -48,13 +48,13 @@
             @else
                 @foreach($matricula as $itemmatricula)
                 <tr>
-                    <td>{{$itemmatricula->numero_matricula}}</td>
+                    <td>{{$itemmatricula->numMatricula}}</td>
                     <td>{{$itemmatricula->alumno->apellido_paterno}}</td>
                     <td>{{$itemmatricula->alumno->apellido_materno}}</td>
-                    <td>{{$itemmatricula->grado->grado}} {{$itemmatricula->grado->seccion}}, {{$itemmatricula->grado->nivel}}</td>
-                    <td>{{$itemmatricula->fecha}}</td>
+                    <td>{{$itemmatricula->seccion->seccion}} {{$itemmatricula->seccion->grado->grado}}, {{$itemmatricula->seccion->grado->nivel->nivel}}</td>
+                    <td>{{$itemmatricula->fechaMatricula}}</td>
                     <td>
-                        <a href="{{ route('matricula.edit', $itemmatricula->numero_matricula) }}" class="btn btn-info btn-sm">
+                        <a href="{{ route('matricula.edit', $itemmatricula->numMatricula) }}" class="btn btn-info btn-sm">
                             <i class="fas fa-pencil-alt"></i> Editar
                         </a> 
                     </td>

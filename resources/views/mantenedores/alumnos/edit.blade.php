@@ -3,14 +3,14 @@
 @section('contenido')
     <div class="container mt-4">
         <h1 class="mb-4">Editar Registro</h1>
-        <form method="POST" action="{{ route('alumno.update', $alumno->codigo_estudiante) }}">
+        <form method="POST" action="{{ route('alumno.update', $alumno->codigoEstudiante) }}">
             @method('PUT')
             @csrf
 
             <div class="form-row mb-3">
                 <div class="form-group col-md-6">
                     <label for="codigo_estudiante">Código Estudiante</label>
-                    <input type="text" class="form-control" id="codigo_estudiante" name="codigo_estudiante" value="{{ $alumno->codigo_estudiante}}" disabled>
+                    <input type="text" class="form-control" id="codigoEstudiante" name="codigoEstudiante" value="{{ $alumno->codigoEstudiante}}" disabled>
                 </div>
             </div>
 
@@ -28,9 +28,9 @@
 
             <div class="form-row mb-3">
                 <div class="form-group col-md-6">
-                    <label for="otros_nombres">Otros Nombres</label>
-                    <input type="text" autocomplete="off" class="form-control @error('otros_nombres') is-invalid @enderror" maxlength="40" id="otros_nombres" name="otros_nombres" value="{{ old('otros_nombres', $alumno->otros_nombres) }}">
-                    @error('otros_nombres')
+                    <label for="otros_nombre">Otros Nombres</label>
+                    <input type="text" autocomplete="off" class="form-control @error('otros_nombre') is-invalid @enderror" maxlength="40" id="otros_nombre" name="otros_nombre" value="{{ old('otros_nombre', $alumno->otros_nombre) }}">
+                    @error('otros_nombre')
                         <div class="invalid-feedback">
                             <strong>{{ $message }}</strong>
                         </div>

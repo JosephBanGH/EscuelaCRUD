@@ -8,20 +8,28 @@ use Illuminate\Database\Eloquent\Model;
 class Matricula extends Model
 {
     use HasFactory;
-    protected $table = 'matricula';
-    protected $primaryKey = 'numero_matricula';
+    protected $table = 'MATRICULAS';
+    protected $primaryKey = 'numMatricula';
     public $timestamps=false;
 
     protected $fillable = [
-        'codigo_estudiante','id_grado','fecha','estado'
+        'codigoEstudiante',
+        'idSeccion',
+        'idPeriodo',
+        'fechaMatricula'
     ];
 
     public function alumno()
     {
-        return $this->hasOne(Alumno::class,'codigo_estudiante','codigo_estudiante');
+        return $this->belongsTo(Alumno::class,'codigoEstudiante','codigoEstudiante');
     }
-    public function grado()
+
+    public function seccion()
     {
-        return $this->hasOne(Grado::class,'id_grado','id_grado');
+        return $this->belongsTo(Seccion::class,'idSeccion','idSeccion');
+    }
+    
+    public function periodo(){
+        return $this->belongsTo(Periodo::class,'idPeriodo','idPeriodo');
     }
 }

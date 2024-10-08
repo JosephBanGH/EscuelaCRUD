@@ -13,10 +13,10 @@
             <div class="card-body text-center">
                 <p class="mb-4">
                     ¿Está seguro de que desea eliminar el registro?<br>
-                    <strong>Código:</strong> {{ $alumno->codigo_estudiante }}<br>
+                    <strong>Código:</strong> {{ $alumno->codigoEstudiante }}<br>
                     <strong>Nombres:</strong> {{ $alumno->primer_nombre }},{{ $alumno->apellido_paterno }}{{ $alumno->apellido_materno }}
                 </p>
-                <form method="POST" action="{{ route('alumno.destroy', $alumno->codigo_estudiante) }}">
+                <form method="POST" action="{{ route('alumno.destroy', $alumno->codigoEstudiante) }}">
                     @method('delete')
                     @csrf
                     <button type="submit" class="btn btn-danger btn-lg">
