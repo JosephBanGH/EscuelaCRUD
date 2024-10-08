@@ -9,9 +9,14 @@ class Nivel extends Model
 {
     use HasFactory;
 
+    protected $table='NIVEL';
+    protected $primaryKey = 'idNivel';
     public $timestamps=false;
     protected $fillable = [
-        'inicial', 'Primaria', 'Secundaria'
-
+        'nivel'
     ];
+
+    public function grado(){
+        return $this->hasMany(Grado::class,'idNivel','idNivel');
+    }
 }

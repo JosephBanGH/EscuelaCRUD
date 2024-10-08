@@ -41,10 +41,26 @@
             <table class="table table-bordered table-striped">
                 <thead class="thead-dark">
                     <tr>
+<<<<<<< HEAD
                         <th>ID</th>
                         <th>Cátedra</th>
                         <th>Fecha</th>
                         <th>Acciones</th>
+=======
+                        <td>{{ $registroNota->id_registronotas }}</td>
+                        <td>{{ $registroNota->curso->nombre_curso}},{{ $registroNota->personal->apellidos }}</td> <!-- Asegúrate de que 'catedra' sea un campo válido en la relación -->
+                        <td>{{ $registroNota->fecha }}</td>
+                        <td>
+                            <a href="{{Route('registronotas.edit', $registroNota->id_registronotas) }}" class="btn btn-warning btn-sm">Editar</a>
+                            <form action="oute('registronotas.destroy', $registroNota->id_registro) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que quieres eliminar este registro?');">
+                                    Eliminar
+                                </button>
+                            </form>
+                        </td>
+>>>>>>> d16ae3c (Se tiene listo la seccion de busqueda de estudiante pero aun vamos a la mitad de matriculas)
                     </tr>
                 </thead>
                 <tbody>

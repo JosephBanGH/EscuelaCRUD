@@ -8,11 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class Personal extends Model
 {
     protected $table = 'personal';
-    protected $primaryKey = 'codigo_docente';
+    protected $primaryKey = 'idPersonal';
     public $timestamps = false;
     protected $fillable = [
-        'DNI', 'nombres', 'apellidos', 'direccion', 'estado_civil', 'telefono', 'seguro_social', 'departamento', 'fecha_registro', 'estado'
+        'apellido', 'nombre', 'dni', 'direccion', 'telefono', 'seguro_social', 'fechaIngreso', 'idEstadoCivil', 'idDepartamento', 'estado','email','idTipoPersonal'
     ];
+
+
+    public function tipoPersonal()
+    {
+        return $this->belongsTo(TipoPersonal::class, 'idTipoPersonal', 'idTipoPersonal');
+    }
+
+    public function departamento()
+    {
+        return $this->belongsTo(Departamento::class, 'idDepartamento', 'idDepartamento');
+    }
 
     public function catedra() {
         return $this->hasMany(Catedra::class,'codigo_docente','codigo_docente');

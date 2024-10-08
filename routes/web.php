@@ -22,14 +22,14 @@ use App\Models\Alumno;
 }); */
 
 Route::get('/', [UserController::class, 'showLogin']);
-Route::post('/identificacion', [UserController::class, 'verificalogin'])->name('identificacion');
+Route::post('/identificacion', [UserController::class, 'verifylogin'])->name('identificacion');
 Route::post('/salir', [UserController::class, 'salir'])->name('logout');
 
 // Rutas de prueba y login
 
 Route::get('/inicio', function () {
     return view('prueba');
-})->name('prueba'); // PRUEBA ES EL INDEX GENERAL
+})->name('prueba');//->middleware('role.department:Secretaria,Oficina Registros'); // PRUEBA ES EL INDEX GENERAL
 
 Route::get('/login/registro', function () {
     return view('layout/registroNotas');
@@ -102,7 +102,7 @@ Route::resource('matricula',MatriculaController::class);
 Route::get('/cancelarm', function () {
     return redirect()->route('matricula.index')->with('datos','Matricula cancelada');
 })->name('/cancelarm');
-Route::get('/matricula/{matricula_id}/confirmar','ProductoController@confirmar')->name('producto.confirmar');
+//Route::get('/matricula/{matricula_id}/confirmar','MatriculaController@confirmar')->name('matricula.confirmar');
 
 Route::get('/matricula/pdf',[MatriculaController::class,'generarPDF'])->name('matricula.pdf');
 

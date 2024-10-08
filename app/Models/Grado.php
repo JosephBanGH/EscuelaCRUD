@@ -8,21 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Grado extends Model
 {
     use HasFactory;
+    protected $table = 'GRADO'; // Nombre de la tabla en la base de datos
 
-    protected $table = 'grado';
-    protected $primaryKey = 'id_grado';
-    public $timestamps = false;
+    protected $primaryKey = 'idGrado'; // Clave primaria
+    public $timestamps = false; // Desactivar timestamps
+
     protected $fillable = [
-        'nivel', 'grado', 'seccion', 'estado'
+        'grado',
+        'idNivel'
     ];
 
-    public function matricula()
+    public function nivel()
     {
-        return $this->hasMany(Matricula::class, 'id_grado', 'id_grado');
+        return $this->belongsTo(Nivel::class, 'idNivel', 'idNivel');
     }
 
-    public function cursoGrado()
+    public function seccion()
     {
-        return $this->hasMany(CursoGrado::class, 'id_grado', 'id_grado');
+        return $this->hasMany(Seccion::class, 'idGrado', 'idGrado');
     }
 }

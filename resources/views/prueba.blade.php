@@ -77,9 +77,11 @@ License: For each use you must have a valid license purchased only from above li
         </a>
         <div class="collapse " id="email">
           <ul class="nav sub-menu">
-            <li class="nav-item">
-              <a href="{{route('alumno.index')}}" class="nav-link ">ALUMNOS</a>
-            </li>
+            @if(Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+              <li class="nav-item">
+                <a href="{{route('alumno.index')}}" class="nav-link ">ALUMNOS</a>
+              </li>
+            @endif
             @can('Administrador')
             <li class="nav-item">
               <a href="{{route('grado.index')}}" class="nav-link ">GRADO</a>
@@ -110,13 +112,14 @@ License: For each use you must have a valid license purchased only from above li
           </ul>
         </div>
       </li>
-      <li class="nav-item ">
-        <a href="{{route('matricula.index')}}" class="nav-link">
-          <i class="link-icon" data-feather="message-square"></i>
-          <span class="link-title">MATRICULAS</span>
-        </a>
-      </li>
-      
+      @if(Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+        <li class="nav-item ">
+          <a href="{{route('matricula.index')}}" class="nav-link">
+            <i class="link-icon" data-feather="message-square"></i>
+            <span class="link-title">MATRICULAS</span>
+          </a>
+        </li>
+      @endif
       <li class="nav-item ">
         <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="false" aria-controls="email">
           <i class="link-icon" data-feather="mail"></i>
