@@ -16,7 +16,8 @@ class Matricula extends Model
         'codigoEstudiante',
         'idSeccion',
         'idPeriodo',
-        'fechaMatricula'
+        'fechaMatricula',
+        'estado'
     ];
 
     public function alumno()

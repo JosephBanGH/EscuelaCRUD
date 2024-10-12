@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alumno;
+use App\Models\Escala;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -106,9 +107,11 @@ class AlumnoController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('mantenedores.alumnos.create'); 
+        $escala = Escala::all();
+        $fromMatricula = $request->query('from') == 'matricula'; //Verificar si viene de matricula
+        return view('mantenedores.alumnos.create',compact('escala','fromMatricula')); 
     }
 
     /**
@@ -117,19 +120,28 @@ class AlumnoController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
+            'dni' => 'required|max:8',
             'primer_nombre' => 'required|max:255',
             'apellido_paterno' => 'required|max:255',
             'apellido_materno' => 'required|max:255',
-            'otros_nombre' => 'nullable|max:255',
+            'otros_nombre' => 'nullable|max:255'
         ]);
     
         $alumno = new Alumno;
+        $alumno->dni = $request->dni;
         $alumno->primer_nombre = $request->primer_nombre;
         $alumno->apellido_paterno = $request->apellido_paterno;
         $alumno->apellido_materno = $request->apellido_materno;
         $alumno->otros_nombre = $request->otros_nombre;
         $alumno->estado = 1; // Estado activo por defecto
+        $alumno->idEscala =$request->idEscala;
         $alumno->save();
+
+        if ($request->query('from') == 'matricula') {
+            // Redirige de vuelta a matricula.create con el DNI del nuevo alumno
+            return redirect()->route('matricula.create', ['buscarPorDni' => $alumno->dni])
+                ->with('datos', 'Alumno creado y retornado a Matrícula');
+        }
     
         return redirect()->route('alumno.index')->with('datos', 'Registro Nuevo Guardado...!');
     }
