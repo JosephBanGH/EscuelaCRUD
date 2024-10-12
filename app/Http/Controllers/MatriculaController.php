@@ -7,6 +7,7 @@ use App\Models\Alumno;
 use App\Models\Grado;
 use App\Models\Periodo;
 use App\Models\Nivel;
+use App\Models\Seccion;
 use App\Models\Matricula;
 use DB;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -131,16 +132,61 @@ class MatriculaController extends Controller
     {
         $matricula = Matricula::with(['alumno.escala', 'seccion.grado.nivel'])->findOrFail($id);
         $niveles = Nivel::all();
+        //$grados = Grado::all();
+        //$seccion = Seccion::all();
         return view('mantenedores.matriculas.edit',compact('matricula', 'niveles'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        
+        //dd($request->all());
+        $data = $request->validate([
+            'apellidoPaterno' => 'required',
+            'apellidoMaterno' => 'required',
+            'nivel'=>'required',
+            'grado' => 'required',
+            'seccion' => 'required'
+        ], [
+            'apellidoPaterno.required' => 'El apellido paterno es obligatorio',
+            'apellidoMaterno.required' => 'El apellido materno es obligatorio',
+            'nivel.required' => 'Seleccione un nivel',
+            'grado.required' => 'Seleccione un grado',
+            'seccion.required' => 'Seleccione una seccion'
+        ]);
+
+
+        // Encontrar la matrícula por ID
+        $matricula = Matricula::findOrFail($id);
+
+
+        // Validar si la combinación de Nivel, Grado y Sección existe
+        $seccion = Seccion::where('idGrado', $request->grado)
+            ->whereHas('grado', function($query) use ($request) {
+                $query->where('idNivel', $request->nivel);
+            })
+            ->where('idSeccion', $request->seccion)
+            ->first();
+
+        if (!$seccion) {
+            return back()->withErrors(['combinacion' => 'La combinación de Nivel, Grado y Sección no es válida.'])
+                ->withInput();
+        }
+
+        // Actualizar la sección y otros campos de la matrícula
+        $matricula->idSeccion = $seccion->idSeccion;
+        $matricula->alumno->apellido_paterno = $request->input('apellidoPaterno');
+        $matricula->alumno->apellido_materno = $request->input('apellidoMaterno');
+
+        // Guardar los cambios
+        $matricula->save();
+
+        // Redireccionar a la página de listado con un mensaje de éxito
+        return redirect()->route('matricula.index')->with('datos', 'Matrícula actualizada correctamente.');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -156,5 +202,27 @@ class MatriculaController extends Controller
         $pdf = PDF::loadView('mantenedores.matriculas.pdf',compact('matricula'));
         return $pdf->stream('reporte_matricula.pdf');
     }
+
+
+    public function getGrados($idNivel)
+    {
+        $grados = Grado::where('idNivel', $idNivel)->get();
+        $options = '<option value="">Seleccione Grado</option>';
+        foreach ($grados as $grado) {
+            $options .= '<option value="' . $grado->idGrado . '">' . $grado->grado . '</option>';
+        }
+        return response()->json(['options' => $options]);
+    }
+
+    public function getSecciones($idGrado)
+    {
+        $secciones = Seccion::where('idGrado', $idGrado)->get();
+        $options = '<option value="">Seleccione Sección</option>';
+        foreach ($secciones as $seccion) {
+            $options .= '<option value="' . $seccion->idSeccion . '">' . $seccion->seccion . '</option>';
+        }
+        return response()->json(['options' => $options]);
+    }
+
 
 }
