@@ -12,7 +12,7 @@ use App\Http\Controllers\CursoGradoController;
 use App\Http\Controllers\MatriculaController;
 use App\Http\Controllers\CatedraController;
 use App\Http\Controllers\ListadoNotasController;
-
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Alumno;
 
@@ -170,3 +170,27 @@ Route::delete('curso-grado/{id_curso}/{id_grado}', [CursoGradoController::class,
 use App\Http\Controllers\RegistroNotasController;
 
 Route::resource('registronotas', RegistroNotasController::class);
+
+
+
+//-------------CERRAR SESION -----------------
+
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/');
+})->name('logout');
+
+
+//luego hay que verificar que solo ingresen si han iniciado
+//sesion
+
+/*
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    // Otras rutas protegidas
+});
+
+*/
+
+//--------------------------------------------
+
