@@ -97,6 +97,9 @@ Route::get('/grado/cancelar', function () {
 //MATRICULAS
 
 Route::resource('matricula',MatriculaController::class);
+Route::get('/get-grados/{idNivel}', [MatriculaController::class, 'getGrados']);
+Route::get('/get-secciones/{idGrado}', [MatriculaController::class, 'getSecciones']);
+
 //Route::get('/matricula',[MatriculaController::class,'index'])->name('matricula.index');
 
 Route::get('/cancelarm', function () {

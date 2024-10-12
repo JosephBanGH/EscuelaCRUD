@@ -14,7 +14,7 @@ class Seccion extends Model
     public $timestamps = false;
 
     protected $fillable=[
-        'seccion',
+        'seccion'
     ];
 
     public function matricula()
