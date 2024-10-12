@@ -10,15 +10,16 @@ License: For each use you must have a valid license purchased only from above li
 -->
 <html>
 <head>
-  <meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="description" content="Responsive Laravel Admin Dashboard Template based on Bootstrap 5">
-	<meta name="author" content="NobleUI">
-	<meta name="keywords" content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, laravel, theme, front-end, ui kit, web">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Responsive Laravel Admin Dashboard Template based on Bootstrap 5">
+    <meta name="author" content="NobleUI">
+    <meta name="keywords" content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, laravel, theme, front-end, ui kit, web">
 
-  <title>I.E Mariano Melgar</title>
+    <title>I.E Mariano Melgar</title>
 
+<<<<<<< HEAD
   <!-- Fonts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,19 +31,31 @@ License: For each use you must have a valid license purchased only from above li
   <meta name="_token" content="OjbRWW0MIVXz85uUdZMVphEqxPIhsDUVvn68VXjZ">
   
   <link rel="shortcut icon" href="https://www.nobleui.com/laravel/template/demo1/favicon.ico">
+=======
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- End fonts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- CSRF Token -->
+    <meta name="_token" content="OjbRWW0MIVXz85uUdZMVphEqxPIhsDUVvn68VXjZ">
+    
+    <link rel="shortcut icon" href="https://www.nobleui.com/laravel/template/demo1/favicon.ico">
+>>>>>>> c807898 (El usuario ya puede cerrar sesion)
 
-  <!-- plugin css -->
-  <link href="https://www.nobleui.com/laravel/template/demo1/assets/fonts/feather-font/css/iconfont.css" rel="stylesheet" />
-  <link href="https://www.nobleui.com/laravel/template/demo1/assets/plugins/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" />
-  <!-- end plugin css -->
+    <!-- plugin css -->
+    <link href="https://www.nobleui.com/laravel/template/demo1/assets/fonts/feather-font/css/iconfont.css" rel="stylesheet" />
+    <link href="https://www.nobleui.com/laravel/template/demo1/assets/plugins/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" />
+    <!-- end plugin css -->
 
-    <link href="https://www.nobleui.com/laravel/template/demo1/assets/plugins/flatpickr/flatpickr.min.css" rel="stylesheet" />
+      <link href="https://www.nobleui.com/laravel/template/demo1/assets/plugins/flatpickr/flatpickr.min.css" rel="stylesheet" />
 
-  <!-- common css -->
-  <link href="https://www.nobleui.com/laravel/template/demo1/css/app.css" rel="stylesheet" />
-  <!-- end common css -->
-  @yield('styles')
-  </head>
+    <!-- common css -->
+    <link href="https://www.nobleui.com/laravel/template/demo1/css/app.css" rel="stylesheet" />
+    <!-- end common css -->
+    @yield('styles')
+</head>
 <body data-base-url="https://www.nobleui.com/laravel/template/demo1">
 
   <script src="https://www.nobleui.com/laravel/template/demo1/assets/js/spinner.js"></script>
@@ -388,7 +401,10 @@ License: For each use you must have a valid license purchased only from above li
               </a>
             </li>
             <li class="dropdown-item py-2">
-              <a href="javascript:;" class="text-body ms-0">
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+              </form>
+              <a href="javascript:;" class="text-body ms-0" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="me-2 icon-md" data-feather="log-out"></i>
                 <span>Salir</span>
               </a>

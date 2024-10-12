@@ -12,8 +12,12 @@ use App\Http\Controllers\CursoGradoController;
 use App\Http\Controllers\MatriculaController;
 use App\Http\Controllers\CatedraController;
 use App\Http\Controllers\ListadoNotasController;
+<<<<<<< HEAD
 use App\Http\Controllers\RegistroNotasController;
 use App\Http\Controllers\ImportController;
+=======
+use Illuminate\Support\Facades\Auth;
+>>>>>>> c807898 (El usuario ya puede cerrar sesion)
 
 use App\Models\Alumno;
 
@@ -173,10 +177,34 @@ Route::delete('curso-grado/{id_curso}/{id_grado}', [CursoGradoController::class,
 Route::resource('registronotas', RegistroNotasController::class);
 
 
+<<<<<<< HEAD
 Route::post('/registronotas/importar', [RegistroNotasController::class, 'importar'])->name('registronotas.importar');
 
 
 
 Route::get('/importar-excel', [ImportController::class, 'showForm'])->name('import.form');
 Route::post('/importar-excel', [ImportController::class, 'importExcel'])->name('import.excel');
+=======
+
+//-------------CERRAR SESION -----------------
+
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/');
+})->name('logout');
+
+
+//luego hay que verificar que solo ingresen si han iniciado
+//sesion
+
+/*
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    // Otras rutas protegidas
+});
+
+*/
+
+//--------------------------------------------
+>>>>>>> c807898 (El usuario ya puede cerrar sesion)
 
