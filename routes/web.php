@@ -105,6 +105,8 @@ Route::get('/cancelarm', function () {
 
 Route::get('/matricula/pdf',[MatriculaController::class,'generarPDF'])->name('matricula.pdf');
 
+
+
 //CATEDRA
 
 Route::get('/catedra', function () {

@@ -19,7 +19,8 @@ class Alumno extends Model
         'primer_nombre',
         'otros_nombre',
         'estado',
-        'idEscala'
+        'idEscala',
+        'urlImagen'
     ];
 
     public function matricula()
@@ -27,5 +28,8 @@ class Alumno extends Model
         return $this->hasMany(Matricula::class,'codigoEstudiante','codigoEstudiante');
     }
 
-    
+    public function Escala()
+    {
+        return $this->belongsTo(Escala::class,'idEscala','idEscala');
+    }
 }
