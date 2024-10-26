@@ -12,6 +12,8 @@ use App\Http\Controllers\CursoGradoController;
 use App\Http\Controllers\MatriculaController;
 use App\Http\Controllers\CatedraController;
 use App\Http\Controllers\ListadoNotasController;
+use App\Http\Controllers\AlumnoCurso;
+use App\Http\Controllers\ApoderadoController;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Alumno;
@@ -192,5 +194,17 @@ Route::middleware(['auth'])->group(function () {
 
 */
 
-//--------------------------------------------
+//--------------------- APODERADO  -----------------------
+Route::get('/apoderado/inicio/{dniApoderado}', [ApoderadoController::class,'index'])->name('apoderadoInicio');
+//->middleware('role.department:Secretaria,Oficina Registros'); // PRUEBA ES EL INDEX GENERAL
 
+
+
+
+//---------------------ALUMNO - CURSO -------------------
+
+
+Route::resource('myCourses',AlumnoCurso::class);
+
+
+//------------------------------------------------------

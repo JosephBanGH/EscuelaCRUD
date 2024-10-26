@@ -32,4 +32,16 @@ class Alumno extends Model
     {
         return $this->belongsTo(Escala::class,'idEscala','idEscala');
     }
+
+    // Relación belongsToMany con Apoderado a través de la tabla intermedia APODERADO_ESTUDIANTE
+    public function apoderados()
+    {
+        return $this->belongsToMany(Apoderado::class, 'APODERADO_ESTUDIANTE', 'codigoEstudiante', 'dniApoderado');
+    }
+    
+    // Relación con la tabla intermedia si necesitas acceso directo
+    public function apoderadoEstudiantes()
+    {
+        return $this->hasMany(ApoderadoEstudiante::class, 'codigoEstudiante', 'codigoEstudiante');
+    }
 }

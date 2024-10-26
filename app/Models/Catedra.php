@@ -9,16 +9,19 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Catedra extends Model
 {
     use HasFactory;
-    protected $table = 'catedras';
-    protected $primaryKey = null;
+    protected $table = 'catedra';
+    protected $primaryKey = 'idCatedra';
     public $timestamps=false;
-    protected $autoincrement=false;
 
     protected $fillable = [
-        'codigo_docente','id_curso', 'id_grado','periodo','estado'
+        'idPeriodo',
+        'idCurso', 
+        'idSeccion',
+        'idPersonal',
+        'imagenUrl'
     ];
 
-    public function personal(){
+    public function user_login(){
         return $this->hasOne(Personal::class,'codigo_docente','codigo_docente');
     }
 
@@ -28,10 +31,19 @@ class Catedra extends Model
     }
 
     public function curso(){
-        return $this->hasMany(Cursos::class,'id_curso','id_curso');
+        return $this->belongsTo(Cursos::class,'idCurso','idCurso');
     }
 
-    public function grado(){
-        return $this->HasMany(Grado::class,'id_grado','id_grado');
+    public function seccion(){
+        return $this->belongsTo(Seccion::class,'idSeccion','idSeccion');
+    }
+
+    public function personal(){
+        return $this->belongsTo(Personal::class,'idPersonal','idPersonal');
+    }
+
+
+    public function periodo(){
+        return $this->belognsTo(Periodo::class,'idPeriodo','idPeriodo');
     }
 }

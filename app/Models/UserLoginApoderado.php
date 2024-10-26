@@ -28,4 +28,9 @@ class UserLoginApoderado extends Authenticatable
     public function getAuthPassword(){
         return $this->userPassword;
     }
+
+    public function apoderado()
+    {
+        return $this->belongsTo(Apoderado::class, 'dniApoderado', 'dniApoderado');
+    }
 }

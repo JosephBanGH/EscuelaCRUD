@@ -10,17 +10,17 @@ class Cursos extends Model
     use HasFactory;
 
     protected $table = 'curso';
-    protected $primaryKey = 'id_curso';
+    protected $primaryKey = 'idCurso';
     public $timestamps = false;
     protected $fillable = [
-        'nombre_curso', 'estado'
+        'nombre_curso', 
+        'estado',
+        'idNivel'
     ];
-    public function cursoGrado()
-    {
-        return $this->hasMany(CursoGrado::class, 'id_curso', 'id_curso');
-    }
-    public function capacidad()
-    {
-        return $this->hasMany(Capacidad::class,'id_curso','id_curso');
+
+
+    public function nivel(){
+        return this->belongsTo(Nivel::class, 'idNivel', 'idNivel');
+        
     }
 }
