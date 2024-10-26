@@ -78,9 +78,11 @@ class UserController extends Controller
 
 
         //Verificar en la tabla USER_LOGIN_APODERADO
-        if($apoderado=UserLoginApoderado::where('userLogin',$credentials['userLogin'])->first()){
+        if($apoderadoLogin=UserLoginApoderado::where('userLogin',$credentials['userLogin'])->first()){
             if(Auth::guard('apoderados')->attempt($credentials)){
-                return redirect()->route('prueba');
+                //Obtener el apoderado relacionado al login
+                $apoderado = $apoderadoLogin->apoderado; //Relacion belongsTo
+                return redirect()->route('apoderadoInicio',['dniApoderado'=>$apoderado->dniApoderado]);
             }
         }
 

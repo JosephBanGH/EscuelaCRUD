@@ -19,4 +19,8 @@ class Nivel extends Model
     public function grado(){
         return $this->hasMany(Grado::class,'idNivel','idNivel');
     }
+
+    public function curso(){
+        return $this->hasMany(Cursos::class,'idNivel','idNivel');
+    }
 }

@@ -13,9 +13,14 @@ use App\Http\Controllers\MatriculaController;
 use App\Http\Controllers\CatedraController;
 use App\Http\Controllers\ListadoNotasController;
 <<<<<<< HEAD
+<<<<<<< HEAD
 use App\Http\Controllers\RegistroNotasController;
 use App\Http\Controllers\ImportController;
 =======
+=======
+use App\Http\Controllers\AlumnoCurso;
+use App\Http\Controllers\ApoderadoController;
+>>>>>>> 5c3731e (Hasta tenemos ya iniciado el proceso de renovacion de matricula)
 use Illuminate\Support\Facades\Auth;
 >>>>>>> c807898 (El usuario ya puede cerrar sesion)
 
@@ -205,6 +210,22 @@ Route::middleware(['auth'])->group(function () {
 
 */
 
+<<<<<<< HEAD
 //--------------------------------------------
 >>>>>>> c807898 (El usuario ya puede cerrar sesion)
+=======
+//--------------------- APODERADO  -----------------------
+Route::get('/apoderado/inicio/{dniApoderado}', [ApoderadoController::class,'index'])->name('apoderadoInicio');
+//->middleware('role.department:Secretaria,Oficina Registros'); // PRUEBA ES EL INDEX GENERAL
+>>>>>>> 5c3731e (Hasta tenemos ya iniciado el proceso de renovacion de matricula)
 
+
+
+
+//---------------------ALUMNO - CURSO -------------------
+
+
+Route::resource('myCourses',AlumnoCurso::class);
+
+
+//------------------------------------------------------

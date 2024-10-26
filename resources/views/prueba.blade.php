@@ -90,42 +90,68 @@ License: For each use you must have a valid license purchased only from above li
         </a>
         <div class="collapse " id="email">
           <ul class="nav sub-menu">
-            @if(Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+              @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+                <li class="nav-item">
+                  <a href="{{route('alumno.index')}}" class="nav-link ">ALUMNOS</a>
+                </li>
+              @endif
+              @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
               <li class="nav-item">
-                <a href="{{route('alumno.index')}}" class="nav-link ">ALUMNOS</a>
+                <a href="{{route('grado.index')}}" class="nav-link ">GRADO</a>
               </li>
-            @endif
-            @can('Administrador')
-            <li class="nav-item">
-              <a href="{{route('grado.index')}}" class="nav-link ">GRADO</a>
-            </li>
-            @endcan
+              @endif
+              @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+                <li class="nav-item">
+                  <a href="{{route('curso.index')}}" class="nav-link ">CURSO</a>
+                </li>
+              @endif
+              @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
               <li class="nav-item">
-                <a href="{{route('curso.index')}}" class="nav-link ">CURSO</a>
+                <a href="{{route('capacidad.index')}}" class="nav-link ">CAPACIDAD</a>
               </li>
-            <li class="nav-item">
-              <a href="{{route('capacidad.index')}}" class="nav-link ">CAPACIDAD</a>
-            </li>
-            
-            <li class="nav-item">
-              <a href="{{route('personal.index')}}" class="nav-link ">PERSONAL</a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('catedra.index')}}" class="nav-link ">CATÉDRAS</a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('listadonotas')}}" class="nav-link ">LISTADO DE NOTAS</a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('registronotas')}}" class="nav-link ">REGISTRO DE NOTAS</a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('curso_grado.index')}}" class="nav-link ">CURSO POR GRADO</a>
-            </li>
+              @endif
+              @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+              <li class="nav-item">
+                <a href="{{route('personal.index')}}" class="nav-link ">PERSONAL</a>
+              </li>
+              @endif
+              @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+                <li class="nav-item">
+                  <a href="{{route('catedra.index')}}" class="nav-link ">CATÉDRAS</a>
+                </li>
+              @endif
+              @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+                <li class="nav-item">
+                  <a href="{{route('listadonotas')}}" class="nav-link ">LISTADO DE NOTAS</a>
+                </li>
+              @endif
+              @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+                <li class="nav-item">
+                  <a href="{{route('registronotas')}}" class="nav-link ">REGISTRO DE NOTAS</a>
+                </li>
+              @endif
+              @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+                <li class="nav-item">
+                  <a href="{{route('curso_grado.index')}}" class="nav-link ">CURSO POR GRADO</a>
+                </li>
+              @endif
+
+              @if(Auth::guard('students')->check())
+                <li class="nav-item">
+                  <a href="{{route('myCourses.index')}}" class="nav-link ">CURSOS</a>
+                </li>
+              @endif
+
+              @if(Auth::guard('students')->check())
+                <li class="nav-item">
+                  <a href="#" class="nav-link ">CALENDARIO</a>
+                </li>
+              @endif
+
           </ul>
         </div>
       </li>
-      @if(Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+      @if( Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
         <li class="nav-item ">
           <a href="{{route('matricula.index')}}" class="nav-link">
             <i class="link-icon" data-feather="message-square"></i>

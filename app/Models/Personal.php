@@ -26,6 +26,10 @@ class Personal extends Model
     }
 
     public function catedra() {
-        return $this->hasMany(Catedra::class,'codigo_docente','codigo_docente');
+        return $this->hasMany(Catedra::class,'idPersonal','idPersonal');
+    }
+
+    public function userLogin(){
+        return $this->hasOne(UserLogin::class,'idPersonal','idPersonal');
     }
 }
