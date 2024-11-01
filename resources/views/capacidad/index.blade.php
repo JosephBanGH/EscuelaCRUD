@@ -7,13 +7,11 @@
 @section('contenido')
     <div class="container mt-4">
         <h3 class="mb-4">Listado de Capacidades</h3>
-            
             <div class="d-flex justify-content-between mb-4">
                 <a href="{{ route('capacidad.create') }}" class="btn btn-primary">
                     <i class="fas fa-plus"></i> Nuevo Registro
                 </a>
             </div>
-            
         @if (session('datos'))
             <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
                 {{ session('datos') }}
