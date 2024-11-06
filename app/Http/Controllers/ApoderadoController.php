@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Apoderado;
 use Illuminate\Http\Request;
+use App\Models\Escala;
+use App\Models\Alumno;
+use App\Models\Matricula;
+use App\Models\Periodo;
+use App\Models\Seccion;
 
 class ApoderadoController extends Controller
 {
@@ -20,6 +25,26 @@ class ApoderadoController extends Controller
 
         //Retornar la vista con los datos del apoderado y los estudiantes (hijos)
         return view('mantenedores.apoderados.index',compact('apoderado','estudiantes'));
+    }
+
+    public function hijoNotas($codigoEstudiante)
+    {
+        return view('mantenedores.apoderados.hijoNota',compact('codigoEstudiante'));
+    }
+
+    public function hijoMatriculaRenovacion($codigoEstudiante)
+    {
+        $estudiante = Alumno::with(['escala','matricula'=>function($query){
+            $query->whereHas('periodo',function($query){
+                $query->where('estado',1);
+            });
+        }, 'matricula.seccion.grado.nivel','matricula.periodo','matricula.alumno.apoderados'])
+        ->where('codigoEstudiante',$codigoEstudiante)
+        ->firstOrFail();
+
+        $matricula = $estudiante->matricula->first();
+        
+        return view('mantenedores.apoderados.hijoMatricula',compact('codigoEstudiante','estudiante','matricula'));
     }
 
     /**

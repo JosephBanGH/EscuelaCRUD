@@ -44,6 +44,10 @@ class Catedra extends Model
 
 
     public function periodo(){
-        return $this->belognsTo(Periodo::class,'idPeriodo','idPeriodo');
+        return $this->belongsTo(Periodo::class,'idPeriodo','idPeriodo');
+    }
+
+    public function notas(){
+        return $this->hasMany(Notas::class,'idCatedra','idCatedra');
     }
 }

@@ -25,4 +25,6 @@ class ApoderadoEstudiante extends Model
     {
         return $this->belongsTo(Alumno::class, 'codigoEstudiante', 'codigoEstudiante');
     }
+
+    
 }

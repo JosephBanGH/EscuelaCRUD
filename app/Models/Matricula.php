@@ -33,4 +33,8 @@ class Matricula extends Model
     public function periodo(){
         return $this->belongsTo(Periodo::class,'idPeriodo','idPeriodo');
     }
+
+    public function pago(){
+        return $this->hasMany(Pago::class,'idPago','idPago');
+    }
 }

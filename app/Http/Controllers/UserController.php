@@ -61,14 +61,17 @@ class UserController extends Controller
         ];
 
 
-        //Verificar en la tabla USER_LOGIN
+        //Verificar en la tabla USER_LOGIN (Personal)
         if($user=UserLogin::where('userLogin',$credentials['userLogin'])->first()){
             if(Auth::guard('web')->attempt($credentials)){
-                return redirect()->route('prueba');
+                $personal = $user->personal;
+                if ($personal && $personal->tipoPersonal && $personal->departamento) {
+                    return $this->redirigirPorRolYDepartamento($personal->tipoPersonal->tipoPersonal, $personal->departamento->departamento);
+                }
             }
         }
 
-
+        //verificarComprobantes
         //Verificar en la tabla USER_LOGIN_STUDENT
         if($student=UserLoginStudent::where('userLogin',$credentials['userLogin'])->first()){
             if(Auth::guard('students')->attempt($credentials)){
@@ -108,6 +111,16 @@ class UserController extends Controller
             dd('error');
         }
     }*/
+
+    private function redirigirPorRolYDepartamento($rol,$departamento){
+        switch($rol){
+            case 'Jefe':
+                if($departamento=='Tesoreria'){
+                    return redirect()->route('verificarComprobantes');
+                } 
+        }
+        return redirect()->route('prueba');
+    }
 
     public function salir(){
         Auth::logout();

@@ -21,6 +21,9 @@ class Cursos extends Model
 
     public function nivel(){
         return this->belongsTo(Nivel::class, 'idNivel', 'idNivel');
-        
+    }
+
+    public function catedra(){
+        return $this->hasMany(Catedra::class,'idCurso','idCurso');
     }
 }

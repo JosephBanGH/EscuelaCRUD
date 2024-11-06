@@ -28,4 +28,9 @@ class Apoderado extends Model
         return $this->belongsToMany(Alumno::class,'APODERADO_ESTUDIANTE','dniApoderado', 'codigoEstudiante');
     }
 
+
+    public function comprobantePago(){
+        return $this->hasMany(COMPROBANTE_PAGO::class,'dniApoderado','dniApoderado');
+    }
+
 }

@@ -14,6 +14,8 @@ use App\Http\Controllers\CatedraController;
 use App\Http\Controllers\ListadoNotasController;
 use App\Http\Controllers\AlumnoCurso;
 use App\Http\Controllers\ApoderadoController;
+use App\Http\Controllers\COMPROBANTEPAGOController;
+use App\Http\Controllers\TesoreriaController;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Alumno;
@@ -196,6 +198,8 @@ Route::middleware(['auth'])->group(function () {
 
 //--------------------- APODERADO  -----------------------
 Route::get('/apoderado/inicio/{dniApoderado}', [ApoderadoController::class,'index'])->name('apoderadoInicio');
+Route::get('/apoderado/inicio/hijo/notas/{codigoEstudiante}', [ApoderadoController::class,'hijoNotas'])->name('notasHijo');
+Route::get('/apoderado/inicio/hijo/matricula/{codigoEstudiante}', [ApoderadoController::class,'hijoMatriculaRenovacion'])->name('matriculaRenovacionHijo');
 //->middleware('role.department:Secretaria,Oficina Registros'); // PRUEBA ES EL INDEX GENERAL
 
 
@@ -207,4 +211,11 @@ Route::get('/apoderado/inicio/{dniApoderado}', [ApoderadoController::class,'inde
 Route::resource('myCourses',AlumnoCurso::class);
 
 
-//------------------------------------------------------
+//----------------- RUTAS COMPROBANTE PAGO  -------------------------------------
+
+Route::post('matricula/store', [COMPROBANTEPAGOController::class, 'store'])->name('matricula.store');
+
+
+//---------------------TESORERO
+Route::get('/tesoreria/comprobantes/verificar',[TesoreriaController::class,'index'])->name('verificarComprobantes');
+Route::put('/tesoreria/comprobantes/verificar/{id}',[TesoreriaController::class,'verificarComprobante'])->name('postVerificar');
