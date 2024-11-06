@@ -22,4 +22,8 @@ class Periodo extends Model
     public function matricula(){
         return $this->hasMany(Matricula::class,'idPeriodo','idPeriodo');
     }
+
+    public function catedra(){
+        return $this->hasMany(Catedra::class,'idPeriodo','idPeriodo');
+    }
 }

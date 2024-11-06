@@ -25,4 +25,8 @@ class Seccion extends Model
     public function grado(){
         return $this->belongsTo(Grado::class,'idGrado','idGrado');
     }
+
+    public function catedra(){
+        return $this->hasMany(Catedra::class,'idSeccion','idSeccion');
+    }
 }

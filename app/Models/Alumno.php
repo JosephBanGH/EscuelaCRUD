@@ -44,4 +44,13 @@ class Alumno extends Model
     {
         return $this->hasMany(ApoderadoEstudiante::class, 'codigoEstudiante', 'codigoEstudiante');
     }
+
+
+    public function comprobantePago(){
+        return $this->hasMany(COMPROBANTE_PAGO::class,'codigoEstudiante','codigoEstudiante');
+    }
+
+    public function notas(){
+        return $this->hasMany(Notas::class,'codigoEstudiante','codigoEstudiante');
+    }
 }

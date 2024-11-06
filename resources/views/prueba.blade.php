@@ -16,6 +16,7 @@ License: For each use you must have a valid license purchased only from above li
     <meta name="description" content="Responsive Laravel Admin Dashboard Template based on Bootstrap 5">
     <meta name="author" content="NobleUI">
     <meta name="keywords" content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, laravel, theme, front-end, ui kit, web">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>I.E Mariano Melgar</title>
 
@@ -61,129 +62,141 @@ License: For each use you must have a valid license purchased only from above li
   <script src="https://www.nobleui.com/laravel/template/demo1/assets/js/spinner.js"></script>
 
   <div class="main-wrapper" id="app">
-    <nav class="sidebar">
-  <div class="sidebar-header">
-    <a href="#" class="sidebar-brand">
-      SISTEMA<span>ESCUELA</span>
-    </a>
-    <div class="sidebar-toggler not-active">
-      <span></span>
-      <span></span>
-      <span></span>
+
+
+  <nav class="sidebar">
+    <div class="sidebar-header">
+      <a href="#" class="sidebar-brand">
+        SISTEMA<span>ESCUELA</span>
+      </a>
+      <div class="sidebar-toggler not-active">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
-  </div>
-  <div class="sidebar-body">
-    <ul class="nav">
-      <li class="nav-item nav-category">MAIN</li>
-      <li class="nav-item active">
-        <a href="https://www.nobleui.com/laravel/template/demo1" class="nav-link">
-          <i class="link-icon" data-feather="box"></i>
-          <span class="link-title">PRINCIPAL</span>
-        </a>
-      </li>
-      <li class="nav-item nav-category">SISTEMAS</li>
-      <li class="nav-item ">
-        <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="false" aria-controls="email">
-          <i class="link-icon" data-feather="mail"></i>
-          <span class="link-title">MANTENEDOR</span>
-          <i class="link-arrow" data-feather="chevron-down"></i>
-        </a>
-        <div class="collapse " id="email">
-          <ul class="nav sub-menu">
-              @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
-                <li class="nav-item">
-                  <a href="{{route('alumno.index')}}" class="nav-link ">ALUMNOS</a>
-                </li>
-              @endif
-              @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
-              <li class="nav-item">
-                <a href="{{route('grado.index')}}" class="nav-link ">GRADO</a>
-              </li>
-              @endif
-              @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
-                <li class="nav-item">
-                  <a href="{{route('curso.index')}}" class="nav-link ">CURSO</a>
-                </li>
-              @endif
-              @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
-              <li class="nav-item">
-                <a href="{{route('capacidad.index')}}" class="nav-link ">CAPACIDAD</a>
-              </li>
-              @endif
-              @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
-              <li class="nav-item">
-                <a href="{{route('personal.index')}}" class="nav-link ">PERSONAL</a>
-              </li>
-              @endif
-              @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
-                <li class="nav-item">
-                  <a href="{{route('catedra.index')}}" class="nav-link ">CATÉDRAS</a>
-                </li>
-              @endif
-              @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
-                <li class="nav-item">
-                  <a href="{{route('listadonotas')}}" class="nav-link ">LISTADO DE NOTAS</a>
-                </li>
-              @endif
-              @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
-                <li class="nav-item">
-                  <a href="{{route('registronotas')}}" class="nav-link ">REGISTRO DE NOTAS</a>
-                </li>
-              @endif
-              @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
-                <li class="nav-item">
-                  <a href="{{route('curso_grado.index')}}" class="nav-link ">CURSO POR GRADO</a>
-                </li>
-              @endif
-
-              @if(Auth::guard('students')->check())
-                <li class="nav-item">
-                  <a href="{{route('myCourses.index')}}" class="nav-link ">CURSOS</a>
-                </li>
-              @endif
-
-              @if(Auth::guard('students')->check())
-                <li class="nav-item">
-                  <a href="#" class="nav-link ">CALENDARIO</a>
-                </li>
-              @endif
-
-          </ul>
-        </div>
-      </li>
-      @if( Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
-        <li class="nav-item ">
-          <a href="{{route('matricula.index')}}" class="nav-link">
-            <i class="link-icon" data-feather="message-square"></i>
-            <span class="link-title">MATRICULAS</span>
+    <div class="sidebar-body">
+      <ul class="nav">
+        <li class="nav-item nav-category">MAIN</li>
+        <li class="nav-item active">
+          <a href="https://www.nobleui.com/laravel/template/demo1" class="nav-link">
+            <i class="link-icon" data-feather="box"></i>
+            <span class="link-title">PRINCIPAL</span>
           </a>
         </li>
-      @endif
-      <li class="nav-item ">
-        <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="false" aria-controls="email">
-          <i class="link-icon" data-feather="mail"></i>
-          <span class="link-title">NOTAS</span>
-          <i class="link-arrow" data-feather="chevron-down"></i>
-        </a>
-        <div class="collapse " id="email">
-          <ul class="nav sub-menu">
-            <li class="nav-item">
-              <a href="{{route('registronotas.index')}}" class="nav-link ">VER</a>
-            </li>
-          </ul>
-        </div>
-      </li>
+        <li class="nav-item nav-category">SISTEMAS</li>
+        <li class="nav-item ">
+          <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="false" aria-controls="email">
+            <i class="link-icon" data-feather="mail"></i>
+            <span class="link-title">MANTENEDOR</span>
+            <i class="link-arrow" data-feather="chevron-down"></i>
+          </a>
+          <div class="collapse " id="email">
+            <ul class="nav sub-menu">
+                @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+                  <li class="nav-item">
+                    <a href="{{route('alumno.index')}}" class="nav-link ">ALUMNOS</a>
+                  </li>
+                @endif
+                @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+                <li class="nav-item">
+                  <a href="{{route('grado.index')}}" class="nav-link ">GRADO</a>
+                </li>
+                @endif
+                @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+                  <li class="nav-item">
+                    <a href="{{route('curso.index')}}" class="nav-link ">CURSO</a>
+                  </li>
+                @endif
+                @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+                <li class="nav-item">
+                  <a href="{{route('capacidad.index')}}" class="nav-link ">CAPACIDAD</a>
+                </li>
+                @endif
+                @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+                <li class="nav-item">
+                  <a href="{{route('personal.index')}}" class="nav-link ">PERSONAL</a>
+                </li>
+                @endif
+                @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+                  <li class="nav-item">
+                    <a href="{{route('catedra.index')}}" class="nav-link ">CATÉDRAS</a>
+                  </li>
+                @endif
+                @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+                  <li class="nav-item">
+                    <a href="{{route('listadonotas')}}" class="nav-link ">LISTADO DE NOTAS</a>
+                  </li>
+                @endif
+                @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+                  <li class="nav-item">
+                    <a href="{{route('registronotas')}}" class="nav-link ">REGISTRO DE NOTAS</a>
+                  </li>
+                @endif
+                @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+                  <li class="nav-item">
+                    <a href="{{route('curso_grado.index')}}" class="nav-link ">CURSO POR GRADO</a>
+                  </li>
+                @endif
 
-      <li class="nav-item ">
-        <a href="https://www.nobleui.com/laravel/template/demo1/apps/calendar" class="nav-link">
-          <i class="link-icon" data-feather="calendar"></i>
-          <span class="link-title">CALENDARIO</span>
-        </a>
-      </li>
-    
-    </ul>
-  </div>
-</nav>
+                @if(Auth::guard('students')->check())
+                  <li class="nav-item">
+                    <a href="{{route('myCourses.index')}}" class="nav-link ">CURSOS</a>
+                  </li>
+                @endif
+
+                @if(Auth::guard('students')->check())
+                  <li class="nav-item">
+                    <a href="#" class="nav-link ">CALENDARIO</a>
+                  </li>
+                @endif
+
+                @if(Auth::guard('apoderados')->check())
+                    @isset($codigoEstudiante)
+                        <li class="nav-item">
+                            <a href="{{ route('matriculaRenovacionHijo', ['codigoEstudiante' => $codigoEstudiante]) }}" class="nav-link">MATRICULA</a>
+                        </li>
+                    @endisset
+                @endif
+
+
+            </ul>
+          </div>
+        </li>
+        @if( Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+          <li class="nav-item ">
+            <a href="{{route('matricula.index')}}" class="nav-link">
+              <i class="link-icon" data-feather="message-square"></i>
+              <span class="link-title">MATRICULAS</span>
+            </a>
+          </li>
+        @endif
+        <li class="nav-item ">
+          <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="false" aria-controls="email">
+            <i class="link-icon" data-feather="mail"></i>
+            <span class="link-title">NOTAS</span>
+            <i class="link-arrow" data-feather="chevron-down"></i>
+          </a>
+          <div class="collapse " id="email">
+            <ul class="nav sub-menu">
+              <li class="nav-item">
+                <a href="{{route('registronotas.index')}}" class="nav-link ">VER</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="nav-item ">
+          <a href="https://www.nobleui.com/laravel/template/demo1/apps/calendar" class="nav-link">
+            <i class="link-icon" data-feather="calendar"></i>
+            <span class="link-title">CALENDARIO</span>
+          </a>
+        </li>
+      
+      </ul>
+    </div>
+  </nav>
+
 <nav class="settings-sidebar">
   <div class="sidebar-body">
     <a href="#" class="settings-sidebar-toggler">
