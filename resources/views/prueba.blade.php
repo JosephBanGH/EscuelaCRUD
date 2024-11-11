@@ -16,7 +16,8 @@ License: For each use you must have a valid license purchased only from above li
     <meta name="description" content="Responsive Laravel Admin Dashboard Template based on Bootstrap 5">
     <meta name="author" content="NobleUI">
     <meta name="keywords" content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, laravel, theme, front-end, ui kit, web">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    @yield('metas')
+    
 
     <title>I.E Mariano Melgar</title>
 
@@ -180,11 +181,27 @@ License: For each use you must have a valid license purchased only from above li
           <div class="collapse " id="email">
             <ul class="nav sub-menu">
               <li class="nav-item">
-                <a href="{{route('registronotas.index')}}" class="nav-link ">VER</a>
+                <a href="{{route('registronotas.index')}}" class="nav-link ">Ver</a>
               </li>
             </ul>
           </div>
         </li>
+        @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Director')
+          <li class="nav-item ">
+            <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="false" aria-controls="email">
+              <i class="link-icon" data-feather="mail"></i>
+              <span class="link-title">PERIODO</span>
+              <i class="link-arrow" data-feather="chevron-down"></i>
+            </a>
+            <div class="collapse " id="email">
+              <ul class="nav sub-menu">
+                <li class="nav-item">
+                  <a href="{{route('myPeriodo.index')}}" class="nav-link ">Nuevo Periodo</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        @endif
 
         <li class="nav-item ">
           <a href="https://www.nobleui.com/laravel/template/demo1/apps/calendar" class="nav-link">

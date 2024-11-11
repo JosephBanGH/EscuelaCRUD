@@ -19,6 +19,7 @@ use App\Http\Controllers\ImportController;
 =======
 =======
 use App\Http\Controllers\AlumnoCurso;
+use App\Http\Controllers\PeriodoController;
 use App\Http\Controllers\ApoderadoController;
 <<<<<<< HEAD
 >>>>>>> 5c3731e (Hasta tenemos ya iniciado el proceso de renovacion de matricula)
@@ -243,3 +244,11 @@ Route::post('matricula/store', [COMPROBANTEPAGOController::class, 'store'])->nam
 //---------------------TESORERO
 Route::get('/tesoreria/comprobantes/verificar',[TesoreriaController::class,'index'])->name('verificarComprobantes');
 Route::put('/tesoreria/comprobantes/verificar/{id}',[TesoreriaController::class,'verificarComprobante'])->name('postVerificar');
+
+
+//------------- PERIODO
+Route::resource('myPeriodo',PeriodoController::class);
+
+//------------ DIRECTOR 
+//Route::resource('/director',);
+

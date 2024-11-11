@@ -1,36 +1,66 @@
 @extends('prueba')
 @section('contenido')
-    <h1>MATRICULAS HIJO</h1>
+    <h1>MATRICULA</h1>
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="matriContainer">
-        <h1>Matrícula del Estudiante: {{ $estudiante->primer_nombre }} {{ $estudiante->apellido_paterno }}</h1>
-    
         @if($matricula)
-            <h2>Periodo Activo: {{ $matricula->periodo->inicioPeriodo }} - {{ $matricula->periodo->finPeriodo }}</h2>
-            <p><strong>Grado:</strong> {{ $matricula->seccion->grado->grado }}</p>
-            <p><strong>Nivel:</strong> {{ $matricula->seccion->grado->nivel->nivel }}</p>
-            <p><strong>Sección:</strong> {{ $matricula->seccion->seccion }}</p>
-            <p><strong>Escala:</strong> {{ $estudiante->escala->escala }}</p>
+            <div class="card border-info mb-3" style="">
+                <div class="card-header"><h5>Matricula del Estudiante {{ $estudiante->primer_nombre }} {{ $estudiante->apellido_paterno }} {{ $estudiante->apellido_materno }}</h5></div>
+                <div class="card-body text-secondary">
+                    <div class="form-group">
+                        <label for="inicioPeriodo">Fecha Inicio:</label>
+                        <input id="inicioPeriodo" class="form-control" type="text" value="{{ $matricula->periodo->inicioPeriodo }}" readonly>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="finPeriodo">Fecha Fin:</label>
+                        <input id="finPeriodo" class="form-control" type="text" value="{{ $matricula->periodo->finPeriodo }}" readonly>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="nivelGradoSeccion">Nivel - Grado - Seccion</label>
+                        <input id="nivelGradoSeccion" class="form-control" type="text" value="{{ $matricula->seccion->grado->nivel->nivel }} - {{ $matricula->seccion->grado->grado }} - {{ $matricula->seccion->seccion }}" readonly>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="escala">Escala</label>
+                        <input id="escala" class="form-control" type="text" value="{{ $estudiante->escala->escala }}" readonly>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="montoPension">Monto Pensión Segun Escala</label>
+                        <input id="montoPension" class="form-control" type="text" value="{{ $estudiante->escala->montoPago }}" readonly>
+                    </div>
+                    <br>
+                    @if($renovar)
+                        <button type="button" class="btn btn-primary">RENOVAR MATRICULA</button>
+                    @else
+                        <p>Estimado usuario el nuevo periodo ha iniciado, sin embargo 
+                            no puede acceder a la renovación mientras no cancele su deuda del periodo anterior</p>
+                    @endif
+                    
+                </div>
+            </div>
         @else
             <p>El estudiante no está matriculado en el período activo.</p>
         @endif
     </div>
 
     <div>
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
         <form action="{{ route('matricula.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
