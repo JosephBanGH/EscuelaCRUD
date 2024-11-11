@@ -1,4 +1,24 @@
 @extends('prueba')
+@section('styles')
+    <style>
+        .formRenovarMatricula{
+            display: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 70px;
+        }
+
+        .formularioRenovarMatricula{
+            background-color: rgb(102, 179, 226);
+            margin: 20px;
+            padding-top: 15px;
+            padding-inline: 20px;
+            padding-bottom: 10px;
+            max-width: 1025px;
+        }
+        
+    </style>
+@endsection
 @section('contenido')
     <h1>MATRICULA</h1>
     @if (session('success'))
@@ -18,7 +38,7 @@
     @endif
     <div class="matriContainer">
         @if($matricula)
-            <div class="card border-info mb-3" style="">
+            <div class="card border-info mb-3" id="themePossibility">
                 <div class="card-header"><h5>Matricula del Estudiante {{ $estudiante->primer_nombre }} {{ $estudiante->apellido_paterno }} {{ $estudiante->apellido_materno }}</h5></div>
                 <div class="card-body text-secondary">
                     <div class="form-group">
@@ -47,21 +67,21 @@
                     </div>
                     <br>
                     @if($renovar)
-                        <button type="button" class="btn btn-primary">RENOVAR MATRICULA</button>
+                        <button type="button" class="btn btn-primary abrirFormRenovarMatricula">RENOVAR MATRICULA</button>
                     @else
-                        <p>Estimado usuario el nuevo periodo ha iniciado, sin embargo 
+                        <p class="text-danger">Estimado usuario el nuevo periodo ha iniciado, sin embargo 
                             no puede acceder a la renovación mientras no cancele su deuda del periodo anterior</p>
                     @endif
                     
                 </div>
             </div>
         @else
-            <p>El estudiante no está matriculado en el período activo.</p>
+            <p class="text-danger">El estudiante no está matriculado en el período activo.</p>
         @endif
     </div>
 
-    <div>
-        <form action="{{ route('matricula.store') }}" method="POST" enctype="multipart/form-data">
+    <div class="formRenovarMatricula">
+        <form class="formularioRenovarMatricula" action="{{ route('matricula.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="" class="form-label">DNI Apoderado</label>
@@ -98,4 +118,13 @@
         </form>
         
     </div>
+@endsection
+@section('scripts')
+    <script>
+        const formRenovarMatricula = document.querySelector('.formRenovarMatricula')
+        const abrirFormRenovarMatricula = document.querySelector('.abrirFormRenovarMatricula')
+        abrirFormRenovarMatricula.addEventListener('click',(e)=>{
+            formRenovarMatricula.style.display = 'block';
+        })
+    </script>
 @endsection
