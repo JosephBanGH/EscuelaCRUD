@@ -8,6 +8,7 @@ use App\Models\Escala;
 use App\Models\Alumno;
 use App\Models\Matricula;
 use App\Models\Periodo;
+use App\Models\Pago;
 use App\Models\Seccion;
 
 class ApoderadoController extends Controller
@@ -34,17 +35,45 @@ class ApoderadoController extends Controller
 
     public function hijoMatriculaRenovacion($codigoEstudiante)
     {
-        $estudiante = Alumno::with(['escala','matricula'=>function($query){
+        /*$estudiante = Alumno::with(['escala','matricula'=>function($query){
             $query->whereHas('periodo',function($query){
                 $query->where('estado',1);
             });
         }, 'matricula.seccion.grado.nivel','matricula.periodo','matricula.alumno.apoderados'])
         ->where('codigoEstudiante',$codigoEstudiante)
+        ->firstOrFail();*/
+
+        $estudiante = Alumno::with(['escala','matricula'=>function($query){
+            $query->whereHas('periodo',function($query){
+                $query->orderByRaw('finPeriodo DESC');
+            });
+        }, 'matricula.seccion.grado.nivel','matricula.periodo','matricula.alumno.apoderados'])
+        ->where('codigoEstudiante',$codigoEstudiante)
         ->firstOrFail();
 
+
         $matricula = $estudiante->matricula->first();
+
+        //Registrar que no existan deudas y que se haya iniciado un nuevo periodo
+        $periodoActivo = Periodo::where('estado',1)
+                        ->firstOrFail();
         
-        return view('mantenedores.apoderados.hijoMatricula',compact('codigoEstudiante','estudiante','matricula'));
+        $renovar = false;
+
+        if($periodoActivo->idPeriodo != $matricula->periodo->idPeriodo){
+
+            //Revisamos que no tenga deudas
+            $deudas = Pago::where('numMatricula',$matricula->numMatricula)
+                            ->orderByRaw('periodoPago DESC')
+                            ->get();
+            
+            if($deudas->isNotEmpty() && $deudas->first()->periodoPago==10){
+                $renovar=true;
+            }
+            
+        }
+        
+        return view('mantenedores.apoderados.hijoMatricula',compact('codigoEstudiante','estudiante','matricula','renovar'));
     }
 
     /**

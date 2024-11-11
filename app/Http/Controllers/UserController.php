@@ -118,6 +118,11 @@ class UserController extends Controller
                 if($departamento=='Tesoreria'){
                     return redirect()->route('verificarComprobantes');
                 } 
+            case 'Director':
+                if($departamento=='Direccion'){
+                    //return redirect()->route('director.index');
+                    return view('director.index');
+                }
         }
         return redirect()->route('prueba');
     }

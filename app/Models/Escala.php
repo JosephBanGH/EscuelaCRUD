@@ -13,7 +13,8 @@ class Escala extends Model
     public $timestamps=false;
 
     protected $fillable = [
-        'escala'
+        'escala',
+        'montoPago'
     ];
 
     public function alumno(){

@@ -13,6 +13,7 @@ use App\Http\Controllers\MatriculaController;
 use App\Http\Controllers\CatedraController;
 use App\Http\Controllers\ListadoNotasController;
 use App\Http\Controllers\AlumnoCurso;
+use App\Http\Controllers\PeriodoController;
 use App\Http\Controllers\ApoderadoController;
 use App\Http\Controllers\COMPROBANTEPAGOController;
 use App\Http\Controllers\TesoreriaController;
@@ -219,3 +220,11 @@ Route::post('matricula/store', [COMPROBANTEPAGOController::class, 'store'])->nam
 //---------------------TESORERO
 Route::get('/tesoreria/comprobantes/verificar',[TesoreriaController::class,'index'])->name('verificarComprobantes');
 Route::put('/tesoreria/comprobantes/verificar/{id}',[TesoreriaController::class,'verificarComprobante'])->name('postVerificar');
+
+
+//------------- PERIODO
+Route::resource('myPeriodo',PeriodoController::class);
+
+//------------ DIRECTOR 
+//Route::resource('/director',);
+
