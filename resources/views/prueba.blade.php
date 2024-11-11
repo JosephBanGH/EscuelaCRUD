@@ -42,6 +42,20 @@ License: For each use you must have a valid license purchased only from above li
     <!-- common css -->
     <link href="https://www.nobleui.com/laravel/template/demo1/css/app.css" rel="stylesheet" />
     <!-- end common css -->
+    <style>
+      .buy-now-wrapper{
+        display: none;
+      }
+      .darkThemeAll{
+        background-color: #0c1427 !important;
+        color: white;
+      }
+      .darkThemeAll input{
+        background-color: #0c1427 !important;
+        color: white;
+        border-color: #6571ff;
+      }
+    </style>
     @yield('styles')
 </head>
 <body data-base-url="https://www.nobleui.com/laravel/template/demo1">
@@ -458,37 +472,74 @@ License: For each use you must have a valid license purchased only from above li
   </div>
 </nav>      
 <div class="page-content">
-<div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
-  <div>
-    <h4 class="mb-3 mb-md-0">BIENVENIDOS AL SISTEMA DE LA ESCUELA EDUCATIVA MARIANO MELGAR</h4>
-  </div>
-  <div class="d-flex align-items-center flex-wrap text-nowrap">
-    <div class="input-group flatpickr wd-200 me-2 mb-2 mb-md-0" id="dashboardDate">
-      <span class="input-group-text input-group-addon bg-transparent border-primary" data-toggle><i data-feather="calendar" class="text-primary"></i></span>
-      <input type="text" class="form-control bg-transparent border-primary" placeholder="Select date" data-input>
+  <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
+    <div>
+      <h4 class="mb-3 mb-md-0">BIENVENIDOS AL SISTEMA DE LA ESCUELA EDUCATIVA MARIANO MELGAR</h4>
     </div>
-    <button type="button" class="btn btn-outline-primary btn-icon-text me-2 mb-2 mb-md-0">
-      <i class="btn-icon-prepend" data-feather="printer"></i>
-      IMPRIMIR
-    </button>
-    <button type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0">
-      <i class="btn-icon-prepend" data-feather="download-cloud"></i>
-      DESCARGAR 
-    </button>
-  </div>
-</div>
-      
-    <div class="row">
-      @yield('contenido')
-    </div> <!-- row -->
-
+    <div class="d-flex align-items-center flex-wrap text-nowrap">
+      <div class="input-group flatpickr wd-200 me-2 mb-2 mb-md-0" id="dashboardDate">
+        <span class="input-group-text input-group-addon bg-transparent border-primary" data-toggle><i data-feather="calendar" class="text-primary"></i></span>
+        <input type="text" class="form-control bg-transparent border-primary" id="CalendarioTheme" placeholder="Select date" data-input>
       </div>
-      <footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between px-4 py-3 border-top small">
-  <p class="text-muted mb-1 mb-md-0">I.E MARIANO MELGAR © 2024 TRUJILLO-PERÚ<a href="https://www.nobleui.com" target="_blank">NobleUI</a>.</p>
-  <p class="text-muted"><i class="mb-1 text-primary ms-1 icon-sm" data-feather="heart"></i></p>
-</footer>    </div>
+      <button type="button" class="btn btn-outline-primary btn-icon-text me-2 mb-2 mb-md-0">
+        <i class="btn-icon-prepend" data-feather="printer"></i>
+        IMPRIMIR
+      </button>
+    </div>
   </div>
+      
+  <div class="row" id="contenidoMain">
+    @yield('contenido')
+  </div> <!-- row -->
+
+  </div>
+    <footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between px-4 py-3 border-top small">
+    <p class="text-muted mb-1 mb-md-0">I.E MARIANO MELGAR © 2024 TRUJILLO-PERÚ<a href="https://www.nobleui.com" target="_blank">NobleUI</a>.</p>
+    <p class="text-muted"><i class="mb-1 text-primary ms-1 icon-sm" data-feather="heart"></i></p>
+   </div>
+</div>
+</footer> 
   @yield('scripts')
+    <script>
+      const darkThemeAll = document.querySelector('.darkThemeAll')
+      const contenidoMain = document.querySelector('#contenidoMain')
+      const navbar = document.querySelector('.navbar')
+      const footer = document.querySelector('.footer')
+      const pageContent = document.querySelector('.page-content')
+      const textCalendar = document.getElementById('CalendarioTheme')
+      const idBlack = document.getElementById('themePossibility')
+
+      const buttonDarkThemeAll = document.getElementById('sidebarDark')
+      const butttonLightThemeAll = document.getElementById('sidebarLight')
+
+      buttonDarkThemeAll.addEventListener('click',()=>{
+        idBlack.classList.add('darkThemeAll')
+        contenidoMain.classList.add('darkThemeAll')
+        pageContent.classList.add('darkThemeAll')
+        textCalendar.classList.add('darkThemeAll')
+        navbar.classList.add('darkThemeAll')
+        footer.classList.add('darkThemeAll')
+        document.querySelectorAll('svg[stroke]').forEach(icon => {
+            icon.setAttribute('stroke', 'white');
+        });
+        feather.replace();
+      })
+
+      butttonLightThemeAll.addEventListener('click',()=>{
+        idBlack.classList.remove('darkThemeAll')
+        contenidoMain.classList.remove('darkThemeAll')
+        pageContent.classList.remove('darkThemeAll')
+        textCalendar.classList.remove('darkThemeAll')
+        navbar.classList.remove('darkThemeAll')
+        footer.classList.remove('darkThemeAll')
+        document.querySelectorAll('svg[stroke]').forEach(icon => {
+          icon.setAttribute('stroke', 'currentColor');
+        });
+        feather.replace();
+      })
+      
+      
+    </script>
     <!-- base js -->
     <script src="https://www.nobleui.com/laravel/template/demo1/js/app.js"></script>
     <script src="https://www.nobleui.com/laravel/template/demo1/assets/plugins/feather-icons/feather.min.js"></script>
