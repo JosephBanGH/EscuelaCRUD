@@ -142,8 +142,8 @@ Route::get('/capacidad/cancelar', function () {
 })->name('capacidad.cancelar');
 
 //LISTADO DE NOTAS 
-// Route::get('listadonotas/create', [ListadoNotasController::class, 'create'])->name('listadonotas.create');
-// Route::post('listadonotas/store', [ListadoNotasController::class, 'store'])->name('listadonotas.store');
+//Route::get('listadonotas/create', [ListadoNotasController::class, 'create'])->name('listadonotas.create');
+//Route::post('listadonotas/store', [ListadoNotasController::class, 'store'])->name('listadonotas.store');
 
 //TABLA
 
@@ -165,3 +165,6 @@ Route::delete('curso-grado/{id_curso}/{id_grado}', [CursoGradoController::class,
 use App\Http\Controllers\RegistroNotasController;
 
 Route::resource('registronotas', RegistroNotasController::class);
+
+
+Route::post('/registronotas/import', [RegistroNotasController::class, 'import'])->name('registronotas.import');

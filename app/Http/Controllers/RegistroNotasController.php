@@ -85,4 +85,21 @@ class RegistroNotasController extends Controller
 
         return redirect()->route('registronotas.index')->with('success', 'Registro eliminado exitosamente.');
     }
+    
+    public function import(Request $request)
+    {
+        // Validar que se haya subido un archivo
+        $request->validate([
+            'archivo_excel' => 'required|file|mimes:xlsx,xls,csv',
+        ]);
+
+        // Procesar el archivo
+        try {
+            Excel::import(new RegistroNotasImport, $request->file('archivo_excel'));
+
+            return redirect()->route('registronotas.index')->with('success', 'Registros importados correctamente.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error al importar el archivo: ' . $e->getMessage());
+        }
+    }
 }
