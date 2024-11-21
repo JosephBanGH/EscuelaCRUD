@@ -58,7 +58,7 @@
                 </div>
             </div>
         @endforeach
-    </div>
+    </div> 
 
     <button type="submit" class="btn btn-primary">Actualizar Registro</button>
 </form>

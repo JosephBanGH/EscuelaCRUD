@@ -1,7 +1,7 @@
 @extends('prueba')
 
 @section('titulo')
-    <title>Sistemas de Ventas - Cursos</title>
+    <title>Sistemas de Ventas - Notas</title>
 @endsection
 
 @section('contenido')
@@ -17,18 +17,22 @@
 
         <!-- Formulario para Importar Excel -->
         <div class="mb-4">
+            <form action="{{ route('registronotas.importar') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <label for="archivo_excel" class="form-label">Importar Excel:</label>
-                <input type="file" name="archivo_excel" id="archivo_excel" accept=".xlsx, .xls, .csv" class="form-control mb-3" required>
-                <button type="submit" class="btn btn-success">
-                    <i class="fas fa-upload"></i> Subir
-                </button>
+                <label for="archivo_excel">Importar archivo Excel:</label>
+                <input type="file" name="archivo_excel" id="archivo_excel" accept=".xlsx,.xls,.csv" class="form-control mb-3" required>
+                <button type="submit" class="btn btn-success">Subir</button>
+            </form>
         </div>
 
-        <!-- Mensajes de éxito -->
+        <!-- Mensajes de éxito o error -->
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
+            </div>
+        @elseif (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
             </div>
         @endif
 
@@ -44,10 +48,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($registroNotas as $registroNota)
+                    @forelse($registroNotas as $registroNota)
                         <tr>
                             <td>{{ $registroNota->id_registronotas }}</td>
-                            <td>{{ $registroNota->id_curso }}</td> <!-- Asegúrate de que 'id_curso' sea válido -->
+                            <td>{{ $registroNota->id_curso }}</td>
                             <td>{{ $registroNota->fecha }}</td>
                             <td class="d-flex">
                                 <!-- Botón Editar -->
@@ -65,7 +69,11 @@
                                 </form>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="4" class="text-center">No hay registros disponibles.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

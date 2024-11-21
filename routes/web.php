@@ -12,7 +12,8 @@ use App\Http\Controllers\CursoGradoController;
 use App\Http\Controllers\MatriculaController;
 use App\Http\Controllers\CatedraController;
 use App\Http\Controllers\ListadoNotasController;
-
+use App\Http\Controllers\RegistroNotasController;
+use App\Http\Controllers\ImportController;
 
 use App\Models\Alumno;
 
@@ -161,10 +162,16 @@ Route::put('curso-grado/{id}', [CursoGradoController::class, 'update'])->name('c
 Route::get('curso-grado/{id}/confirmar', [CursoGradoController::class, 'confirmar'])->name('curso_grado.confirmar');
 Route::delete('curso-grado/{id_curso}/{id_grado}', [CursoGradoController::class, 'destroy'])->name('curso_grado.destroy');
 
-//REGISTRO NOTAS
-use App\Http\Controllers\RegistroNotasController;
+
+
 
 Route::resource('registronotas', RegistroNotasController::class);
 
 
-Route::post('/registronotas/import', [RegistroNotasController::class, 'import'])->name('registronotas.import');
+Route::post('/registronotas/importar', [RegistroNotasController::class, 'importar'])->name('registronotas.importar');
+
+
+
+Route::get('/importar-excel', [ImportController::class, 'showForm'])->name('import.form');
+Route::post('/importar-excel', [ImportController::class, 'importExcel'])->name('import.excel');
+

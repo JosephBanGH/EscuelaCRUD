@@ -2,10 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-namespace App\Http\Controllers;
-
 use App\Models\RegistroNotas;
 use App\Models\Catedra;
 use App\Models\Cursos;
@@ -13,6 +9,10 @@ use App\Models\Grado;
 use App\Models\Personal;
 use App\Models\Alumno;
 use Illuminate\Http\Request;
+use App\Imports\RegistroNotasImport;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 class RegistroNotasController extends Controller
 {
@@ -86,20 +86,51 @@ class RegistroNotasController extends Controller
         return redirect()->route('registronotas.index')->with('success', 'Registro eliminado exitosamente.');
     }
     
-    public function import(Request $request)
+    public function importar(Request $request)
     {
-        // Validar que se haya subido un archivo
         $request->validate([
             'archivo_excel' => 'required|file|mimes:xlsx,xls,csv',
         ]);
-
-        // Procesar el archivo
+    
         try {
-            Excel::import(new RegistroNotasImport, $request->file('archivo_excel'));
-
-            return redirect()->route('registronotas.index')->with('success', 'Registros importados correctamente.');
+            $archivo = $request->file('archivo_excel');
+            $spreadsheet = IOFactory::load($archivo);
+            $sheet = $spreadsheet->getActiveSheet();
+    
+            foreach ($sheet->getRowIterator() as $row) {
+                $cells = $row->getCellIterator();
+                $cells->setIterateOnlyExistingCells(false); 
+    
+                $cellArray = [];
+                foreach ($cells as $cell) {
+                    $cellArray[] = $cell->getFormattedValue();
+                }
+    
+                if (count($cellArray) >= 4) {  // Asegurarse de que haya suficientes columnas
+                    $fechaExcel = $cellArray[2]; // Columna de fecha
+                    $idGrado = $cellArray[3]; // Asumiendo que id_grado está en la columna 4 (índice 3)
+                    $codigoDocente = '12345'; // Establece un valor predeterminado para el código del docente si no está en el archivo Excel
+                    if (is_numeric($fechaExcel)) {
+                        $fecha = Date::excelToDateTimeObject($fechaExcel)->format('Y-m-d');
+                    } else {
+                        $fecha = null; 
+                    }
+    
+                    // Insertar el registro con id_curso, fecha, id_grado y codigo_docente
+                    RegistroNotas::create([
+                        'id_curso' => $cellArray[0],  // Columna id_curso
+                        'fecha' => $fecha,            // Columna fecha
+                        'id_grado' => $idGrado,       // Columna id_grado
+                        'codigo_docente' => $codigoDocente, // Código docente (puede ser un valor predeterminado o uno extraído del Excel)
+                    ]);
+                }
+            }
+    
+            return redirect()->route('registronotas.index')->with('success', 'Importación realizada correctamente.');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Error al importar el archivo: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Ocurrió un error al importar: ' . $e->getMessage());
         }
     }
+    
+    
 }
