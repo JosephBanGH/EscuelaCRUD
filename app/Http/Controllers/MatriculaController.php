@@ -12,6 +12,7 @@ use App\Models\Matricula;
 use DB;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 
 class MatriculaController extends Controller
@@ -38,6 +39,8 @@ class MatriculaController extends Controller
         return view('mantenedores.matriculas.index', compact('matricula'));
 
     }
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -223,6 +226,4 @@ class MatriculaController extends Controller
         }
         return response()->json(['options' => $options]);
     }
-
-
 }

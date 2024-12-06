@@ -81,7 +81,7 @@
     </div>
 
     <div class="formRenovarMatricula">
-        <form class="formularioRenovarMatricula" action="{{ route('matricula.store') }}" method="POST" enctype="multipart/form-data">
+        <form class="formularioRenovarMatricula" action="{{ route('comprobante.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="" class="form-label">DNI Apoderado</label>

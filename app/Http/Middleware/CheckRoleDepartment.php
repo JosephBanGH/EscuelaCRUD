@@ -16,8 +16,18 @@ class CheckRoleDepartment
      */
     public function handle(Request $request, Closure $next, $role, $department): Response
     {
-        if (Auth::check()) {
-            $user = Auth::user()->load('personal.tipoPersonal', 'personal.departamento');
+        if (Auth::guard('web')->check()) {
+            $user = Auth::guard('web')->user()->load('personal.tipoPersonal', 'personal.departamento');
+            
+            if ($user->personal && 
+                $user->personal->tipoPersonal->tipoPersonal == $role && 
+                $user->personal->departamento->departamento == $department) {
+                return $next($request);
+            }
+        }
+
+        if (Auth::guard('apoderados')->check()) {
+            $user = Auth::guard('apoderados')->user()->load('personal.tipoPersonal', 'personal.departamento');
             
             if ($user->personal && 
                 $user->personal->tipoPersonal->tipoPersonal == $role && 

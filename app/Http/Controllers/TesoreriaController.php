@@ -7,6 +7,7 @@ use App\Models\Periodo;
 use App\Models\Notas;
 use App\Services\MatriculaService;
 use App\Models\COMPROBANTE_PAGO;
+use App\Controllers\MatriculaController;
 use Carbon\Carbon;
 
 class TesoreriaController extends Controller
@@ -34,6 +35,25 @@ class TesoreriaController extends Controller
         return view('tesoreria.index',compact('comprobantes'));
     }
 
+    public function listarComprobantes(){
+        $periodoActivo = Periodo::where('estado',1)->first();
+
+        if (!$periodoActivo) {
+            // Si no hay un período activo, regresamos un mensaje de error
+            return back()->with('error', 'No hay un período escolar activo.');
+        }
+
+        $anioActivo = Carbon::parse($periodoActivo->inicioPeriodo)->year;
+
+        //Traer las del periodo activo, y que aun no han
+        //sido verificadas
+        $comprobantes = COMPROBANTE_PAGO::where('verificado',0)
+            ->whereYear('fechaPago',$anioActivo)
+            ->paginate(30);
+
+        return view('tesoreria.comprobantesVerificar',compact('comprobantes'));
+    }
+
 
     public function verificarComprobante(Request $request, $idComprobante){
         $comprobante = COMPROBANTE_PAGO::findOrFail($idComprobante);
@@ -41,6 +61,7 @@ class TesoreriaController extends Controller
         $comprobante->update([
             'verificado'=>1
         ]);
+
 
         $matriculaService = new MatriculaService();
         $matriculaService->renovarMatricula($comprobante->codigoEstudiante,$idComprobante);

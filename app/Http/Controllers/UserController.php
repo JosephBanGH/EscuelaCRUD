@@ -66,6 +66,8 @@ class UserController extends Controller
             if(Auth::guard('web')->attempt($credentials)){
                 $personal = $user->personal;
                 if ($personal && $personal->tipoPersonal && $personal->departamento) {
+                    cookie('web_session_' . md5(env('APP_KEY')));
+
                     return $this->redirigirPorRolYDepartamento($personal->tipoPersonal->tipoPersonal, $personal->departamento->departamento);
                 }
             }
@@ -83,6 +85,8 @@ class UserController extends Controller
         //Verificar en la tabla USER_LOGIN_APODERADO
         if($apoderadoLogin=UserLoginApoderado::where('userLogin',$credentials['userLogin'])->first()){
             if(Auth::guard('apoderados')->attempt($credentials)){
+                
+                cookie('apoderado_session_' . md5(env('APP_KEY')));
                 //Obtener el apoderado relacionado al login
                 $apoderado = $apoderadoLogin->apoderado; //Relacion belongsTo
                 return redirect()->route('apoderadoInicio',['dniApoderado'=>$apoderado->dniApoderado]);
@@ -116,19 +120,27 @@ class UserController extends Controller
         switch($rol){
             case 'Jefe':
                 if($departamento=='Tesoreria'){
-                    return redirect()->route('verificarComprobantes');
+                    return redirect()->route('indexTesoreria');
                 } 
             case 'Director':
                 if($departamento=='Direccion'){
                     //return redirect()->route('director.index');
                     return view('director.index');
                 }
+            case 'Secretaria':
+                if($departamento=='Oficina Registros'){
+                    return redirect()->route('registroAcademico.index');
+                }
         }
+        
         return redirect()->route('prueba');
     }
 
     public function salir(){
-        Auth::logout();
+        // Cerrar sesión de la secretaria
+        Auth::guard('web')->logout();
+        // Cerrar sesión del apoderado
+        Auth::guard('apoderados')->logout();
         return redirect('/');
     }
 }

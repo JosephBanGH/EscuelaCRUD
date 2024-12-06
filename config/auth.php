@@ -39,16 +39,15 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'user_login',
-        ],
-        'students' => [
-            'driver' => 'session',
-            'provider' => 'students',
+            'cookie' => 'web_session_' . md5(env('APP_KEY')),  // Nombre único para la cookie del guard "web"
         ],
         'apoderados' => [
             'driver' => 'session',
             'provider' => 'apoderados',
+            'cookie' => 'apoderado_session_' . md5(env('APP_KEY')),  // Nombre único para la cookie del guard "apoderados"
         ],
     ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -71,10 +70,6 @@ return [
         'user_login' => [
             'driver' => 'eloquent',
             'model' => App\Models\UserLogin::Class,
-        ],
-        'students' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\UserLoginStudent::class, // Tabla USER_LOGIN_STUDENT
         ],
         'apoderados' => [
             'driver' => 'eloquent',

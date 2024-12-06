@@ -1,171 +1,135 @@
 @extends('prueba')
-@section('metas')
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    
-@endsection
 @section('styles')
     <style>
-        .modalComprobantes{
-            position: fixed;
-            top:0;
-            left: 0;
-            z-index: 1000;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            overflow-y: auto;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
         }
 
-        .modal-content-comprobante{
-            background-color: #fff;
-            border-radius: 10px;
-            margin: 10% auto;
-            overflow: auto;
+        .dashboard-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
-        .modal-content-comprobante img {
-            mwidth: 100%;
-            max-height: 100%;
-            
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            flex: 1;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        .closePopupComprobantes{
-            background-color: red;
-            border-radius: 15px;
-            padding: 5px;
-            cursor: pointer;
+        .card h3 {
+            margin: 0 0 10px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 200px;
+        }
+
+        .quick-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .quick-actions a {
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            color: white;
+            background-color: #007bff;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .quick-actions a:hover {
+            background-color: #0056b3;
         }
     </style>
 @endsection
-@section('contenido')
-    <h1>TESORERIA</h1>
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
 
-    <table class="table table-hover">
-        <thead>
-            <th scope="col">NUMERO OPERACION</th>
-            <th scope="col">CONCEPTO</th>
-            <th scope="col">MONTO</th>
-            <th scope="col">FECHA PAGO</th>
-            <th scope="col">COMPROBANTE</th>
-            <th scope="col">VERIFICAR</th>
-        </thead>
-        <tbody class="comprobante-rows">
-            @foreach($comprobantes as $comprobante)
-                <tr scope="row"  style="cursor:pointer;" id="{{ $comprobante->idComprobante }}" data-url="{{ Storage::url($comprobante->urlCDP) }}" data-tipo="{{ pathinfo($comprobante->urlCDP, PATHINFO_EXTENSION) }}">
-                    <td>{{ $comprobante -> numOperacion}}</td>
-                    <td>{{ $comprobante -> concepto}}</td>
-                    <td> {{ $comprobante -> monto }} </td>
-                    <td> {{ $comprobante -> fechaPago }} </td>
-                    <td>
-                        @if(pathinfo($comprobante->urlCDP, PATHINFO_EXTENSION) === 'pdf')
-                            <img src="{{ asset('storage/images/pdf.png') }}" alt="" class="rounded">
-                        @else
-                            <img src="{{ Storage::url($comprobante -> urlCDP) }} " alt="" class="rounded">
-                        @endif
-                        
-                    </td>
-                    <td>
-                        <button type="submit" class="btn btn-primary verificar-btn">
-                            Verificar
-                        </button>
-                        
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-    
-    <div id="modalPopupComprobantes" class="modalComprobantes" style="display:none;">
-        <div class="modal-content-comprobante">
-            <span class="closePopupComprobantes">&times;</span>
-            <div id="modalBody">
-                <!-- Aquí se mostrará la imagen o el PDF -->
-                
+@section('contenido')
+    <h1>Panel de Tesorería</h1>
+
+    <div class="dashboard-container">
+        <!-- Resumen financiero -->
+        <div class="card">
+            <h3>Resumen Financiero</h3>
+            <ul>
+                <li>Total de ingresos este mes: <strong>S/ 15,000</strong></li>
+                <li>Total de pagos hoy: <strong>S/ 1,200</strong></li>
+                <li>Pagos pendientes: <strong>S/ 4,500</strong></li>
+            </ul>
+        </div>
+
+        <!-- Gráfico de pagos -->
+        <div class="card">
+            <h3>Pagos Realizados</h3>
+            <div class="chart-container">
+                <canvas id="pieChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Tendencias -->
+        <div class="card">
+            <h3>Tendencia de Pagos</h3>
+            <div class="chart-container">
+                <canvas id="lineChart"></canvas>
             </div>
         </div>
     </div>
+
+    <div class="quick-actions">
+        <a href="#">Registrar Pago</a>
+        <a href="#">Generar Reporte</a>
+        <a href="#">Buscar Historial</a>
+    </div>
 @endsection
+
 @section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded',function(){
-            let modalito = document.getElementById('modalPopupComprobantes');
-            let modalBody = document.getElementById("modalBody"); // Donde se mostrará la imagen o el PDF
-            let spancito = document.querySelector('.closePopupComprobantes');
-            
-
-            //Cuando el usuario hace clic en un fila de la tabla
-            let comprobante_rows = document.querySelector('.comprobante-rows')
-            comprobante_rows.addEventListener('click',(e)=>{
-                if(e.target.tagName !== 'BUTTON'){
-                    let fila = e.target.closest("tr")
-                    if(!fila) return;
-
-                    //Obtener los datos de la fila
-                    let url = fila.getAttribute('data-url');
-                    let tipo = fila.getAttribute('data-tipo');
-
-                    modalBody.innerHTML = "";
-
-                    if(tipo==='pdf'){
-                        let iframe = document.createElement("iframe");
-                        iframe.src = url;
-                        iframe.width = "100%";
-                        iframe.height = "500px";
-                        modalBody.appendChild(iframe);
-                    }else{
-                        let img = document.createElement("img");
-                        img.src = url;
-                        img.alt = "Comprobante de pago";
-                        img.style.width = "100%";
-                        modalBody.appendChild(img);
-                    }
-                    modalito.style.display = "block";
-                }else if(e.target.tagName === 'BUTTON'){
-                    let fila = e.target.closest("tr")
-                    if(!fila) return;
-
-                    let id = fila.getAttribute('id')
-                    
-                    
-                    fetch(`/tesoreria/comprobantes/verificar/${id}`,{
-                        method: 'PUT',
-                        headers:{
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                            'Content-Type': 'application/json'
-                        }
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if(data.success){
-                            fila.style.backgroundColor = '#A3E7D6';
-                            e.target.classList.remove('btn-primary');
-                            e.target.classList.add('btn-success');
-                            e.target.disabled = true;
-                        }else{
-                            alert('Hubo un error al verificar el comprobante')
-                        }
-                    })
-                    .catch(error =>{
-                        console.error('Error: ',error);
-                        alert('Error al intentar verificar el comprobante');
-                    });
-                }
-            });
-
-            spancito.onclick = function(){
-                modalito.style.display = "none";
+        // Gráfico circular de pagos realizados
+        const pieCtx = document.getElementById('pieChart').getContext('2d');
+        new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Matrícula', 'Pensiones', 'Otros'],
+                datasets: [{
+                    data: [50, 30, 20], // Datos simulados
+                    backgroundColor: ['#007bff', '#28a745', '#ffc107']
+                }]
             }
+        });
 
-            modalito.addEventListener('click',(e)=>{
-                if(e.target===modalito){
-                    modalito.style.display = "none";
+        // Gráfico de línea de tendencias
+        const lineCtx = document.getElementById('lineChart').getContext('2d');
+        new Chart(lineCtx, {
+            type: 'line',
+            data: {
+                labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+                datasets: [{
+                    label: 'Ingresos',
+                    data: [12000, 15000, 14000, 17000, 16000], // Datos simulados
+                    borderColor: '#007bff',
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
-            })
+            }
         });
     </script>
 @endsection
