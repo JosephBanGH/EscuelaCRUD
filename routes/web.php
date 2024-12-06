@@ -16,16 +16,23 @@ use App\Http\Controllers\AlumnoCurso;
 use App\Http\Controllers\PeriodoController;
 use App\Http\Controllers\ApoderadoController;
 use App\Http\Controllers\COMPROBANTEPAGOController;
+use App\Http\Controllers\RegistroAcademicoController;
 use App\Http\Controllers\TesoreriaController;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Alumno;
 
-/* Route::get('/', function () {
-    return view('login'); 
-}); */
+/* LANDING PAGE */
+Route::get('/',function(){
+    return view('landing');
+});
 
-Route::get('/', [UserController::class, 'showLogin']);
+
+Route::get('/loginShow', function () {
+    return view('login'); 
+})->name('loginShow');
+
+//Route::get('login', [UserController::class, 'showLogin'])->name('login');
 Route::post('/identificacion', [UserController::class, 'verifylogin'])->name('identificacion');
 Route::post('/salir', [UserController::class, 'salir'])->name('logout');
 
@@ -161,6 +168,17 @@ Route::get('/notas', function () {
     return view('notas.index');
 })->name('notas.index');
 
+Route::get('/apoderados', function () {
+    return view('mantenedores/apoderados.index');
+})->name('apoderados.index');
+
+
+//Registro Academico
+
+Route::get('/registrosAcademico', [RegistroAcademicoController::class,'index'])->name('registroAcademico.index');
+Route::get('/buscarMatricula', [RegistroAcademicoController::class,'buscaMatricula'])->name('buscarMatricula');
+Route::get('/editarMatricula/{numMatricula}',[RegistroAcademicoController::class,'editarMatricula'])->name('editarMatricula');
+Route::put('/updateMatricula/{numMatricula}',[RegistroAcademicoController::class,'updateMatricula'])->name('updateMatricula');
 //CURSO POR GRADO
 
 Route::get('curso-grado', [CursoGradoController::class, 'index'])->name('curso_grado.index');
@@ -214,11 +232,12 @@ Route::resource('myCourses',AlumnoCurso::class);
 
 //----------------- RUTAS COMPROBANTE PAGO  -------------------------------------
 
-Route::post('matricula/store', [COMPROBANTEPAGOController::class, 'store'])->name('matricula.store');
+Route::post('comprobante/store', [COMPROBANTEPAGOController::class, 'store'])->name('comprobante.store');
 
 
 //---------------------TESORERO
-Route::get('/tesoreria/comprobantes/verificar',[TesoreriaController::class,'index'])->name('verificarComprobantes');
+Route::get('/tesoreria/comprobantes/verificar',[TesoreriaController::class,'listarComprobantes'])->name('verificarComprobantes');
+Route::get('/tesoreria/index',[TesoreriaController::class,'index'])->name('indexTesoreria');
 Route::put('/tesoreria/comprobantes/verificar/{id}',[TesoreriaController::class,'verificarComprobante'])->name('postVerificar');
 
 
@@ -227,4 +246,11 @@ Route::resource('myPeriodo',PeriodoController::class);
 
 //------------ DIRECTOR 
 //Route::resource('/director',);
+
+
+//--------------- SECRETARIA
+
+
+
+
 

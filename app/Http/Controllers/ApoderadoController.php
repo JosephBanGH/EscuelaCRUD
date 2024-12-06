@@ -30,7 +30,14 @@ class ApoderadoController extends Controller
 
     public function hijoNotas($codigoEstudiante)
     {
-        return view('mantenedores.apoderados.hijoNota',compact('codigoEstudiante'));
+        $hijo = Alumno::with(['matricula.seccion.grado.nivel','matricula'=>function($query){
+            $query->whereHas('periodo',function($query){
+                $query->orderByRaw('finPeriodo DESC');
+            });
+        }])->where('codigoEstudiante',$codigoEstudiante)->firstOrFail();
+
+        //dd($hijo->matricula->first()->periodo->inicioPeriodo);
+        return view('mantenedores.apoderados.hijoNota',compact('codigoEstudiante','hijo'));
     }
 
     public function hijoMatriculaRenovacion($codigoEstudiante)
@@ -54,14 +61,14 @@ class ApoderadoController extends Controller
 
         $matricula = $estudiante->matricula->first();
 
-        //Registrar que no existan deudas y que se haya iniciado un nuevo periodo
+        //Revisamos que se haya iniciado un nuevo periodo
         $periodoActivo = Periodo::where('estado',1)
                         ->firstOrFail();
         
         $renovar = false;
-
+        
         if($periodoActivo->idPeriodo != $matricula->periodo->idPeriodo){
-
+            
             //Revisamos que no tenga deudas
             $deudas = Pago::where('numMatricula',$matricula->numMatricula)
                             ->orderByRaw('periodoPago DESC')

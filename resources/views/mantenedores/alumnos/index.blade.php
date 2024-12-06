@@ -6,23 +6,24 @@
 <!-- Default box -->
 <div class="container mt-4">
     <h3 class="mb-4">Listado de Alumnos</h3>
-
-    <div class="d-flex justify-content-between mb-4">
-        <a href="{{route('alumno.create')}}" class="btn btn-primary"><i class="fas fa-faplus"></i> Nuevo Registro</a>
+    <a href="{{route('alumno.create')}}" class="btn btn-primary"><i class="fas fa-faplus"></i> Nuevo Registro</a>
+    <div class="d-flex flex-column mb-4 mt-4">
         <h5>Buscar Por Nombre Completo</h5>
-        <form class="form-inline" method="GET">
-            <div class="input-group">
+        <form class="form-inline mt-2" method="GET">
+            <div class="input-group d-flex justify-content-end">
                 <div class="input-group">
                     <input name="nombreCompleto" class="form-control" type="search" placeholder="Buscar por Apellidos y nombres" value="{{ request('nombreCompleto') }}">
                 </div>
-                <div class="input-group-append">
+                <div class="input-group-append mt-2">
                     <button class="btn btn-success" type="submit"><i class="fas fa-search"></i>Buscar</button>
                 </div>
             </div>
         </form>
+    </div>
+    <div class="d-flex flex-column mb-4">
         <h5>Buscar por Grado, Seccion o nivel</h5>
-        <form class="form-inline" method="GET">
-            <div class="input-group">
+        <form class="form-inline mt-2" method="GET">
+            <div class="input-group d-flex justify-content-end">
                 <div class="input-group">
                     <input name="anioPeriodo" class="form-control" type="search" placeholder="Buscar por anioPeriodo" value="{{ request('anioPeriodo') }}">
                 </div>
@@ -35,18 +36,20 @@
                 <div class="input-group">
                     <input name="seccion" class="form-control" type="search" placeholder="Buscar por sección" value="{{ request('seccion') }}">
                 </div>
-                <div class="input-group-append">
+                <div class="input-group-append mt-2">
                     <button class="btn btn-success" type="submit"><i class="fas fa-search"></i>Buscar</button>
                 </div>
             </div>
         </form>
+    </div>
+    <div class="d-flex flex-column mb-4">
         <h5>Buscar por DNI</h5>
-        <form class="form-inline" method="GET">
-            <div class="input-group">
+        <form class="form-inline mt-2" method="GET">
+            <div class="input-group d-flex justify-content-end">
                 <div class="input-group">
                     <input name="dni" class="form-control" type="search" placeholder="Buscar por dni" value="{{ request('dni') }}">
                 </div>
-                <div class="input-group-append">
+                <div class="input-group-append mt-2">
                     <button class="btn btn-success" type="submit"><i class="fas fa-search"></i>Buscar</button>
                 </div>
             </div>
