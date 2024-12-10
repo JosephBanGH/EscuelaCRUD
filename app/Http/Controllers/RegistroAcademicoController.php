@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 use App\Models\Alumno;
 use App\Models\Matricula;
+use App\Models\Preinscripcion;
 use App\Models\Seccion;
 use App\Models\Periodo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class RegistroAcademicoController extends Controller
 {
@@ -153,6 +156,30 @@ class RegistroAcademicoController extends Controller
         }
         
         return view('registroAcademico.buscarMatricula',compact('alumno'));
+    }
+
+    public function generarConstancia($numMatricula){
+        $matricula = Matricula::with(['seccion.grado.nivel','alumno','periodo'])
+            ->where('numMatricula',$numMatricula)
+            ->firstOrFail();
+        
+        $data = [
+            'matricula' => $matricula,
+        ];
+
+        $pdf = Pdf::loadView('registroAcademico.constancias',$data);
+        $pdf->setPaper('A4', 'landscape');
+        return $pdf->stream('Constancia_Matricula_'.$matricula->numMatricula.'.pdf');
+    }
+
+    public function addPreinscripciones(){
+
+        return view('registroAcademico.registrarPreinscripcion');
+    }
+
+    public function evaluarPreinscripciones(){
+        $preinscripciones = Preinscripcion::where('estado','=',1)->get();
+        return view('registroAcademico.evaluarPreinscripciones',compact('preinscripciones'));
     }
 
     

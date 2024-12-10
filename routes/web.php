@@ -3,6 +3,7 @@
 use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\GradoController;
+use App\Http\Controllers\NivelController;
 use App\Http\Controllers\SeccionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -190,6 +191,20 @@ Route::get('/registrosAcademico', [RegistroAcademicoController::class,'index'])-
 Route::get('/buscarMatricula', [RegistroAcademicoController::class,'buscaMatricula'])->name('buscarMatricula');
 Route::get('/editarMatricula/{numMatricula}',[RegistroAcademicoController::class,'editarMatricula'])->name('editarMatricula');
 Route::put('/updateMatricula/{numMatricula}',[RegistroAcademicoController::class,'updateMatricula'])->name('updateMatricula');
+Route::get('/matricula/{numMatricula}/constancia',[RegistroAcademicoController::class, 'generarConstancia'])->name('constanciaMatricula');
+Route::get('/preinscripciones',[RegistroAcademicoController::class,'addPreinscripciones'])->name('addPreinscripciones');
+Route::get('/preinscripciones/evaluar',[RegistroAcademicoController::class,'evaluarPreinscripciones'])->name('evaluarPreinscripciones');
+
+Route::post('/preinscripciones/apoderado',[ApoderadoController::class,'storeApoderadoPreinscripcion'])->name('storeApoderadoPreinscripcion');
+Route::post('/preinscripciones/interesado',[AlumnoController::class,'storeInteresadoPreinscripcion'])->name('storeInteresadoPreinscripcion');
+
+
+
+Route::get('/apiNivel',[NivelController::class,'index'])->name('apiNivel');
+
+
+
+
 //CURSO POR GRADO
 
 Route::get('curso-grado', [CursoGradoController::class, 'index'])->name('curso_grado.index');

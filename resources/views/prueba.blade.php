@@ -109,7 +109,7 @@ License: For each use you must have a valid license purchased only from above li
         </li>
         <li class="nav-item nav-category">SISTEMAS</li>
         <li class="nav-item ">
-          @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+          @if(Auth::guard('web')->check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
             <a class="nav-link" data-bs-toggle="collapse" href="#matriculas" role="button" aria-expanded="false" aria-controls="matriculas">
               <i class="link-icon" data-feather="user"></i>
               <span class="link-title">MATRICULAS</span>
@@ -117,20 +117,15 @@ License: For each use you must have a valid license purchased only from above li
             </a>
             <div class="collapse" id="matriculas">
               <ul class="nav sub-menu">
-                @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+                @if(Auth::guard('web')->check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
                   <li class="nav-item">
                     <a href="{{route('buscarMatricula')}}" class="nav-link ">Editar Matricula</a>
-                  </li>
-                @endif
-                @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
-                  <li class="nav-item">
-                    <a href="{{route('curso.index')}}" class="nav-link ">Generar constancias</a>
                   </li>
                 @endif
               </ul>
             </div>
           @endif
-          @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+          @if(Auth::guard('web')->check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
             <a class="nav-link" data-bs-toggle="collapse" href="#preinscripciones" role="button" aria-expanded="false" aria-controls="preinscripciones">
               <i class="link-icon" data-feather="file-plus"></i>
               <span class="link-title">PREINSCRIPCIONES</span>
@@ -138,14 +133,14 @@ License: For each use you must have a valid license purchased only from above li
             </a>
             <div class="collapse" id="preinscripciones">
               <ul class="nav sub-menu">
-                @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+                @if(Auth::guard('web')->check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
                   <li class="nav-item">
-                    <a href="{{route('curso.index')}}" class="nav-link ">Registrar Preinscripciones</a>
+                    <a href="{{route('addPreinscripciones')}}" class="nav-link ">Registrar Preinscripciones</a>
                   </li>
                 @endif
-                @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+                @if(Auth::guard('web')->check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
                   <li class="nav-item">
-                    <a href="{{route('curso.index')}}" class="nav-link ">Evaluar Preinscripciones</a>
+                    <a href="{{route('evaluarPreinscripciones')}}" class="nav-link ">Evaluar Preinscripciones</a>
                   </li>
                 @endif
               </ul>
@@ -153,7 +148,7 @@ License: For each use you must have a valid license purchased only from above li
           @endif
 
 
-          @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal != 'Secretaria')  
+          @if(Auth::guard('web')->check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal != 'Secretaria')  
             <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="false" aria-controls="email">
               <i class="link-icon" data-feather="mail"></i>
               <span class="link-title">MANTENEDOR</span>
@@ -230,7 +225,7 @@ License: For each use you must have a valid license purchased only from above li
             </div>
           @endif
         </li>
-        @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
+        @if(Auth::guard('web')->check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
           <li class="nav-item">
             <a href="{{route('alumno.index')}}" class="nav-link ">
               <i class="link-icon" data-feather="trending-up"></i>
@@ -238,14 +233,41 @@ License: For each use you must have a valid license purchased only from above li
             </a>
           </li>
         @endif
+        
+        
+        @if(Auth::guard('apoderados')->check())
+          @isset($codigoEstudiante)
+            <li class="nav-item ">
+              <a class="nav-link" data-bs-toggle="collapse" href="#matri" role="button" aria-expanded="false" aria-controls="matri">
+                <i class="link-icon" data-feather="mail"></i>
+                <span class="link-title">MATRICULAS</span>
+                <i class="link-arrow" data-feather="chevron-down"></i>
+              </a>
+              <div class="collapse " id="matri">
+                <ul class="nav sub-menu">
+                  <li class="nav-item">
+                    <a href="{{route('registronotas.index')}}" class="nav-link ">Expediente Admisión</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{route('registronotas.index')}}" class="nav-link ">Entrevista</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{route('matriculaRenovacionHijo',['codigoEstudiante'=>$codigoEstudiante])}}" class="nav-link ">Renovar Matricula</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          @endisset
+        @endif
+
         @if(Auth::guard('apoderados')->check())
           <li class="nav-item ">
-            <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="false" aria-controls="email">
+            <a class="nav-link" data-bs-toggle="collapse" href="#notas" role="button" aria-expanded="false" aria-controls="notas">
               <i class="link-icon" data-feather="mail"></i>
               <span class="link-title">NOTAS</span>
               <i class="link-arrow" data-feather="chevron-down"></i>
             </a>
-            <div class="collapse " id="email">
+            <div class="collapse " id="notas">
               <ul class="nav sub-menu">
                 <li class="nav-item">
                   <a href="{{route('registronotas.index')}}" class="nav-link ">Ver</a>
@@ -617,6 +639,24 @@ License: For each use you must have a valid license purchased only from above li
     <script src="https://www.nobleui.com/laravel/template/demo1/assets/js/template.js"></script>
     <!-- end common js -->
 
-      <script src="https://www.nobleui.com/laravel/template/demo1/assets/js/dashboard.js"></script>
+    <script src="https://www.nobleui.com/laravel/template/demo1/assets/js/dashboard.js"></script>
+    <script>
+      $(document).ready(function() {
+        const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.attributeName === "class") {
+                        const body = document.body;
+                        if (body.classList.contains("overflow-hidden")) {
+                            console.log("Removiendo 'overflow-hidden' automáticamente.");
+                            body.classList.remove("overflow-hidden");
+                        }
+                    }
+                });
+            });
+        
+            observer.observe(document.body, { attributes: true });
+        });
+      
+    </script>
 </body>
 </html>

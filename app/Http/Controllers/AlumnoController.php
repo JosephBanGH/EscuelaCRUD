@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alumno;
+use App\Models\Interesado;
 use App\Models\Escala;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -169,5 +170,32 @@ class AlumnoController extends Controller
         $alumno->estado = 0; // Cambia el estado a inactivo
         $alumno->save();
         return redirect()->route('alumno.index')->with('datos', 'Registro Eliminado...!');
+    }
+
+    public function storeInteresadoPreinscripcion(Request $request){
+        $request -> validate([
+            'idPreinscripcion' => 'required',
+            'nombreInteresado' => 'required|string|max:255',
+            'apellidoInteresado' => 'required|string|max:255',
+            'dniInteresado' => 'required',
+            'idGrado' => 'required',
+            'fechaAdmision' => 'required|date',
+            'sexo' => 'required'
+        ]);
+
+        $interesado = Interesado::create([
+            'idPreinscripcion' => $request->idPreinscripcion,
+            'nombreInteresado' => $request->nombreInteresado,
+            'apellidoInteresado' => $request -> apellidoInteresado,
+            'dni' => $request->dniInteresado,
+            'idGrado' => $request->idGrado,
+            'fechaNacimiento' => $request->fechaAdmision,
+            'sexo' => $request->sexo
+        ]);
+
+        $idApoderado = $interesado->idPreinscripcion;
+        return redirect()->route('addPreinscripciones')
+                        ->with('successH', 'Interesado Registrado con éxito')
+                        ->with('idApoderado', $idApoderado);
     }
 }

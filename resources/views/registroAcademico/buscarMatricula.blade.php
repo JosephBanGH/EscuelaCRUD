@@ -92,6 +92,9 @@
                                                 <a href="{{ route('editarMatricula', $matricula->numMatricula) }}" class="btn btn-info btn-sm">
                                                     <i class="fas fa-pencil"></i> Editar Matricula
                                                 </a>
+                                                <a href="{{ route('constanciaMatricula', $matricula->numMatricula) }}" class="btn btn-info btn-sm">
+                                                    <i class="fas fa-pencil"></i> Generar Constancia
+                                                </a>
                                             </td>
                                         @endforeach
                                     </tr>

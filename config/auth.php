@@ -39,12 +39,12 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'user_login',
-            'cookie' => 'web_session_' . md5(env('APP_KEY')),  // Nombre único para la cookie del guard "web"
+            'cookie' => 'session_web_2_' . md5(env('APP_KEY')),  // Nombre único para la cookie del guard "web"
         ],
         'apoderados' => [
             'driver' => 'session',
             'provider' => 'apoderados',
-            'cookie' => 'apoderado_session_' . md5(env('APP_KEY')),  // Nombre único para la cookie del guard "apoderados"
+            'cookie' => 'session_apoderado_2_' . md5(env('APP_KEY')),  // Nombre único para la cookie del guard "apoderados"
         ],
     ],
 
