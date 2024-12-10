@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Apoderado;
+use App\Models\Preinscripcion;
 use Illuminate\Http\Request;
 use App\Models\Escala;
 use App\Models\Alumno;
@@ -22,10 +23,10 @@ class ApoderadoController extends Controller
         $apoderado = Apoderado::with('estudiantes')->where('dniApoderado',$dniApoderado)->firstOrFail();
 
         //Tieniendo al apoderado accedemos al estudiante
-        $estudiantes = $apoderado->estudiantes;
+        //$estudiantes = $apoderado->estudiantes;
 
         //Retornar la vista con los datos del apoderado y los estudiantes (hijos)
-        return view('mantenedores.apoderados.index',compact('apoderado','estudiantes'));
+        return view('mantenedores.apoderados.index',compact('apoderado'));
     }
 
     public function hijoNotas($codigoEstudiante)
@@ -129,5 +130,32 @@ class ApoderadoController extends Controller
     public function destroy(Apoderado $apoderado)
     {
         //
+    }
+
+
+    public function storeApoderadoPreinscripcion(Request $request){
+        $request -> validate([
+            'nombreApoderado' => 'required|string|max:255',
+            'apellidoApoderado' => 'required|string|max:255',
+            'dni' => 'required|numeric|digits:8',
+            'celular' => 'required',
+            'correo' => 'required|email'
+        ]);
+
+        $apoderado = Preinscripcion::create([
+            'nombreApoderado' => $request->nombreApoderado,
+            'apellidoApoderado' => $request->apellidoApoderado,
+            'dni' => $request->dni,
+            'fechaPreInscripcion' => now(),
+            'numTelefono' => $request->celular,
+            'correo' => $request->correo,
+            'estado' => 1
+        ]);
+
+        $idApoderado = $apoderado->idPreinscripcion;
+        //dd($idApoderado);
+        return redirect()->route('addPreinscripciones')
+                        ->with('success', 'Apoderado Registrado con éxito')
+                        ->with('idApoderado', $idApoderado);
     }
 }

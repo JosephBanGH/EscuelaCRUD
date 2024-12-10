@@ -66,7 +66,7 @@ class UserController extends Controller
             if(Auth::guard('web')->attempt($credentials)){
                 $personal = $user->personal;
                 if ($personal && $personal->tipoPersonal && $personal->departamento) {
-                    cookie('web_session_' . md5(env('APP_KEY')));
+                    cookie('session_web_2_' . md5(env('APP_KEY')));
 
                     return $this->redirigirPorRolYDepartamento($personal->tipoPersonal->tipoPersonal, $personal->departamento->departamento);
                 }
@@ -86,7 +86,7 @@ class UserController extends Controller
         if($apoderadoLogin=UserLoginApoderado::where('userLogin',$credentials['userLogin'])->first()){
             if(Auth::guard('apoderados')->attempt($credentials)){
                 
-                cookie('apoderado_session_' . md5(env('APP_KEY')));
+                cookie('session_apoderado_2_' . md5(env('APP_KEY')));
                 //Obtener el apoderado relacionado al login
                 $apoderado = $apoderadoLogin->apoderado; //Relacion belongsTo
                 return redirect()->route('apoderadoInicio',['dniApoderado'=>$apoderado->dniApoderado]);
@@ -141,6 +141,7 @@ class UserController extends Controller
         Auth::guard('web')->logout();
         // Cerrar sesión del apoderado
         Auth::guard('apoderados')->logout();
+        
         return redirect('/');
     }
 }

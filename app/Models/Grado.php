@@ -27,4 +27,8 @@ class Grado extends Model
     {
         return $this->hasMany(Seccion::class, 'idGrado', 'idGrado');
     }
+
+    public function interesado(){
+        return $this->hasMany(Interesado::class,'idGrado','idGrado');
+    }
 }
