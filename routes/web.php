@@ -21,11 +21,17 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Alumno;
 
-/* Route::get('/', function () {
-    return view('login'); 
-}); */
+/* LANDING PAGE */
+Route::get('/',function(){
+    return view('login');
+});
 
-Route::get('/', [UserController::class, 'showLogin']);
+
+Route::get('/loginShow', function () {
+    return view('login'); 
+})->name('loginShow');
+
+//Route::get('login', [UserController::class, 'showLogin'])->name('login');
 Route::post('/identificacion', [UserController::class, 'verifylogin'])->name('identificacion');
 Route::post('/salir', [UserController::class, 'salir'])->name('logout');
 
@@ -214,11 +220,12 @@ Route::resource('myCourses',AlumnoCurso::class);
 
 //----------------- RUTAS COMPROBANTE PAGO  -------------------------------------
 
-Route::post('matricula/store', [COMPROBANTEPAGOController::class, 'store'])->name('matricula.store');
+Route::post('comprobante/store', [COMPROBANTEPAGOController::class, 'store'])->name('comprobante.store');
 
 
 //---------------------TESORERO
-Route::get('/tesoreria/comprobantes/verificar',[TesoreriaController::class,'index'])->name('verificarComprobantes');
+Route::get('/tesoreria/comprobantes/verificar',[TesoreriaController::class,'listarComprobantes'])->name('verificarComprobantes');
+Route::get('/tesoreria/index',[TesoreriaController::class,'index'])->name('indexTesoreria');
 Route::put('/tesoreria/comprobantes/verificar/{id}',[TesoreriaController::class,'verificarComprobante'])->name('postVerificar');
 
 
@@ -227,4 +234,6 @@ Route::resource('myPeriodo',PeriodoController::class);
 
 //------------ DIRECTOR 
 //Route::resource('/director',);
+
+
 

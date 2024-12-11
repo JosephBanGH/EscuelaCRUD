@@ -104,6 +104,11 @@ License: For each use you must have a valid license purchased only from above li
                   <a href="{{route('grado.index')}}" class="nav-link ">GRADO</a>
                 </li>
                 @endif
+                @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Jefe')
+                <li class="nav-item">
+                  <a href="{{ route('verificarComprobantes') }}" class="nav-link ">Ver Comprobantes</a>
+                </li>
+                @endif
                 @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Secretaria')
                   <li class="nav-item">
                     <a href="{{route('curso.index')}}" class="nav-link ">CURSO</a>
@@ -172,20 +177,23 @@ License: For each use you must have a valid license purchased only from above li
             </a>
           </li>
         @endif
-        <li class="nav-item ">
-          <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="false" aria-controls="email">
-            <i class="link-icon" data-feather="mail"></i>
-            <span class="link-title">NOTAS</span>
-            <i class="link-arrow" data-feather="chevron-down"></i>
-          </a>
-          <div class="collapse " id="email">
-            <ul class="nav sub-menu">
-              <li class="nav-item">
-                <a href="{{route('registronotas.index')}}" class="nav-link ">Ver</a>
-              </li>
-            </ul>
-          </div>
-        </li>
+        @if(Auth::guard('apoderados')->check())
+          <li class="nav-item ">
+            <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="false" aria-controls="email">
+              <i class="link-icon" data-feather="mail"></i>
+              <span class="link-title">NOTAS</span>
+              <i class="link-arrow" data-feather="chevron-down"></i>
+            </a>
+            <div class="collapse " id="email">
+              <ul class="nav sub-menu">
+                <li class="nav-item">
+                  <a href="{{route('registronotas.index')}}" class="nav-link ">Ver</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        @endif
+        
         @if(Auth::check() && Auth::user()->personal && Auth::user()->personal->tipoPersonal->tipoPersonal == 'Director')
           <li class="nav-item ">
             <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="false" aria-controls="email">

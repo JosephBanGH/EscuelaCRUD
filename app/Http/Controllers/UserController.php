@@ -116,7 +116,7 @@ class UserController extends Controller
         switch($rol){
             case 'Jefe':
                 if($departamento=='Tesoreria'){
-                    return redirect()->route('verificarComprobantes');
+                    return redirect()->route('indexTesoreria');
                 } 
             case 'Director':
                 if($departamento=='Direccion'){
