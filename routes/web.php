@@ -14,6 +14,8 @@ use App\Http\Controllers\MatriculaController;
 use App\Http\Controllers\CatedraController;
 use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\ListadoNotasController;
+use App\Http\Controllers\RegistroNotasController;
+use App\Http\Controllers\ImportController;
 use App\Http\Controllers\AlumnoCurso;
 use App\Http\Controllers\PeriodoController;
 use App\Http\Controllers\ApoderadoController;
@@ -162,8 +164,8 @@ Route::get('/capacidad/cancelar', function () {
 })->name('capacidad.cancelar');
 
 //LISTADO DE NOTAS 
-// Route::get('listadonotas/create', [ListadoNotasController::class, 'create'])->name('listadonotas.create');
-// Route::post('listadonotas/store', [ListadoNotasController::class, 'store'])->name('listadonotas.store');
+//Route::get('listadonotas/create', [ListadoNotasController::class, 'create'])->name('listadonotas.create');
+//Route::post('listadonotas/store', [ListadoNotasController::class, 'store'])->name('listadonotas.store');
 
 //TABLA
 
@@ -202,74 +204,7 @@ Route::put('curso-grado/{id}', [CursoGradoController::class, 'update'])->name('c
 Route::get('curso-grado/{id}/confirmar', [CursoGradoController::class, 'confirmar'])->name('curso_grado.confirmar');
 Route::delete('curso-grado/{id_curso}/{id_grado}', [CursoGradoController::class, 'destroy'])->name('curso_grado.destroy');
 
-//REGISTRO NOTAS
-use App\Http\Controllers\RegistroNotasController;
+
+
 
 Route::resource('registronotas', RegistroNotasController::class);
-
-
-
-//-------------CERRAR SESION -----------------
-
-Route::post('/logout', function () {
-    Auth::logout();
-    return redirect('/');
-})->name('logout');
-
-
-//luego hay que verificar que solo ingresen si han iniciado
-//sesion
-
-/*
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    // Otras rutas protegidas
-});
-
-*/
-
-//--------------------- APODERADO  -----------------------
-Route::get('/apoderado/inicio/{dniApoderado}', [ApoderadoController::class,'index'])->name('apoderadoInicio');
-Route::get('/apoderado/inicio/hijo/notas/{codigoEstudiante}', [ApoderadoController::class,'hijoNotas'])->name('notasHijo');
-Route::get('/apoderado/inicio/hijo/matricula/{codigoEstudiante}', [ApoderadoController::class,'hijoMatriculaRenovacion'])->name('matriculaRenovacionHijo');
-
-Route::get('/apoderados', function () {
-    return view('mantenedores/apoderados.index');
-})->name('apoderados.index');
-//->middleware('role.department:Secretaria,Oficina Registros'); // PRUEBA ES EL INDEX GENERAL
-
-
-
-
-//---------------------ALUMNO - CURSO -------------------
-
-
-Route::resource('myCourses',AlumnoCurso::class);
-
-
-//----------------- RUTAS COMPROBANTE PAGO  -------------------------------------
-
-Route::post('comprobante/store', [COMPROBANTEPAGOController::class, 'store'])->name('comprobante.store');
-
-
-//---------------------TESORERO
-Route::get('/tesoreria/comprobantes/verificar',[TesoreriaController::class,'listarComprobantes'])->name('verificarComprobantes');
-Route::get('/tesoreria/index',[TesoreriaController::class,'index'])->name('indexTesoreria');
-Route::put('/tesoreria/comprobantes/verificar/{id}',[TesoreriaController::class,'verificarComprobante'])->name('postVerificar');
-
-
-//------------- PERIODO
-
-
-//------------ DIRECTOR 
-Route::get('/director',[DirectorController::class,'index'])->name('inicioDireccion');
-
-Route::resource('myPeriodo',PeriodoController::class);
-
-//--------------- PREINSCRPCION
-
-Route::get('/preinscripcionIndex/{idPreinscripcion}',[PreinscripcionController::class,'index'])->name('preinscripcionIndex');
-Route::get('/entrevista/{idInteresado}',[PreinscripcionController::class,'entrevista'])->name('entrevista');
-Route::get('/expedienteAdmision/{idInteresado}',[PreinscripcionController::class,'expedienteAdmision'])->name('expedienteAdmision');
-Route::get('/observacion/{idInteresado}',[PreinscripcionController::class,'observacion'])->name('observacion');
-Route::get('/subirExpedienteAdmision/{idInteresado}',[PreinscripcionController::class,'subirExpedienteAdmision'])->name('subirExpedienteAdmision');

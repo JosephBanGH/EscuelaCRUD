@@ -2,6 +2,8 @@
 
 use Dompdf\Dompdf;
 use Illuminate\Support\Facades\Facade;
+//use Illuminate\Support\ServiceProvider;
+
 
 return [
 
@@ -108,9 +110,7 @@ return [
         ),
     ],
 
-    // 'providers' => ServiceProvider::defaultProviders()->merge([
-    //     \Barryvdh\DomPDF\ServiceProvider::class
-    // ])->toArray(),
+
     /*
     |--------------------------------------------------------------------------
     | Maintenance Mode Driver
@@ -131,5 +131,12 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'PDF' => \Barryvdh\DomPDF\Facade::class,
+        'Excel' => \Maatwebsite\Excel\Facades\Excel::class
     ])->toArray(),
+
+    //'providers' => ServiceProvider::defaultProviders()->merge([
+    //    \Barryvdh\DomPDF\ServiceProvider::class,
+    //    Maatwebsite\Excel\ExcelServiceProvider::class
+    //])->toArray(),
+
 ];
