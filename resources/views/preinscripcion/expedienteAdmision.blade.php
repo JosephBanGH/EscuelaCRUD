@@ -1,14 +1,38 @@
 @extends('prueba')
 
-@section('styles')
-    
+@section('sideBody')
+    <div class="sidebar-body mb-5">
+        <ul class="nav">
+            <li class="nav-item nav-category">MAIN</li>
+            <li class="nav-item active">
+                <a href="{{route('preinscripcionIndex',['idPreinscripcion' => $idPreinscripcion])}}" class="nav-link">
+                    <i class="link-icon" data-feather="box"></i>
+                    <span class="link-title">PRINCIPAL</span>
+                </a>
+            </li>
+            <li class="nav-item nav-category">SISTEMA</li>
+            <li class="nav-item">
+                <ul class="nav sub-menu">
+                    <li class="nav-item">
+                        <a href="{{route('expedienteAdmision',['idInteresado' => $interesado->idInteresado])}}" class="nav-link ">Expediente</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('entrevista',['idInteresado' => $interesado->idInteresado])}}" class="nav-link ">Entrevista</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('observacion',['idInteresado' => $interesado->idInteresado])}}" class="nav-link ">Observaciones</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 @endsection
 
 @section('contenido')
     <h4 class="text-center text-primary my-4">📂 Subir Expediente de Admisión</h4>
     <p class="text-muted text-center mb-5">Completa todos los campos requeridos para enviar el expediente de admisión. ¡Asegúrate de subir los documentos correctos en formato PDF! 🚀</p>
 
-    <form action="{{ route('subirExpedienteAdmision') }}" method="POST" enctype="multipart/form-data" class="p-4 shadow-lg rounded bg-light">
+    <form action="" method="POST" enctype="multipart/form-data" class="p-4 shadow-lg rounded bg-light">
         @csrf
         
         <!-- Campo: ID Expediente -->

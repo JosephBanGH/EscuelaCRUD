@@ -37,8 +37,11 @@ class ApoderadoController extends Controller
             });
         }])->where('codigoEstudiante',$codigoEstudiante)->firstOrFail();
 
+        $apoderado = Alumno::with(['apoderadoEstudiantes'])->where('codigoEstudiante',$codigoEstudiante)->firstOrFail();
+        $dniApoderado = $apoderado->apoderadoEstudiantes->first()->dniApoderado;
+        
         //dd($hijo->matricula->first()->periodo->inicioPeriodo);
-        return view('mantenedores.apoderados.hijoNota',compact('codigoEstudiante','hijo'));
+        return view('mantenedores.apoderados.hijoNota',compact('codigoEstudiante','hijo'))->with('dniApoderado',$dniApoderado);
     }
 
     public function hijoMatriculaRenovacion($codigoEstudiante)
@@ -59,6 +62,8 @@ class ApoderadoController extends Controller
         ->where('codigoEstudiante',$codigoEstudiante)
         ->firstOrFail();
 
+        $apoderado = Alumno::with(['apoderadoEstudiantes'])->where('codigoEstudiante',$codigoEstudiante)->firstOrFail();
+        $dniApoderado = $apoderado->apoderadoEstudiantes->first()->dniApoderado;
 
         $matricula = $estudiante->matricula->first();
 
@@ -81,7 +86,7 @@ class ApoderadoController extends Controller
             
         }
         
-        return view('mantenedores.apoderados.hijoMatricula',compact('codigoEstudiante','estudiante','matricula','renovar'));
+        return view('mantenedores.apoderados.hijoMatricula',compact('codigoEstudiante','estudiante','matricula','renovar'))->with('dniApoderado',$dniApoderado);;
     }
 
     /**

@@ -91,6 +91,7 @@ License: For each use you must have a valid license purchased only from above li
       </div>
     </div>
     <div class="sidebar-body">
+      @yield('sideBody')
       <ul class="nav">
         <li class="nav-item nav-category">MAIN</li>
         <li class="nav-item active">
@@ -200,17 +201,6 @@ License: For each use you must have a valid license purchased only from above li
                     </li>
                   @endif
 
-                  @if(Auth::guard('students')->check())
-                    <li class="nav-item">
-                      <a href="{{route('myCourses.index')}}" class="nav-link ">CURSOS</a>
-                    </li>
-                  @endif
-
-                  @if(Auth::guard('students')->check())
-                    <li class="nav-item">
-                      <a href="#" class="nav-link ">CALENDARIO</a>
-                    </li>
-                  @endif
 
                   @if(Auth::guard('apoderados')->check())
                       @isset($codigoEstudiante)
