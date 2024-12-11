@@ -12,10 +12,12 @@ use App\Http\Controllers\CapacidadController;
 use App\Http\Controllers\CursoGradoController;
 use App\Http\Controllers\MatriculaController;
 use App\Http\Controllers\CatedraController;
+use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\ListadoNotasController;
 use App\Http\Controllers\AlumnoCurso;
 use App\Http\Controllers\PeriodoController;
 use App\Http\Controllers\ApoderadoController;
+use App\Http\Controllers\PreinscripcionController;
 use App\Http\Controllers\COMPROBANTEPAGOController;
 use App\Http\Controllers\RegistroAcademicoController;
 use App\Http\Controllers\TesoreriaController;
@@ -169,10 +171,6 @@ Route::get('/notas', function () {
     return view('notas.index');
 })->name('notas.index');
 
-Route::get('/apoderados', function () {
-    return view('mantenedores/apoderados.index');
-})->name('apoderados.index');
-
 
 //Registro Academico
 
@@ -234,6 +232,10 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/apoderado/inicio/{dniApoderado}', [ApoderadoController::class,'index'])->name('apoderadoInicio');
 Route::get('/apoderado/inicio/hijo/notas/{codigoEstudiante}', [ApoderadoController::class,'hijoNotas'])->name('notasHijo');
 Route::get('/apoderado/inicio/hijo/matricula/{codigoEstudiante}', [ApoderadoController::class,'hijoMatriculaRenovacion'])->name('matriculaRenovacionHijo');
+
+Route::get('/apoderados', function () {
+    return view('mantenedores/apoderados.index');
+})->name('apoderados.index');
 //->middleware('role.department:Secretaria,Oficina Registros'); // PRUEBA ES EL INDEX GENERAL
 
 
@@ -257,15 +259,17 @@ Route::put('/tesoreria/comprobantes/verificar/{id}',[TesoreriaController::class,
 
 
 //------------- PERIODO
-Route::resource('myPeriodo',PeriodoController::class);
+
 
 //------------ DIRECTOR 
-//Route::resource('/director',);
+Route::get('/director',[DirectorController::class,'index'])->name('inicioDireccion');
 
+Route::resource('myPeriodo',PeriodoController::class);
 
-//--------------- SECRETARIA
+//--------------- PREINSCRPCION
 
-
-
-
-
+Route::get('/preinscripcionIndex/{idPreinscripcion}',[PreinscripcionController::class,'index'])->name('preinscripcionIndex');
+Route::get('/entrevista/{idInteresado}',[PreinscripcionController::class,'entrevista'])->name('entrevista');
+Route::get('/expedienteAdmision/{idInteresado}',[PreinscripcionController::class,'expedienteAdmision'])->name('expedienteAdmision');
+Route::get('/observacion/{idInteresado}',[PreinscripcionController::class,'observacion'])->name('observacion');
+Route::get('/subirExpedienteAdmision/{idInteresado}',[PreinscripcionController::class,'subirExpedienteAdmision'])->name('subirExpedienteAdmision');

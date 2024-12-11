@@ -46,6 +46,11 @@ return [
             'provider' => 'apoderados',
             'cookie' => 'session_apoderado_2_' . md5(env('APP_KEY')),  // Nombre único para la cookie del guard "apoderados"
         ],
+        'preinscripcion'=>[
+            'driver' => 'session',
+            'provider' => 'preinscripcion',
+            'cookie' => 'session_preinscripcion_2_' . md5(env('APP_KEY')),  // Nombre único para la cookie del guard "apoderados"
+        ],
     ],
 
 
@@ -74,6 +79,10 @@ return [
         'apoderados' => [
             'driver' => 'eloquent',
             'model' => App\Models\UserLoginApoderado::class, // Tabla USER_LOGIN_APODERADO
+        ],
+        'preinscripcion'=>[
+            'driver' => 'eloquent',
+            'model' => App\Models\Preinscripcion::class,
         ],
         // 'users' => [
         //     'driver' => 'database',

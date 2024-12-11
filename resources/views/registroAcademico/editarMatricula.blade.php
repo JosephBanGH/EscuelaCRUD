@@ -1,5 +1,51 @@
 @extends('prueba')
 
+
+@section('sideBody')
+    <div class="sidebar-body mb-5">
+        <ul class="nav">
+            <li class="nav-item nav-category">MAIN</li>
+            <li class="nav-item active">
+                <a href="{{route('registroAcademico.index')}}" class="nav-link">
+                    <i class="link-icon" data-feather="box"></i>
+                    <span class="link-title">PRINCIPAL</span>
+                </a>
+            </li>
+            <li class="nav-item nav-category">SISTEMA</li>
+            <li class="nav-item ">
+                <a class="nav-link" data-bs-toggle="collapse" href="#comprobante" role="button" aria-expanded="false" aria-controls="comprobante">
+                  <i class="link-icon" data-feather="mail"></i>
+                  <span class="link-title">COMPROBANTES</span>
+                  <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse " id="comprobante">
+                  <ul class="nav sub-menu">
+                    <li class="nav-item">
+                      <a href="{{route('verificarComprobantes')}}" class="nav-link ">Verificar validez</a>
+                    </li>
+                  </ul>
+                </div>
+                <a class="nav-link" data-bs-toggle="collapse" href="#preinscripciones" role="button" aria-expanded="false" aria-controls="preinscripciones">
+                    <i class="link-icon" data-feather="file-plus"></i>
+                    <span class="link-title">PREINSCRIPCIONES</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse" id="preinscripciones">
+                <ul class="nav sub-menu">
+                    <li class="nav-item">
+                        <a href="{{route('addPreinscripciones')}}" class="nav-link ">Registrar Preinscripciones</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="{{route('evaluarPreinscripciones')}}" class="nav-link ">Evaluar Preinscripciones</a>
+                    </li>
+                </ul>
+                </div>
+            </li>
+        </ul>
+    </div> 
+@endsection
+
 @section('contenido')
     <form action="{{route('updateMatricula',$matricula->numMatricula)}}" method="POST">
         @csrf

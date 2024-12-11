@@ -19,6 +19,32 @@
         
     </style>
 @endsection
+
+@section('sideBody')
+    <div class="sidebar-body mb-5">
+        <ul class="nav">
+            <li class="nav-item nav-category">MAIN</li>
+            <li class="nav-item active">
+                <a href="{{route('apoderadoInicio',['dniApoderado' => $dniApoderado])}}" class="nav-link">
+                    <i class="link-icon" data-feather="box"></i>
+                    <span class="link-title">PRINCIPAL</span>
+                </a>
+            </li>
+            <li class="nav-item nav-category">SISTEMA</li>
+            <li class="nav-item">
+                <ul class="nav sub-menu">
+                    <li class="nav-item">
+                        <a href="{{route('notasHijo',['codigoEstudiante' => $codigoEstudiante])}}" class="nav-link ">General</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('matriculaRenovacionHijo',['codigoEstudiante' => $codigoEstudiante])}}" class="nav-link ">Matricula</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>    
+@endsection
+
 @section('contenido')
     <h1>MATRICULA</h1>
     @if (session('success'))

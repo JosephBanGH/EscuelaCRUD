@@ -1,7 +1,21 @@
 @extends('prueba')
 
+@section('sideBody')
+    <div class="sidebar-body mb-5">
+        <ul class="nav">
+            <li class="nav-item nav-category">MAIN</li>
+            <li class="nav-item active">
+                <a href="{{route('apoderadoInicio',['dniApoderado' => $apoderado->dniApoderado])}}" class="nav-link">
+                    <i class="link-icon" data-feather="box"></i>
+                    <span class="link-title">PRINCIPAL</span>
+                </a>
+            </li>
+            <li class="nav-item nav-category">SISTEMA</li>
+        </ul>
+    </div>    
+@endsection
+
 @section('contenido')
-    <h1>HOLA</h1>
 
     <div class="cont">
         <h1>Bienvenido, {{ $apoderado->primer_nombre }} {{ $apoderado->apellido_paterno }}</h1>

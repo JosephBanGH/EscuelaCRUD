@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\UserLogin;
-use App\Models\UserLoginStudent;
+use App\Models\Preinscripcion;
 use App\Models\UserLoginApoderado;
 
 
@@ -73,14 +73,6 @@ class UserController extends Controller
             }
         }
 
-        //verificarComprobantes
-        //Verificar en la tabla USER_LOGIN_STUDENT
-        if($student=UserLoginStudent::where('userLogin',$credentials['userLogin'])->first()){
-            if(Auth::guard('students')->attempt($credentials)){
-                return redirect()->route('prueba');
-            }
-        }
-
 
         //Verificar en la tabla USER_LOGIN_APODERADO
         if($apoderadoLogin=UserLoginApoderado::where('userLogin',$credentials['userLogin'])->first()){
@@ -91,6 +83,16 @@ class UserController extends Controller
                 $apoderado = $apoderadoLogin->apoderado; //Relacion belongsTo
                 return redirect()->route('apoderadoInicio',['dniApoderado'=>$apoderado->dniApoderado]);
             }
+        }
+
+        $preinscripcion = Preinscripcion::where('correo', $request->input('name'))->first();
+
+        if ($preinscripcion && $preinscripcion->dni === $request->input('password')) {
+            //Auth::guard('preinscripcion')->login($preinscripcion);
+            cookie('sesion_preinscripcion_' . md5(env('APP_KEY')));
+
+            
+            return redirect()->route('preinscripcionIndex', ['idPreinscripcion' => $preinscripcion->idPreinscripcion]);
         }
 
         return back()->withError([
@@ -124,8 +126,8 @@ class UserController extends Controller
                 } 
             case 'Director':
                 if($departamento=='Direccion'){
-                    //return redirect()->route('director.index');
-                    return view('director.index');
+                    return redirect()->route('inicioDireccion');
+                    //return view('director.index');
                 }
             case 'Secretaria':
                 if($departamento=='Oficina Registros'){
