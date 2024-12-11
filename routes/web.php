@@ -216,8 +216,7 @@ Route::put('curso-grado/{id}', [CursoGradoController::class, 'update'])->name('c
 Route::get('curso-grado/{id}/confirmar', [CursoGradoController::class, 'confirmar'])->name('curso_grado.confirmar');
 Route::delete('curso-grado/{id_curso}/{id_grado}', [CursoGradoController::class, 'destroy'])->name('curso_grado.destroy');
 
-
-
+//NOTAS --YA NO
 
 Route::resource('registronotas', RegistroNotasController::class);
 
