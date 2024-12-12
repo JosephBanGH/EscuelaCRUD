@@ -118,4 +118,77 @@ class DirectorController extends Controller
         $entrevistas = Entrevista::with('interesado')->get(); // Cargar los interesados
         return view('director.evaluar', compact('entrevistas'));
     }
+    public function create()
+    {
+        // Obtener las entrevistas o los datos que necesitas
+        $entrevistas = Entrevista::all(); // O la consulta que necesites
+
+        // Pasar la variable a la vista
+        return view('director.create', compact('entrevistas'));
+    }
+    public function evaluar_store(Request $request)
+    {
+        // Validar los datos del formulario
+        $validated = $request->validate([
+            'idInteresado' => 'required|exists:interesados,id',  // Validar que el interesado exista
+            'nota' => 'required|numeric|between:0,20',  // Validar que la nota esté entre 0 y 20
+            'fechaEntrevista' => 'required|date',  // Validar que la fecha sea una fecha válida
+        ]);
+
+        // Obtener el interesado relacionado con la entrevista
+        $interesado = Interesado::find($request->idInteresado);  // Encuentra el interesado por su ID
+
+        // Crear una nueva entrevista
+        $entrevista = new Entrevista();
+        $entrevista->idInteresado = $request->idInteresado;
+        $entrevista->nota = $request->nota;
+        $entrevista->fechaEntrevista = $request->fechaEntrevista;
+
+        // Agregar los datos del interesado (nombre y apellido)
+        $entrevista->nombreInteresado = $interesado->nombreInteresado;
+        $entrevista->apellidoInteresado = $interesado->apellidoInteresado;
+
+        // Guardar la entrevista
+        $entrevista->save();
+
+        // Redirigir con un mensaje de éxito
+        return redirect()->route('director.evaluar')->with('success', 'Evaluación guardada exitosamente');
+    }
+    public function edit($id)
+    {
+        // Obtener la entrevista con el ID dado
+        $entrevista = Entrevista::findOrFail($id);  // Encuentra la entrevista por su ID
+    
+        // Pasar la entrevista a la vista para mostrar los datos en el formulario de edición
+        return view('director.edit', compact('entrevista'));
+    }
+    public function update(Request $request, $id)
+    {
+        // Validar los datos del formulario
+        $validated = $request->validate([
+            'idInteresado' => 'required|exists:interesados,id',  // Validar que el interesado exista
+            'nota' => 'required|numeric|between:0,20',  // Validar que la nota esté entre 0 y 20
+            'fechaEntrevista' => 'required|date',  // Validar que la fecha sea válida
+        ]);
+    
+        // Obtener la entrevista que se va a actualizar
+        $entrevista = Entrevista::findOrFail($id);
+    
+        // Actualizar los campos de la entrevista
+        $entrevista->idInteresado = $request->idInteresado;
+        $entrevista->nota = $request->nota;
+        $entrevista->fechaEntrevista = $request->fechaEntrevista;
+    
+        // Obtener los datos del interesado para actualizarlos también
+        $interesado = Interesado::find($request->idInteresado);
+        $entrevista->nombreInteresado = $interesado->nombreInteresado;
+        $entrevista->apellidoInteresado = $interesado->apellidoInteresado;
+    
+        // Guardar la entrevista actualizada
+        $entrevista->save();
+    
+        // Redirigir con un mensaje de éxito
+        return redirect()->route('director.evaluar')->with('success', 'Evaluación actualizada exitosamente');
+    }
+    
 }

@@ -36,30 +36,32 @@
 @endsection
 
 @section('contenido')
-<div class="container mt-5">
-    <h1 class="text-center mb-4">Registrar Nueva Evaluación</h1>
-    
-    <form method="POST" action="{{ route('evaluaciones.store') }}">
+<!-- resources/views/director/create.blade.php -->
+<div class="container">
+    <h3 class="text-center mb-4">Evaluación de Entrevista</h3>
+    <form action="{{ route('director.evaluar_store') }}" method="POST">
         @csrf
-        <div class="mb-3">
-            <label for="interesado" class="form-label">Estudiante</label>
-            <select class="form-control" name="idInteresado" required>
-                @foreach($interesados as $interesado)
-                    <option value="{{ $interesado->idInteresado }}">{{ $interesado->nombreInteresado }} {{ $interesado->apellidoInteresado }}</option>
+        <div class="form-group">
+            <label for="interesado">Nombre del Estudiante:</label>
+            <select name="interesado_id" id="interesado" class="form-control">
+                @foreach($entrevistas as $entrevista)
+                    <option value="{{ $entrevista->id }}">{{ $entrevista->interesado->nombreInteresado }} {{ $entrevista->interesado->apellidoInteresado }}</option>
                 @endforeach
             </select>
         </div>
-        <div class="mb-3">
-            <label for="nota" class="form-label">Nota</label>
-            <input type="number" class="form-control" name="nota" required>
+
+        <div class="form-group">
+            <label for="nota">Nota:</label>
+            <input type="number" name="nota" id="nota" class="form-control" required>
         </div>
-        <div class="mb-3">
-            <label for="fechaEntrevista" class="form-label">Fecha</label>
-            <input type="date" class="form-control" name="fechaEntrevista" required>
+
+        <div class="form-group">
+            <label for="fechaEntrevista">Fecha de la Entrevista:</label>
+            <input type="date" name="fechaEntrevista" id="fechaEntrevista" class="form-control" required>
         </div>
-        <div class="text-center">
-            <button type="submit" class="btn btn-primary">Guardar Evaluación</button>
-        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar Evaluación</button>
     </form>
 </div>
+
 @endsection

@@ -306,3 +306,6 @@ Route::post('/director/periodo', [DirectorController::class, 'store'])->name('di
 //--------------- Director Analisis
 Route::get('/director/analisis', [DirectorController::class, 'analisis'])->name('director.analisis');
 
+Route::get('/director/create', [DirectorController::class, 'create'])->name('director.create');
+Route::post('/evaluar/store', [DirectorController::class, 'evaluar_store'])->name('director.evaluar_store');  // Asegúrate de que este nombre esté correcto
+Route::get('/director/edit/{id}', [DirectorController::class, 'edit'])->name('director.edit');

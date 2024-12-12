@@ -35,33 +35,35 @@
     </div>
 @endsection
 @section('contenido')
-<div class="container mt-5">
-    <h1 class="text-center mb-4">Editar Evaluación</h1>
-    
-    <form method="POST" action="{{ route('evaluaciones.update', $entrevista->idEntrevista) }}">
-        @csrf
-        @method('PUT')
-        <div class="mb-3">
-            <label for="interesado" class="form-label">Estudiante</label>
-            <select class="form-control" name="idInteresado" required>
-                @foreach($interesados as $interesado)
-                    <option value="{{ $interesado->idInteresado }}" {{ $entrevista->idInteresado == $interesado->idInteresado ? 'selected' : '' }}>
-                        {{ $interesado->nombreInteresado }} {{ $interesado->apellidoInteresado }}
-                    </option>
-                @endforeach
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="nota" class="form-label">Nota</label>
-            <input type="number" class="form-control" name="nota" value="{{ $entrevista->nota }}" required>
-        </div>
-        <div class="mb-3">
-            <label for="fechaEntrevista" class="form-label">Fecha</label>
-            <input type="date" class="form-control" name="fechaEntrevista" value="{{ $entrevista->fechaEntrevista }}" required>
-        </div>
-        <div class="text-center">
-            <button type="submit" class="btn btn-primary">Actualizar Evaluación</button>
-        </div>
-    </form>
-</div>
+<div class="container">
+        <h2>Editar Entrevista</h2>
+        
+        <form action="{{ route('director.update', $entrevista->id) }}" method="POST">
+            @csrf
+            @method('PUT') <!-- Esto es necesario para enviar un PUT request -->
+
+            <div class="form-group">
+                <label for="interesado">Nombre del Estudiante:</label>
+                <select name="idInteresado" id="interesado" class="form-control">
+                    @foreach($entrevistas as $entrevista)
+                        <option value="{{ $entrevista->id }}" {{ $entrevista->idInteresado == $interesado->id ? 'selected' : '' }}>
+                            {{ $entrevista->interesado->nombreInteresado }} {{ $entrevista->interesado->apellidoInteresado }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="nota">Nota:</label>
+                <input type="number" name="nota" id="nota" class="form-control" value="{{ old('nota', $entrevista->nota) }}" required min="0" max="20">
+            </div>
+
+            <div class="form-group">
+                <label for="fechaEntrevista">Fecha de la Entrevista:</label>
+                <input type="date" name="fechaEntrevista" id="fechaEntrevista" class="form-control" value="{{ old('fechaEntrevista', $entrevista->fechaEntrevista) }}" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Actualizar Entrevista</button>
+        </form>
+    </div>
 @endsection
