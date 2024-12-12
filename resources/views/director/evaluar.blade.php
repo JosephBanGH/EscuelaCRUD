@@ -14,7 +14,7 @@
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#preinscripciones" role="button" aria-expanded="false" aria-controls="preinscripciones">
                     <i class="link-icon" data-feather="file-plus"></i>
-                    <span class="link-title">Datos</span>
+                    <span class="link-title">Datos </span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
                 <div class="collapse" id="preinscripciones">
