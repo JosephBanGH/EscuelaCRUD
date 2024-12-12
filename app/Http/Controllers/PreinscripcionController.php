@@ -6,6 +6,8 @@ use App\Models\Preinscripcion;
 use Illuminate\Http\Request;
 use App\Models\Interesado;
 use App\Models\Entrevista;
+use App\Models\ExpediteAdmision;
+use Illuminate\Support\Facades\Storage;
 
 class PreinscripcionController extends Controller
 {
@@ -86,10 +88,48 @@ class PreinscripcionController extends Controller
     {
         $interesado = Interesado::with('preinscripcion')->where('idInteresado', 'like',$idInteresado)->first();
         $idPreinscripcion = $interesado->preinscripcion->idPreinscripcion;
-        return view('preinscripcion.expedienteAdmision',compact('interesado'))->with('idPreinscripcion',$idPreinscripcion);;
+        $expediente = ExpediteAdmision::where('idInteresado', 'like',$idInteresado)->first();
+        if ($expediente == null) {
+            $expediente = new ExpediteAdmision();
+            $expediente->idInteresado = $idInteresado;
+            $expediente->save();
+        }
+        foreach(Storage::disk('public')->files('expedientes/'.$idInteresado) as $file){
+            $filename = basename($file);
+        }
+        return view('preinscripcion.expedienteAdmision',compact('interesado','idPreinscripcion','expediente'));
     }
 
-    public function subirExpedienteAdmision($idInteresado){
-        
+    public function storeExpediente(Request $request,$idInteresado){
+        $expediente = ExpediteAdmision::where('idInteresado', 'like',$idInteresado)->first();
+        if($request->isMethod('POST')){
+            $expediente->urlCompromiso = $request->urlCompromiso;
+            $expediente->urlCartaReferencia = $request->urlCartaReferencia;
+            $expediente->urlDniApoderado = $request->urlDniApoderado;
+            $expediente->urlDniInteresado = $request->urlDniInteresado;
+            $expediente->urlComprobanteDerechoInscripcion = $request->urlComprobanteDerechoInscripcion;
+            $expediente->urlConstanciaNoAdeudo = $request->urlConstanciaNoAdeudo;
+            $expediente->urlLibretaNota = $request->urlLibretaNota;
+            $expediente->urlConstanciaMatriculaAnterior = $request->urlConstanciaMatriculaAnterior;
+            $expediente->idEstadoExpediente = $expediente->idEstadoExpediente;
+            $expediente->save();
+
+            $fileCompromiso = $request->file('urlCompromiso');
+            $fileCartaReferencia = $request->file('urlCartaReferencia');
+            $fileDniApoderado = $request->file('urlDniApoderado');
+            $fileDniInteresado = $request->file('urlDniInteresado');
+            $fileComprobanteDerechoInscripcion = $request->file('urlComprobanteDerechoInscripcion');
+            $fileConstanciaNoAdeudo = $request->file('urlConstanciaNoAdeudo');
+            $fileLibretaNota = $request->file('urlLibretaNota');
+            $fileConstanciaMatriculaAnterior = $request->file('urlConstanciaMatriculaAnterior');
+            $fileEstadoExpediente = $request->file('idEstadoExpediente');
+
+            $fileCompromiso->storeAs('public/expedientes/'.$expediente->idInteresado, $fileCompromiso->getClientOriginalName(),'public');
+        }
+        return $this->expedienteAdmision($expediente->idInteresado);
+    }
+
+    public function downloadFile($filename,$idInteresado){
+        return Storage::disk('public')->download('expedientes/'.$idInteresado.'/'.$filename);
     }
 }
