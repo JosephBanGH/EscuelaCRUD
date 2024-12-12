@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use App\Models\Entrevista;
 use App\Models\Interesado;
 use Psy\Readline\Hoa\Console;
+use App\Models\Alumno;
 
 class DirectorController extends Controller
 {
@@ -31,9 +32,7 @@ class DirectorController extends Controller
         // Retornar la vista con todas las variables necesarias
         return view('director.general', compact('matriculas', 'totalMatriculas', 'matriculasActivas', 'matriculasAnuladas'));
     }
-<<<<<<< HEAD
-    
-=======
+
     public function programar($idPreinscripcion)
     {
         $interesado = Interesado::where('idPreinscripcion', 'like',$idPreinscripcion)->first();
@@ -51,7 +50,7 @@ class DirectorController extends Controller
         
         $entrevista->idComiteAdmision = 1;
         $entrevista->save();
->>>>>>> 0df6bc014484866a4368cdfd48d649a4660c5476
+
 
         return redirect()->route('evaluarPreinscripciones');
     }
@@ -114,5 +113,9 @@ class DirectorController extends Controller
         }
         return view('director.analisis', compact('preinscripciones'));
     }
-
+    public function evaluar()
+    {
+        $entrevistas = Entrevista::with('interesado')->get(); // Cargar los interesados
+        return view('director.evaluar', compact('entrevistas'));
+    }
 }
