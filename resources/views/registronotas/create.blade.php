@@ -1,7 +1,7 @@
 @extends('prueba')
 
 @section('contenido')
-    <div class="container">
+    <div class="container"> 
         <h1>Crear Nuevo Registro de Notas</h1>
 
         <form action="{{ route('registronotas.store') }}" method="POST">

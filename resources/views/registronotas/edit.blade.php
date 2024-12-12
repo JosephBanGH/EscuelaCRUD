@@ -58,7 +58,11 @@
                 </div>
             </div>
         @endforeach
+<<<<<<< HEAD
     </div> 
+=======
+    </div>
+>>>>>>> d16ae3c (Se tiene listo la seccion de busqueda de estudiante pero aun vamos a la mitad de matriculas)
 
     <button type="submit" class="btn btn-primary">Actualizar Registro</button>
 </form>
