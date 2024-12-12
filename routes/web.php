@@ -288,13 +288,11 @@ Route::get('/observacion/{idInteresado}',[PreinscripcionController::class,'obser
 Route::get('/subirExpedienteAdmision/{idInteresado}',[PreinscripcionController::class,'subirExpedienteAdmision'])->name('subirExpedienteAdmision');
 
 
+
+Route::get('/director/evaluar', [DirectorController::class, 'evaluar'])->name('director.evaluar');
+
+//--------------- Director General Matricula
 Route::get('/director', [DirectorController::class, 'index'])->name('director.general');
-
-Route::get('/director/evaluar', function () {
-    return view('director.evaluar');
-})->name('director.evaluar');
-
-
 
 //--------------- Director Periodo
 Route::put('/director/cambiar-estado/{id}', [DirectorController::class, 'cambiarEstado'])->name('director.cambiarEstado');

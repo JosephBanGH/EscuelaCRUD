@@ -1,7 +1,7 @@
 @extends('prueba')
 
 @section('sideBody')
-    <div class="sidebar-body mb-5">
+<div class="sidebar-body mb-5">
         <ul class="nav">
             <li class="nav-item nav-category">MAIN</li>
             <li class="nav-item active">
@@ -37,44 +37,29 @@
 
 @section('contenido')
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Evaluación de Estudiantes</h1>
+    <h1 class="text-center mb-4">Registrar Nueva Evaluación</h1>
     
-    <!-- Botón de registro -->
-    <div class="text-center mb-4">
-        <a href="" class="btn btn-primary btn-lg">Registrar Nueva Evaluación</a>
-    </div>
-
-    <!-- Tabla de evaluaciones -->
-    <div class="row">
-        <div class="col-md-12">
-            <h3 class="text-center mb-4">Lista de Evaluaciones</h3>
-            <table class="table table-bordered">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>#</th>
-                        <th>Nombre del Estudiante</th>
-                        <th>DNI</th>
-                        <th>Nota</th>
-                        <th>Fecha</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($entrevistas as $entrevista)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>                           
-                            <td>{{ $entrevista->interesado->nombreInteresado }} {{ $entrevista->interesado->apellidoInteresado }}</td>
-                            <td>{{ $entrevista->interesado->dni }}</td> 
-                            <td>{{ $entrevista->nota }}</td>
-                            <td>{{ $entrevista->fechaEntrevista }}</td>
-                            <td>
-                                <a href="" class="btn btn-warning btn-sm">Editar</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+    <form method="POST" action="{{ route('evaluaciones.store') }}">
+        @csrf
+        <div class="mb-3">
+            <label for="interesado" class="form-label">Estudiante</label>
+            <select class="form-control" name="idInteresado" required>
+                @foreach($interesados as $interesado)
+                    <option value="{{ $interesado->idInteresado }}">{{ $interesado->nombreInteresado }} {{ $interesado->apellidoInteresado }}</option>
+                @endforeach
+            </select>
         </div>
-    </div>
+        <div class="mb-3">
+            <label for="nota" class="form-label">Nota</label>
+            <input type="number" class="form-control" name="nota" required>
+        </div>
+        <div class="mb-3">
+            <label for="fechaEntrevista" class="form-label">Fecha</label>
+            <input type="date" class="form-control" name="fechaEntrevista" required>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Guardar Evaluación</button>
+        </div>
+    </form>
 </div>
 @endsection
