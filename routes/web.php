@@ -37,7 +37,10 @@ Route::get('/loginShow', function () {
 })->name('loginShow');
 
 //  PPREINSCRICIONES
-Route::get('/pre/{id}',[PreinscripcionController::class,'index'])->name('preinscripcion.index');
+Route::get('/pre/{idPreinscripcion}',[PreinscripcionController::class,'index'])->name('preinscripcionIndex');
+
+
+
 
 //Route::get('login', [UserController::class, 'showLogin'])->name('login');
 Route::post('/identificacion', [UserController::class, 'verifylogin'])->name('identificacion');
