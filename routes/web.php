@@ -212,3 +212,93 @@ Route::delete('curso-grado/{id_curso}/{id_grado}', [CursoGradoController::class,
 //NOTAS --YA NO
 
 Route::resource('registronotas', RegistroNotasController::class);
+Route::post('/registronotas/importar', [RegistroNotasController::class, 'importar'])->name('registronotas.importar');
+
+
+
+Route::get('/importar-excel', [ImportController::class, 'showForm'])->name('import.form');
+Route::post('/importar-excel', [ImportController::class, 'importExcel'])->name('import.excel');
+
+//-------------CERRAR SESION -----------------
+
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/');
+})->name('logout');
+
+
+//luego hay que verificar que solo ingresen si han iniciado
+//sesion
+
+/*
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    // Otras rutas protegidas
+});
+
+*/
+
+//--------------------- APODERADO  -----------------------
+Route::get('/apoderado/inicio/{dniApoderado}', [ApoderadoController::class,'index'])->name('apoderadoInicio');
+Route::get('/apoderado/inicio/hijo/notas/{codigoEstudiante}', [ApoderadoController::class,'hijoNotas'])->name('notasHijo');
+Route::get('/apoderado/inicio/hijo/matricula/{codigoEstudiante}', [ApoderadoController::class,'hijoMatriculaRenovacion'])->name('matriculaRenovacionHijo');
+
+Route::get('/apoderados', function () {
+    return view('mantenedores/apoderados.index');
+})->name('apoderados.index');
+//->middleware('role.department:Secretaria,Oficina Registros'); 
+
+
+
+
+//---------------------ALUMNO - CURSO -------------------
+
+
+Route::resource('myCourses',AlumnoCurso::class);
+
+
+//----------------- RUTAS COMPROBANTE PAGO  -------------------------------------
+
+Route::post('comprobante/store', [COMPROBANTEPAGOController::class, 'store'])->name('comprobante.store');
+
+
+//---------------------TESORERO
+Route::get('/tesoreria/comprobantes/verificar',[TesoreriaController::class,'listarComprobantes'])->name('verificarComprobantes');
+Route::get('/tesoreria/index',[TesoreriaController::class,'index'])->name('indexTesoreria');
+Route::put('/tesoreria/comprobantes/verificar/{id}',[TesoreriaController::class,'verificarComprobante'])->name('postVerificar');
+
+
+//------------- PERIODO
+
+
+//------------ DIRECTOR 
+Route::get('/director',[DirectorController::class,'index'])->name('inicioDireccion');
+
+Route::resource('myPeriodo',PeriodoController::class);
+
+//--------------- PREINSCRPCION
+
+Route::get('/preinscripcionIndex/{idPreinscripcion}',[PreinscripcionController::class,'index'])->name('preinscripcionIndex');
+Route::get('/entrevista/{idInteresado}',[PreinscripcionController::class,'entrevista'])->name('entrevista');
+Route::get('/expedienteAdmision/{idInteresado}',[PreinscripcionController::class,'expedienteAdmision'])->name('expedienteAdmision');
+Route::get('/observacion/{idInteresado}',[PreinscripcionController::class,'observacion'])->name('observacion');
+Route::get('/subirExpedienteAdmision/{idInteresado}',[PreinscripcionController::class,'subirExpedienteAdmision'])->name('subirExpedienteAdmision');
+
+
+Route::get('/director', function () {
+    return view('director.general');
+})->name('director.general');
+
+Route::get('/director/evaluar', function () {
+    return view('director.evaluar');
+})->name('director.evaluar');
+
+
+Route::get('/director/analisis', function () {
+    return view('director.analisis');
+})->name('director.analisis');
+
+Route::get('/director/periodo', function () {
+    return view('director.periodo');
+})->name('director.periodo');
+
