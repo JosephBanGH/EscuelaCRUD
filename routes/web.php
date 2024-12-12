@@ -43,11 +43,13 @@ use App\Models\Alumno;
 Route::get('/',function(){
     return view('landing');
 });
-Route::get('/pre/{id}',[PreinscripcionController::class,'index'])->name('preinscripcion.index');
 
 Route::get('/loginShow', function () {
     return view('login'); 
 })->name('loginShow');
+
+//  PPREINSCRICIONES
+Route::get('/pre/{id}',[PreinscripcionController::class,'index'])->name('preinscripcion.index');
 
 //Route::get('login', [UserController::class, 'showLogin'])->name('login');
 Route::post('/identificacion', [UserController::class, 'verifylogin'])->name('identificacion');
