@@ -6,7 +6,7 @@
         <ul class="nav">
             <li class="nav-item nav-category">MAIN</li>
             <li class="nav-item active">
-                <a href="{{route('inicioDireccion')}}" class="nav-link">
+                <a href="route('inicioDireccion')}}" class="nav-link">
                     <i class="link-icon" data-feather="box"></i>
                     <span class="link-title">PRINCIPAL</span>
                 </a>

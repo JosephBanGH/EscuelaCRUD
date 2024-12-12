@@ -21,6 +21,9 @@ License: For each use you must have a valid license purchased only from above li
 
     <title>I.E Mariano Melgar</title>
 
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+
   <!-- Fonts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -633,6 +636,8 @@ License: For each use you must have a valid license purchased only from above li
     <!-- end common js -->
 
     <script src="https://www.nobleui.com/laravel/template/demo1/assets/js/dashboard.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script> 
     <script>
       $(document).ready(function() {
         const observer = new MutationObserver((mutations) => {

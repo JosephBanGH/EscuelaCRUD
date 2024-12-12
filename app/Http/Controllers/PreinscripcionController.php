@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Preinscripcion;
 use Illuminate\Http\Request;
 use App\Models\Interesado;
+use App\Models\Entrevista;
 
 class PreinscripcionController extends Controller
 {
@@ -70,7 +71,8 @@ class PreinscripcionController extends Controller
     {
         $interesado = Interesado::with('preinscripcion')->where('idInteresado', 'like',$idInteresado)->first();
         $idPreinscripcion = $interesado->preinscripcion->idPreinscripcion;
-        return view('preinscripcion.entrevista',compact('interesado'))->with('idPreinscripcion',$idPreinscripcion);
+        $entrevista = Entrevista::where('idInteresado', 'like',$idInteresado)->first();
+        return view('preinscripcion.entrevista',compact('interesado','entrevista'))->with('idPreinscripcion',$idPreinscripcion);
     }
 
     public function observacion($idInteresado)

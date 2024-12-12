@@ -3,11 +3,10 @@
 @section('contenido')
 <div class="container mt-5">
     <h1 class="text-center mb-4">Evaluación de Estudiantes</h1>
-    <p class="text-center">Administra y registra evaluaciones de los estudiantes. Genera informes de desempeño y progreso.</p>
-
+    
     <!-- Botón de registro -->
     <div class="text-center mb-4">
-        <a href="{{ route('evaluaciones.create') }}" class="btn btn-primary btn-lg">Registrar Nueva Evaluación</a>
+        <a href="" class="btn btn-primary btn-lg">Registrar Nueva Evaluación</a>
     </div>
 
     <!-- Tabla de evaluaciones -->
