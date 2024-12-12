@@ -534,6 +534,7 @@
                 <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="#matriculas">Matrículas</a></li>
                 <li><a href="#noticias">Noticias</a></li>
+                <li><a href="{{Route('addPreinscripciones2')}}">Preinscripciones</a></li>
             </ul>
         </nav>
         <a href="{{ route('loginShow') }}" class="btn-login">Login</a>
@@ -697,6 +698,7 @@
             </div>
         </div>
     </section>
+    @yield('contenido')')
 
     <footer>
         <div class="footer-col">

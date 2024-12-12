@@ -187,6 +187,10 @@ Route::get('/editarMatricula/{numMatricula}',[RegistroAcademicoController::class
 Route::put('/updateMatricula/{numMatricula}',[RegistroAcademicoController::class,'updateMatricula'])->name('updateMatricula');
 Route::get('/matricula/{numMatricula}/constancia',[RegistroAcademicoController::class, 'generarConstancia'])->name('constanciaMatricula');
 Route::get('/preinscripciones',[RegistroAcademicoController::class,'addPreinscripciones'])->name('addPreinscripciones');
+Route::get('/preinscripciones2',function(){
+    return view('registroAcademico.preinscripcionlanding');
+}
+)->name('addPreinscripciones2');
 Route::get('/preinscripciones/evaluar',[RegistroAcademicoController::class,'evaluarPreinscripciones'])->name('evaluarPreinscripciones');
 
 Route::post('/preinscripciones/apoderado',[ApoderadoController::class,'storeApoderadoPreinscripcion'])->name('storeApoderadoPreinscripcion');
