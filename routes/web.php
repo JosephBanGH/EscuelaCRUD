@@ -295,7 +295,9 @@ Route::get('/director/analisis', function () {
     return view('director.analisis');
 })->name('director.analisis');
 
-Route::get('/director/periodo', function () {
-    return view('director.periodo');
-})->name('director.periodo');
+
+Route::put('director/cambiar-estado/{id}', [DirectorController::class, 'cambiarEstado'])->name('director.cambiarEstado');
+Route::get('/director/periodo', [DirectorController::class, 'periodo'])->name('director.periodo');
+
+Route::post('/director/periodo', [DirectorController::class, 'store'])->name('director.store');
 
