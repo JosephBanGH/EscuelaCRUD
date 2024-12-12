@@ -74,6 +74,7 @@
                     <td>{{$preinscripcion->correo}}</td>
                     <td>
                         <button type="button" class="btn btn-primary">Evaluar</button>
+                        <button type="button" class="btn btn-primary"><a style="color: white" href="{{Route('director.programar',[$preinscripcion->idPreinscripcion])}}">Programar</a></button>
                     </td>
                 </tr>
             @endforeach

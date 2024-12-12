@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Interesado;
+use App\Models\Entrevista;
+use Psy\Readline\Hoa\Console;
 
 class DirectorController extends Controller
 {
@@ -12,6 +15,34 @@ class DirectorController extends Controller
     public function index()
     {
         return view('director.index');
+    }
+
+    public function programar($idPreinscripcion)
+    {
+        $interesado = Interesado::where('idPreinscripcion', 'like',$idPreinscripcion)->first();
+        return view('director.programar',compact('interesado'))->with('interesado',$interesado);
+    }
+    public function updateEntrevista(Request $request)
+    {
+        // //imprimir en consola
+        // $request->validate([
+        //     'lugarEntrevista' => 'required|string|max:255',
+        //     'fechaEntrevista' => 'required|date',
+        //     'horaEntrevista' => 'required|date_format:H:i',
+        // ]);
+
+        $entrevista = new Entrevista();
+        $entrevista->idInteresado = $request->idInteresado;
+        
+        $entrevista->lugarEntrevista = $request->lugarEntrevista;
+        // Combine fecha and hora into a single datetime field
+        $fechaHora = $request->fechaEntrevista . ' ' . $request->horaEntrevista;
+        $entrevista->fechaEntrevista = date('Y-m-d H:i:s', strtotime($fechaHora));
+        
+        $entrevista->idComiteAdmision = 1;
+        $entrevista->save();
+
+        return redirect()->route('evaluarPreinscripciones');
     }
 
     /**
