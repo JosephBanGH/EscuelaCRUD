@@ -56,6 +56,9 @@
         <div class="mb-3">
             <label for="urlCompromiso" class="form-label">Compromiso firmado (PDF)</label>
             <input type="file" class="form-control" id="urlCompromiso" name="urlCompromiso" accept=".pdf" required>
+            @if($expediente->urlCompromiso)
+            <a href="{{ asset('storage/' . $expediente->urlCompromiso) }}" target="_blank" class="btn btn-link">Ver documento actual</a>
+            @endif
             <small class="text-muted">Sube el compromiso firmado en formato PDF.</small>
         </div>
 
