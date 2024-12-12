@@ -39,7 +39,7 @@ Route::get('/loginShow', function () {
 //  PPREINSCRICIONES
 Route::get('/pre/{idPreinscripcion}',[PreinscripcionController::class,'index'])->name('preinscripcionIndex');
 
-
+Route::get('/pre/entrevista/{idInteresado}',[PreinscripcionController::class,'entrevista'])->name('entrevista');
 
 
 //Route::get('login', [UserController::class, 'showLogin'])->name('login');
@@ -276,6 +276,9 @@ Route::get('/director',[DirectorController::class,'index'])->name('inicioDirecci
 
 Route::resource('myPeriodo',PeriodoController::class);
 
+
+Route::get('/director/programar/{idInteresado}',[DirectorController::class,'programar'])->name('director.programar');
+Route::post('/director/updateEntrevista',[DirectorController::class,'updateEntrevista'])->name('director.updateEntrevista');
 //--------------- PREINSCRPCION
 
 Route::get('/preinscripcionIndex/{idPreinscripcion}',[PreinscripcionController::class,'index'])->name('preinscripcionIndex');

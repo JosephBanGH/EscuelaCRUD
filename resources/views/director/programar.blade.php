@@ -5,32 +5,20 @@
         <ul class="nav">
             <li class="nav-item nav-category">MAIN</li>
             <li class="nav-item active">
-                <a href="{{route('preinscripcionIndex',['idPreinscripcion' => $idPreinscripcion])}}" class="nav-link">
+                <a href="{{route('evaluarPreinscripciones')}}" class="nav-link">
                     <i class="link-icon" data-feather="box"></i>
-                    <span class="link-title">PRINCIPAL</span>
+                    <span class="link-title">ATRAS</span>
                 </a>
             </li>
-            <li class="nav-item nav-category">SISTEMA</li>
-            <li class="nav-item">
-                <ul class="nav sub-menu">
-                    <li class="nav-item">
-                        <a href="{{route('expedienteAdmision',['idInteresado' => $interesado->idInteresado])}}" class="nav-link ">Expediente</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{route('entrevista',['idInteresado' => $interesado->idInteresado])}}" class="nav-link ">Entrevista</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{route('observacion',['idInteresado' => $interesado->idInteresado])}}" class="nav-link ">Observaciones</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </div>
 @endsection
 
 @section('contenido')
+<!-- Formulario de actualización  -->
+<form action="{{Route('director.updateEntrevista')}}" method="POST">
+    @csrf
     <div class="container my-5">
         <h1 class="mb-4">Programación de la Entrevista</h1>
+        <input hidden type="text" name="idInteresado" id="idInteresado" value='{{$interesado->idInteresado}}'>
         <div class="row justify-content-center">
             <div class="col-md-8">
 
@@ -45,8 +33,7 @@
                         <div class="mb-3">
                             <label for="fechaEntrevista" class="form-label">Fecha de la entrevista</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="fechaEntrevista" placeholder="Selecciona la fecha" aria-describedby="fechaHelp"
-                                value="{{$entrevista->fechaEntrevista}}" disabled>
+                                <input type="text" class="form-control" id="fechaEntrevista" placeholder="Selecciona la fecha" aria-describedby="fechaHelp">
                                 <span class="input-group-text" id="fechaHelp"><i class="bi bi-calendar3"></i></span>
                             </div>
                             <small class="text-muted">Seleccione la fecha en el calendario.</small>
@@ -55,22 +42,21 @@
                         <!-- Campo para seleccionar hora -->
                         <div class="mb-3">
                             <label for="horaEntrevista" class="form-label">Hora de la entrevista</label>
-                            <input type="time" class="form-control" id="horaEntrevista" placeholder="Hora de la entrevista"
-                            value="{{ \Carbon\Carbon::parse($entrevista->fechaEntrevista)->format('H:i') }}" disabled>
+                            <input type="time" class="form-control" id="horaEntrevista" placeholder="Hora de la entrevista" value="09:00">
                             <small class="text-muted">Seleccione la hora aproximada de la reunión.</small>
                         </div>
 
                         <!-- Campo para el lugar de la entrevista -->
                         <div class="mb-3">
                             <label for="lugarEntrevista" class="form-label">Lugar de la entrevista</label>
-                            <input type="text" class="form-control" id="lugarEntrevista" value="{{$entrevista->lugarEntrevista}}" disabled>
+                            <input type="text" class="form-control" name="lugarEntrevista" id="lugarEntrevista" placeholder="Ej: Sala de Entrevistas #1">
                             <small class="text-muted">Indicar el lugar físico o virtual de la reunión.</small>
                         </div>
 
                         <!-- Campo readonly para la nota asignada al finalizar -->
                         <div class="mb-3">
                             <label for="notaEntrevista" class="form-label">Nota Final (asignada después de la entrevista)</label>
-                            <input type="text" class="form-control" id="notaEntrevista" value="Pendiente" readonly>
+                            <input type="text" class="form-control" id="notaEntrevista" value="Pendiente" readonly disable>
                             <small class="text-muted">La nota será visible después de la reunión.</small>
                         </div>
 
@@ -81,10 +67,14 @@
                         </div>
                         
                     </div>
+                    
+                <input type="submit" value="Ingresar" class="submit-button">
+
                 </div>
             </div>
         </div>
     </div>
+</form>
 @endsection
 
 @section('scripts')

@@ -7,6 +7,9 @@ use App\Models\Periodo;
 use App\Models\Preinscripcion;
 use App\Models\Matricula;
 use Carbon\Carbon;
+use App\Models\Entrevista;
+use App\Models\Interesado;
+use Psy\Readline\Hoa\Console;
 
 class DirectorController extends Controller
 {
@@ -28,8 +31,33 @@ class DirectorController extends Controller
         // Retornar la vista con todas las variables necesarias
         return view('director.general', compact('matriculas', 'totalMatriculas', 'matriculasActivas', 'matriculasAnuladas'));
     }
+<<<<<<< HEAD
     
+=======
+    public function programar($idPreinscripcion)
+    {
+        $interesado = Interesado::where('idPreinscripcion', 'like',$idPreinscripcion)->first();
+        return view('director.programar',compact('interesado'))->with('interesado',$interesado);
+    }
+    public function updateEntrevista(Request $request)
+    {
+        $entrevista = new Entrevista();
+        $entrevista->idInteresado = $request->idInteresado;
+        
+        $entrevista->lugarEntrevista = $request->lugarEntrevista;
+        // Combine fecha and hora into a single datetime field
+        $fechaHora = $request->fechaEntrevista . ' ' . $request->horaEntrevista;
+        $entrevista->fechaEntrevista = date('Y-m-d H:i:s', strtotime($fechaHora));
+        
+        $entrevista->idComiteAdmision = 1;
+        $entrevista->save();
+>>>>>>> 0df6bc014484866a4368cdfd48d649a4660c5476
 
+        return redirect()->route('evaluarPreinscripciones');
+    }
+    /**
+     * Show the form for creating a new resource.
+     */
     public function periodo()
     {
         // Obtener todos los periodos
