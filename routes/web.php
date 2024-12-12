@@ -14,28 +14,16 @@ use App\Http\Controllers\MatriculaController;
 use App\Http\Controllers\CatedraController;
 use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\ListadoNotasController;
-<<<<<<< HEAD
-<<<<<<< HEAD
 use App\Http\Controllers\RegistroNotasController;
 use App\Http\Controllers\ImportController;
-=======
-=======
 use App\Http\Controllers\AlumnoCurso;
 use App\Http\Controllers\PeriodoController;
 use App\Http\Controllers\ApoderadoController;
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 5c3731e (Hasta tenemos ya iniciado el proceso de renovacion de matricula)
-=======
-=======
 use App\Http\Controllers\PreinscripcionController;
->>>>>>> c7c14d2 (Terminamos la parte de renovacion de matricula)
 use App\Http\Controllers\COMPROBANTEPAGOController;
 use App\Http\Controllers\RegistroAcademicoController;
 use App\Http\Controllers\TesoreriaController;
->>>>>>> f432c17 (Ya se generar la renovacion de matricula de forma automatica tras verificar la boleta)
 use Illuminate\Support\Facades\Auth;
->>>>>>> c807898 (El usuario ya puede cerrar sesion)
 
 use App\Models\Alumno;
 
@@ -221,16 +209,12 @@ Route::delete('curso-grado/{id_curso}/{id_grado}', [CursoGradoController::class,
 //NOTAS --YA NO
 
 Route::resource('registronotas', RegistroNotasController::class);
-
-
-<<<<<<< HEAD
 Route::post('/registronotas/importar', [RegistroNotasController::class, 'importar'])->name('registronotas.importar');
 
 
 
 Route::get('/importar-excel', [ImportController::class, 'showForm'])->name('import.form');
 Route::post('/importar-excel', [ImportController::class, 'importExcel'])->name('import.excel');
-=======
 
 //-------------CERRAR SESION -----------------
 
@@ -251,10 +235,6 @@ Route::middleware(['auth'])->group(function () {
 
 */
 
-<<<<<<< HEAD
-//--------------------------------------------
->>>>>>> c807898 (El usuario ya puede cerrar sesion)
-=======
 //--------------------- APODERADO  -----------------------
 Route::get('/apoderado/inicio/{dniApoderado}', [ApoderadoController::class,'index'])->name('apoderadoInicio');
 Route::get('/apoderado/inicio/hijo/notas/{codigoEstudiante}', [ApoderadoController::class,'hijoNotas'])->name('notasHijo');
@@ -263,8 +243,7 @@ Route::get('/apoderado/inicio/hijo/matricula/{codigoEstudiante}', [ApoderadoCont
 Route::get('/apoderados', function () {
     return view('mantenedores/apoderados.index');
 })->name('apoderados.index');
-//->middleware('role.department:Secretaria,Oficina Registros'); // PRUEBA ES EL INDEX GENERAL
->>>>>>> 5c3731e (Hasta tenemos ya iniciado el proceso de renovacion de matricula)
+//->middleware('role.department:Secretaria,Oficina Registros'); 
 
 
 
@@ -301,3 +280,21 @@ Route::get('/entrevista/{idInteresado}',[PreinscripcionController::class,'entrev
 Route::get('/expedienteAdmision/{idInteresado}',[PreinscripcionController::class,'expedienteAdmision'])->name('expedienteAdmision');
 Route::get('/observacion/{idInteresado}',[PreinscripcionController::class,'observacion'])->name('observacion');
 Route::get('/subirExpedienteAdmision/{idInteresado}',[PreinscripcionController::class,'subirExpedienteAdmision'])->name('subirExpedienteAdmision');
+
+
+Route::get('/director', function () {
+    return view('director.general');
+})->name('director.general');
+
+Route::get('/director/evaluar', function () {
+    return view('director.evaluar');
+})->name('director.evaluar');
+
+
+Route::get('/director/analisis', function () {
+    return view('director.analisis');
+})->name('director.analisis');
+
+Route::get('/director/periodo', function () {
+    return view('director.periodo');
+})->name('director.periodo');
