@@ -287,7 +287,7 @@ Route::get('/expedienteAdmision/{idInteresado}',[PreinscripcionController::class
 Route::get('/observacion/{idInteresado}',[PreinscripcionController::class,'observacion'])->name('observacion');
 Route::get('/subirExpedienteAdmision/{idInteresado}',[PreinscripcionController::class,'subirExpedienteAdmision'])->name('subirExpedienteAdmision');
 
-
+Route::post('/storeExpediente/{idInteresado}',[PreinscripcionController::class,'storeExpediente'])->name('storeExpediente');
 
 Route::get('/director/evaluar', [DirectorController::class, 'evaluar'])->name('director.evaluar');
 

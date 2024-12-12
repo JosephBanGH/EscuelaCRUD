@@ -32,7 +32,7 @@
     <h4 class="text-center text-primary my-4">📂 Subir Expediente de Admisión</h4>
     <p class="text-muted text-center mb-5">Completa todos los campos requeridos para enviar el expediente de admisión. ¡Asegúrate de subir los documentos correctos en formato PDF! 🚀</p>
 
-    <form action="" method="POST" enctype="multipart/form-data" class="p-4 shadow-lg rounded bg-light">
+    <form action="{{Route('storeExpediente',[$expediente->idInteresado])}}" method="POST" enctype="multipart/form-data" class="p-4 shadow-lg rounded bg-light">
         @csrf
         
         <!-- Campo: ID Expediente -->

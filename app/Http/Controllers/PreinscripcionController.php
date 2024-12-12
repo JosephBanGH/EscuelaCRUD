@@ -96,13 +96,12 @@ class PreinscripcionController extends Controller
         }
         foreach(Storage::disk('public')->files('expedientes/'.$idInteresado) as $file){
             $filename = basename($file);
-            
-            $dowloadLink = route()
         }
         return view('preinscripcion.expedienteAdmision',compact('interesado','idPreinscripcion','expediente'));
     }
 
-    public function storeExpediente(Request $request, $idInteresado,$expediente){
+    public function storeExpediente(Request $request,$idInteresado){
+        $expediente = ExpediteAdmision::where('idInteresado', 'like',$idInteresado)->first();
         if($request->isMethod('POST')){
             $expediente->urlCompromiso = $request->urlCompromiso;
             $expediente->urlCartaReferencia = $request->urlCartaReferencia;
@@ -125,8 +124,12 @@ class PreinscripcionController extends Controller
             $fileConstanciaMatriculaAnterior = $request->file('urlConstanciaMatriculaAnterior');
             $fileEstadoExpediente = $request->file('idEstadoExpediente');
 
-            $fileCompromiso->storeAs('public/expedientes/'.$idInteresado, $fileCompromiso->getClientOriginalName(),'public');
+            $fileCompromiso->storeAs('public/expedientes/'.$expediente->idInteresado, $fileCompromiso->getClientOriginalName(),'public');
         }
-        return $this->expedienteAdmision($idInteresado);
+        return $this->expedienteAdmision($expediente->idInteresado);
+    }
+
+    public function downloadFile($filename,$idInteresado){
+        return Storage::disk('public')->download('expedientes/'.$idInteresado.'/'.$filename);
     }
 }
