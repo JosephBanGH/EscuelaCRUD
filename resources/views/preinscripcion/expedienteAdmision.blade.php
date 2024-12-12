@@ -38,13 +38,15 @@
         <!-- Campo: ID Expediente -->
         <div class="mb-3">
             <label for="idExpediente" class="form-label fw-bold">ID Expediente</label>
-            <input type="text" class="form-control" id="idExpediente" name="idExpediente" placeholder="Ingrese el ID del expediente" required>
+            <input type="text" class="form-control" id="idExpediente" name="idExpediente" placeholder="Ingrese el ID del expediente" required
+            value="{{$expediente->idExpediente}}">
         </div>
 
         <!-- Campo: ID Interesado -->
         <div class="mb-3">
             <label for="idInteresado" class="form-label fw-bold">ID Interesado</label>
-            <input type="text" class="form-control" id="idInteresado" name="idInteresado" placeholder="Ingrese el ID del interesado" required>
+            <input type="text" class="form-control" id="idInteresado" name="idInteresado" placeholder="Ingrese el ID del interesado" required
+            value="{{$interesado->idInteresado}}">
         </div>
 
         <!-- Documentos -->

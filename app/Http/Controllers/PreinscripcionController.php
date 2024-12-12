@@ -6,6 +6,7 @@ use App\Models\Preinscripcion;
 use Illuminate\Http\Request;
 use App\Models\Interesado;
 use App\Models\Entrevista;
+use App\Models\ExpediteAdmision;
 
 class PreinscripcionController extends Controller
 {
@@ -86,7 +87,13 @@ class PreinscripcionController extends Controller
     {
         $interesado = Interesado::with('preinscripcion')->where('idInteresado', 'like',$idInteresado)->first();
         $idPreinscripcion = $interesado->preinscripcion->idPreinscripcion;
-        return view('preinscripcion.expedienteAdmision',compact('interesado'))->with('idPreinscripcion',$idPreinscripcion);;
+        $expediente = ExpediteAdmision::where('idInteresado', 'like',$idInteresado)->first();
+        if ($expediente == null) {
+            $expediente = new ExpediteAdmision();
+            $expediente->idInteresado = $idInteresado;
+            $expediente->save();
+        }
+        return view('preinscripcion.expedienteAdmision',compact('interesado','idPreinscripcion','expediente'));
     }
 
     public function subirExpedienteAdmision($idInteresado){
