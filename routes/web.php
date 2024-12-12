@@ -31,7 +31,7 @@ use App\Models\Alumno;
 Route::get('/',function(){
     return view('landing');
 });
-
+Route::get('/pre/{id}',[PreinscripcionController::class,'index'])->name('preinscripcion.index');
 
 Route::get('/loginShow', function () {
     return view('login'); 
