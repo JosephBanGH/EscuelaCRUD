@@ -5,19 +5,34 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Periodo;
 use App\Models\Preinscripcion;
+use App\Models\Matricula;
 use Carbon\Carbon;
 use App\Models\Entrevista;
 use App\Models\Interesado;
 use Psy\Readline\Hoa\Console;
+use App\Models\Alumno;
 
 class DirectorController extends Controller
 {
-    // Listar periodos
+
     public function index()
     {
-        $periodos = Periodo::all(); // Obtenemos todos los periodos
-        return view('director.general', compact('periodos'));
+        // Total de matrículas
+        $totalMatriculas = Matricula::count();
+    
+        // Matrículas activas (estado = 1)
+        $matriculasActivas = Matricula::where('estado', 1)->count();
+    
+        // Matrículas anuladas (estado = 0)
+        $matriculasAnuladas = Matricula::where('estado', 0)->count();
+    
+        // Obtener las matrículas con datos relacionados para la tabla
+        $matriculas = Matricula::with(['alumno', 'seccion', 'periodo'])->get();
+    
+        // Retornar la vista con todas las variables necesarias
+        return view('director.general', compact('matriculas', 'totalMatriculas', 'matriculasActivas', 'matriculasAnuladas'));
     }
+
     public function programar($idPreinscripcion)
     {
         $interesado = Interesado::where('idPreinscripcion', 'like',$idPreinscripcion)->first();
@@ -35,6 +50,7 @@ class DirectorController extends Controller
         
         $entrevista->idComiteAdmision = 1;
         $entrevista->save();
+
 
         return redirect()->route('evaluarPreinscripciones');
     }
@@ -97,5 +113,9 @@ class DirectorController extends Controller
         }
         return view('director.analisis', compact('preinscripciones'));
     }
-
+    public function evaluar()
+    {
+        $entrevistas = Entrevista::with('interesado')->get(); // Cargar los interesados
+        return view('director.evaluar', compact('entrevistas'));
+    }
 }

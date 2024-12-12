@@ -1,134 +1,151 @@
 @extends('prueba')
-
+@section('sideBody')
+    <div class="sidebar-body mb-5">
+        <ul class="nav">
+            <li class="nav-item nav-category">MAIN</li>
+            <li class="nav-item active">
+                <a href="{{route('director.general')}}" class="nav-link">
+                    <i class="link-icon" data-feather="box"></i>
+                    <span class="link-title">PRINCIPAL</span>
+                </a>
+            </li>
+            <li class="nav-item nav-category">SISTEMA</li>
+            <li class="nav-item ">
+                <a class="nav-link" data-bs-toggle="collapse" href="#preinscripciones" role="button" aria-expanded="false" aria-controls="preinscripciones">
+                    <i class="link-icon" data-feather="file-plus"></i>
+                    <span class="link-title">Datos</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse" id="preinscripciones">
+                <ul class="nav sub-menu">
+                    <li class="nav-item">
+                        <a href="{{route('director.periodo')}}" class="nav-link ">Periodos Academicos</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="" class="nav-link ">Programar Citas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('director.evaluar')}}" class="nav-link ">Evaluar Estudiante</a>
+                    </li>
+                </ul>
+                </div>
+            </li>
+        </ul>
+    </div> 
+@endsection
 @section('contenido')
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Reportes Generales de Matrículas</h1>
-    <p class="text-center">
-        Esta sección proporciona un análisis detallado de las matrículas registradas en el sistema. Puedes visualizar estadísticas, gráficos y realizar consultas personalizadas.
-    </p>
+    <h1 class="text-center mb-4">📊 Reportes Generales de Matrículas</h1>
 
     <!-- Resumen general -->
     <div class="row mt-4">
-        <div class="col-md-3">
-            <div class="card text-white bg-primary mb-3">
-                <div class="card-body">
+        <div class="col-md-4">
+            <div class="card text-white bg-primary shadow-sm mb-4">
+                <div class="card-body d-flex flex-column align-items-center">
+                    <i class="fas fa-users fa-3x mb-3"></i>
                     <h5 class="card-title">Total Matrículas</h5>
-                    <p class="card-text display-4 text-center">450</p>
+                    <p class="card-text display-4">{{ $totalMatriculas }}</p>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card text-white bg-success mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Activas</h5>
-                    <p class="card-text display-4 text-center">380</p>
+        <div class="col-md-4">
+            <div class="card text-white bg-success shadow-sm mb-4">
+                <div class="card-body d-flex flex-column align-items-center">
+                    <i class="fas fa-check-circle fa-3x mb-3"></i>
+                    <h5 class="card-title">Matrículas Activas</h5>
+                    <p class="card-text display-4">{{ $matriculasActivas }}</p>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card text-white bg-warning mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Pendientes</h5>
-                    <p class="card-text display-4 text-center">50</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card text-white bg-danger mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Anuladas</h5>
-                    <p class="card-text display-4 text-center">20</p>
+        <div class="col-md-4">
+            <div class="card text-white bg-danger shadow-sm mb-4">
+                <div class="card-body d-flex flex-column align-items-center">
+                    <i class="fas fa-times-circle fa-3x mb-3"></i>
+                    <h5 class="card-title">Matrículas Anuladas</h5>
+                    <p class="card-text display-4">{{ $matriculasAnuladas }}</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Gráfico de estadísticas -->
-    <div class="row mt-5">
-        <div class="col-md-12">
-            <h3 class="text-center">Distribución de Matrículas por Niveles</h3>
-            <canvas id="matriculasChart" width="400" height="200"></canvas>
+    <!-- Gráficos -->
+    <div class="row mt-5 justify-content-center">
+        <div class="col-md-4">
+            <h4 class="text-center">Estados de Matrículas</h4>
+            <canvas id="estadosChart"></canvas>
         </div>
     </div>
 
-    <!-- Tabla de reportes -->
+    <!-- Tabla de detalles -->
     <div class="row mt-5">
         <div class="col-md-12">
-            <h3 class="text-center mb-4">Detalles de Matrículas</h3>
-            <table class="table table-bordered">
+            <h3 class="text-center mb-4">📋 Detalles de Matrículas</h3>
+            <table class="table table-bordered table-hover">
                 <thead class="thead-dark">
-                    <tr>
+                    <tr class="text-center">
                         <th>#</th>
-                        <th>Nombre del Estudiante</th>
-                        <th>Grado</th>
+                        <th>Estudiante</th>
+                        <th>DNI</th>
                         <th>Sección</th>
+                        <th>Periodo</th>
                         <th>Estado</th>
                         <th>Fecha de Matrícula</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Juan Pérez</td>
-                        <td>Primaria - 4to Grado</td>
-                        <td>A</td>
-                        <td>Activa</td>
-                        <td>2024-03-01</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>María López</td>
-                        <td>Secundaria - 1er Año</td>
-                        <td>B</td>
-                        <td>Pendiente</td>
-                        <td>2024-03-02</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Pedro Ramírez</td>
-                        <td>Inicial - 5 Años</td>
-                        <td>C</td>
-                        <td>Anulada</td>
-                        <td>2024-02-28</td>
-                    </tr>
-                    <!-- Agregar más filas si es necesario -->
+                    @forelse ($matriculas as $key => $matricula)
+                        <tr>
+                            <td class="text-center">{{ $key + 1 }}</td>
+                            <td>{{ $matricula->alumno->primer_nombre }} {{ $matricula->alumno->apellido_paterno }}</td>
+                            <td>{{ $matricula->alumno->dni }}</td>
+                            <td>{{ $matricula->seccion->seccion }}</td>
+                            <td>
+                                {{ \Carbon\Carbon::parse($matricula->periodo->inicioPeriodo)->format('Y-m-d') }} - 
+                                {{ \Carbon\Carbon::parse($matricula->periodo->finPeriodo)->format('Y-m-d') }}
+                            </td>
+                            <td class="text-center">
+                                @if ($matricula->estado === 1)
+                                    <span class="badge bg-success">Activa</span>
+                                @else
+                                    <span class="badge bg-danger">Anulada</span>
+                                @endif
+                            </td>
+                            <td>{{ \Carbon\Carbon::parse($matricula->fechaMatricula)->format('Y-m-d') }}</td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="7" class="text-center text-muted">No hay matrículas registradas.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 
-<!-- Script para el gráfico -->
+<!-- Scripts para los gráficos -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    const ctx = document.getElementById('matriculasChart').getContext('2d');
-    const matriculasChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Inicial', 'Primaria', 'Secundaria'],
-            datasets: [{
-                label: 'Cantidad de Matrículas',
-                data: [100, 200, 150],
-                backgroundColor: [
-                    'rgba(54, 162, 235, 0.6)',
-                    'rgba(75, 192, 192, 0.6)',
-                    'rgba(255, 206, 86, 0.6)'
-                ],
-                borderColor: [
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(255, 206, 86, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
+    // Datos para el gráfico de estados de matrículas
+    const estadosData = {
+        labels: ['Activas', 'Anuladas'],
+        datasets: [{
+            data: [{{ $matriculasActivas }}, {{ $matriculasAnuladas }}],
+            backgroundColor: ['#28a745', '#dc3545']
+        }]
+    };
+
+    // Configuración del gráfico
+    const estadosChartConfig = {
+        type: 'doughnut',
+        data: estadosData
+    };
+
+    // Inicializar el gráfico de estados
+    const estadosChart = new Chart(
+        document.getElementById('estadosChart'),
+        estadosChartConfig
+    );
 </script>
 @endsection
