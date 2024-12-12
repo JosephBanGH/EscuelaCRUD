@@ -299,8 +299,10 @@ Route::get('/director/analisis', function () {
 })->name('director.analisis');
 
 
+//--------------- Director Periodo
 Route::put('director/cambiar-estado/{id}', [DirectorController::class, 'cambiarEstado'])->name('director.cambiarEstado');
 Route::get('/director/periodo', [DirectorController::class, 'periodo'])->name('director.periodo');
-
 Route::post('/director/periodo', [DirectorController::class, 'store'])->name('director.store');
 
+//--------------- Director Analisis
+Route::get('/director/analisis', [DirectorController::class, 'analisis'])->name('director.analisis');

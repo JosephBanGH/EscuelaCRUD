@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Preinscripcion extends Model
 {
     use HasFactory;
@@ -16,7 +17,7 @@ class Preinscripcion extends Model
         'nombreApoderado',
         'apellidoApoderado',
         'dni',
-        'fechaPreInscripcion',
+        'fechaPreinscripcion',
         'numTelefono',
         'correo',
         'estado'
@@ -25,4 +26,5 @@ class Preinscripcion extends Model
     public function interesado(){
         return $this->hasMany(Interesado::class,'idPreinscripcion','idPreinscripcion');
     }
+
 }

@@ -41,14 +41,14 @@
                         <label for="inicio" class="form-label">Fecha de Inicio</label>
                         <input type="date" id="inicio" name="inicio" class="form-control" value="{{ old('inicio') }}">
                         @error('inicio')
-                            <div class="text-danger">{{ $message }}</div>
+                            <div class="text-danger">La fecha de inicio no debe ser mayor a la final</div>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="fin" class="form-label">Fecha de Finalización</label>
                         <input type="date" id="fin" name="fin" class="form-control" value="{{ old('fin') }}">
                         @error('fin')
-                            <div class="text-danger">{{ $message }}</div>
+                            <div class="text-danger">La fecha final no debe ser menor a la inicial</div>
                         @enderror
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Crear Periodo</button>

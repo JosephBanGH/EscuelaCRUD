@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Periodo;
+use App\Models\Preinscripcion;
+use Carbon\Carbon;
 
 class DirectorController extends Controller
 {
@@ -56,4 +58,19 @@ class DirectorController extends Controller
     
         return redirect()->route('director.periodo')->with('success', 'Periodo activado exitosamente');
     }
+
+
+    public function analisis()
+    {
+        // Obtener todas las preinscripciones
+        $preinscripciones = Preinscripcion::all();
+
+        // Formatear la fecha para cada preinscripción
+        foreach ($preinscripciones as $preinscripcion) {
+            // Formato 'd/m/Y' para la fecha de preinscripción
+            $preinscripcion->fechaPreinscripcion = Carbon::parse($preinscripcion->fechaPreinscripcion)->format('d/m/Y');
+        }
+        return view('director.analisis', compact('preinscripciones'));
+    }
+
 }

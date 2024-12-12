@@ -2,75 +2,101 @@
 
 @section('contenido')
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Análisis de Expedientes de Admisión</h1>
-    <p class="text-center">Consulta y analiza los expedientes presentados por los estudiantes en el proceso de admisión.</p>
-
+    <h1 class="text-center mb-4">Análisis de Preinscripciones</h1>
+    
     <!-- Tarjetas resumen -->
     <div class="row mt-4">
         <div class="col-md-4">
             <div class="card text-white bg-primary mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">Total Expedientes</h5>
-                    <p class="card-text display-5 text-center">250</p>
+                    <h5 class="card-title">Total Preinscripciones</h5>
+                    <p class="card-text display-5 text-center">{{ $preinscripciones->count() }}</p>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="card text-white bg-success mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">Aprobados</h5>
-                    <p class="card-text display-5 text-center">200</p>
+                    <h5 class="card-title">Aprobadas</h5>
+                    <p class="card-text display-5 text-center">{{ $preinscripciones->where('estado', 1)->count() }}</p>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="card text-white bg-danger mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">Rechazados</h5>
-                    <p class="card-text display-5 text-center">50</p>
+                    <h5 class="card-title">Rechazadas</h5>
+                    <p class="card-text display-5 text-center">{{ $preinscripciones->where('estado', 0)->count() }}</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Tabla de expedientes -->
+    <!-- Tabla de preinscripciones -->
     <div class="row mt-5">
         <div class="col-md-12">
-            <h3 class="text-center mb-4">Lista de Expedientes</h3>
+            <h3 class="text-center mb-4">Lista de Preinscripciones</h3>
             <table class="table table-hover">
                 <thead class="thead-light">
                     <tr>
                         <th>#</th>
-                        <th>Nombre del Aspirante</th>
-                        <th>Documento</th>
+                        <th>Nombre Apoderado</th>
+                        <th>DNI</th>
+                        <th>Correo</th>
+                        <th>Fecha de Preinscripción</th>
                         <th>Estado</th>
-                        <th>Fecha de Registro</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Juan Pérez</td>
-                        <td>DNI: 12345678</td>
-                        <td><span class="badge bg-success">Aprobado</span></td>
-                        <td>2024-04-01</td>
-                        <td>
-                            <button class="btn btn-info btn-sm">Ver Detalles</button>
-                            <button class="btn btn-danger btn-sm">Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>María López</td>
-                        <td>DNI: 87654321</td>
-                        <td><span class="badge bg-danger">Rechazado</span></td>
-                        <td>2024-04-02</td>
-                        <td>
-                            <button class="btn btn-info btn-sm">Ver Detalles</button>
-                            <button class="btn btn-danger btn-sm">Eliminar</button>
-                        </td>
-                    </tr>
+                    @foreach($preinscripciones as $preinscripcion)
+                        <tr>
+                            <td>{{ $preinscripcion->idPreinscripcion }}</td>
+                            <td>{{ explode(' ', $preinscripcion->nombreApoderado)[0] }} {{ explode(' ', $preinscripcion->apellidoApoderado)[0] }}</td>
+                            <td>{{ $preinscripcion->dni }}</td>
+                            <td>{{ $preinscripcion->correo }}</td>
+                            <td>{{ $preinscripcion->fechaPreinscripcion }}</td>
+                            <td>
+                                <span class="badge {{ $preinscripcion->estado == 1 ? 'bg-success' : 'bg-danger' }}">
+                                    {{ $preinscripcion->estado == 1 ? 'Aprobado' : 'Rechazado' }}
+                                </span>
+                            </td>
+                            <td>
+                                <!-- Botón para abrir el modal con los detalles -->
+                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#detallesModal{{ $preinscripcion->idPreinscripcion }}">Ver Detalles</button>
+                            </td>
+                        </tr>
+
+                        <!-- Modal para mostrar los detalles -->
+                        <div class="modal fade" id="detallesModal{{ $preinscripcion->idPreinscripcion }}" tabindex="-1" role="dialog" aria-labelledby="detallesModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="detallesModalLabel">Detalles de la Preinscripción</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p><strong>Nombre Apoderado:</strong> {{ $preinscripcion->nombreApoderado }} {{ $preinscripcion->apellidoApoderado }}</p>
+                                        <p><strong>DNI:</strong> {{ $preinscripcion->dni }}</p>
+                                        <p><strong>Correo:</strong> {{ $preinscripcion->correo }}</p>
+                                        <p><strong>Teléfono:</strong> {{ $preinscripcion->numTelefono }}</p>
+                                        <p><strong>Fecha de Preinscripción:</strong> {{ $preinscripcion->fechaPreinscripcion }}</p>
+                                        <p><strong>Estado:</strong> 
+                                            <span class="badge {{ $preinscripcion->estado == 1 ? 'bg-success' : 'bg-danger' }}">
+                                                {{ $preinscripcion->estado == 1 ? 'Aprobado' : 'Rechazado' }}
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    @endforeach
                 </tbody>
             </table>
         </div>
