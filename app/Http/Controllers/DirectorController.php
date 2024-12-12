@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Periodo;
 use App\Models\Preinscripcion;
 use Carbon\Carbon;
+use App\Models\Entrevista;
+use App\Models\Interesado;
 use Psy\Readline\Hoa\Console;
 
 class DirectorController extends Controller
@@ -23,13 +25,6 @@ class DirectorController extends Controller
     }
     public function updateEntrevista(Request $request)
     {
-        // //imprimir en consola
-        // $request->validate([
-        //     'lugarEntrevista' => 'required|string|max:255',
-        //     'fechaEntrevista' => 'required|date',
-        //     'horaEntrevista' => 'required|date_format:H:i',
-        // ]);
-
         $entrevista = new Entrevista();
         $entrevista->idInteresado = $request->idInteresado;
         
