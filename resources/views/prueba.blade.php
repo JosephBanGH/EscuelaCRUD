@@ -22,6 +22,7 @@ License: For each use you must have a valid license purchased only from above li
     <title>I.E Mariano Melgar</title>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   <!-- Fonts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,6 +36,10 @@ License: For each use you must have a valid license purchased only from above li
   <link rel="shortcut icon" href="https://www.nobleui.com/laravel/template/demo1/favicon.ico">
 =======
     <!-- Fonts -->
+=======
+    <!-- Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+>>>>>>> 1007057a6a66e85a519659bdad1728b8bf10c006
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -44,7 +49,10 @@ License: For each use you must have a valid license purchased only from above li
     <meta name="_token" content="OjbRWW0MIVXz85uUdZMVphEqxPIhsDUVvn68VXjZ">
     
     <link rel="shortcut icon" href="https://www.nobleui.com/laravel/template/demo1/favicon.ico">
+<<<<<<< HEAD
 >>>>>>> c807898 (El usuario ya puede cerrar sesion)
+=======
+>>>>>>> 1007057a6a66e85a519659bdad1728b8bf10c006
 
     <!-- plugin css -->
     <link href="https://www.nobleui.com/laravel/template/demo1/assets/fonts/feather-font/css/iconfont.css" rel="stylesheet" />
