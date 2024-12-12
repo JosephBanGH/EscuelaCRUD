@@ -18,13 +18,9 @@
                         N/A
                     @endif
                 </p>
-
-
-
                 </div>
             </div>
         </div>
-
     </div>
 
     <!-- Formulario para crear nuevo periodo -->
