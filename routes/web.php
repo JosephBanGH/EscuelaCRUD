@@ -209,7 +209,6 @@ Route::delete('curso-grado/{id_curso}/{id_grado}', [CursoGradoController::class,
 //NOTAS --YA NO
 
 Route::resource('registronotas', RegistroNotasController::class);
-<<<<<<< HEAD
 Route::post('/registronotas/importar', [RegistroNotasController::class, 'importar'])->name('registronotas.importar');
 
 
@@ -299,5 +298,4 @@ Route::get('/director/analisis', function () {
 Route::get('/director/periodo', function () {
     return view('director.periodo');
 })->name('director.periodo');
-=======
->>>>>>> 1007057a6a66e85a519659bdad1728b8bf10c006
+
